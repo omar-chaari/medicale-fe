@@ -1,0 +1,35 @@
+<div class="d-flex flex-row-reverse bd-highlight mb-2">
+    <div class="p-2 bd-highlight">
+      <select (change)="onTableSizeChange($event)" class="custom-select">
+        <option *ngFor="let size of tableSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div  class="col mb-5" *ngFor='let p of produits |  paginate : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index' [class.active]="i == currentIndex">
+                    <app-produit [produit]="p" ></app-produit>
+                </div>
+            
+               
+           
+        </div>
+        </div>
+     </section>       
+     <div class="d-flex justify-content-center">
+        <pagination-controls 
+          responsive="true" 
+          previousLabel="Prev" 
+          nextLabel="Next" 
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
