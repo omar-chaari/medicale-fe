@@ -10,6 +10,7 @@ import { ProduitComponent } from './components/produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxPaginationModule } from 'ngx-pagination'; //Imports NgxPaginationModule 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; //Imports NgxPaginationMod
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
 
   ],
   providers: [],
