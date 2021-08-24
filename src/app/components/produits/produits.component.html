@@ -1,17 +1,26 @@
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+          <h1 class="display-4 fw-bolder">Produits</h1>
+      </div>
+  </div>
+</header>  
+  
   <div class="container px-4 px-lg-5 mt-5">
 
 <form #f="ngForm" (ngSubmit)="submit(f)">
   <div class="row">
-  <div class="mb-3 col-md-3">
-    <label for="productName" class="form-label">Product name</label>
+  <div class="mb-3 col-lg-3">
+    <label for="productName" class="form-label">Nom</label>
     <input type="text" class="form-control" id="productName" name="productName"   
     ngModel>
   </div>
-  <div class="mb-3 col-md-3">
+  <div class="mb-3 col-lg-3">
     <label for="price" class="form-label" >Prix (supérieur à)</label>
     <input type="text" class="form-control" id="price" name="price" ngModel>
   </div>
-  <div class="mb-3 col-md-3">
+  <div class="mb-3 col-lg-3">
     <label for="categorie" class="form-label">Catégorie</label>
     <select class="form-select" id="categorie" name="category" aria-label="" ngModel>
       <option selected></option>
@@ -22,7 +31,7 @@
       </div>
   <div class="mb-3 col-md-3">
 
-    <label for="submit" class="form-label"></label>
+    <label for="submit" class="form-label d-md-block  " style="height: 30px;"></label>
    
   <button type="submit" class="btn btn-primary" id="submit">Rechercher</button>
 </div>

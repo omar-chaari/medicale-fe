@@ -11,6 +11,7 @@ export class DetailProduitComponent implements OnInit {
  produit:any;
  category:any;
  reviews:any;
+ averageScore;
   constructor(    private produitService: ProduitService,
     private activatedRoute:ActivatedRoute
     ) { }
@@ -25,6 +26,7 @@ export class DetailProduitComponent implements OnInit {
        
        
         this.reviews=this.produit.products[0].reviews;
+        this.averageScore=this.produit.products[0].averageScore;
      this.produit=this.produit.products[0];
 
   }
