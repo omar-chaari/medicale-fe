@@ -51,8 +51,6 @@ export class ProduitsComponent implements OnInit {
 
         this.CategoryList = data['hydra:member'];
 
-        //console.log(this.produits);
-        //this.count= data['hydra:totalItems'];
       }
     );
 
