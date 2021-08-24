@@ -18,8 +18,8 @@ export class ProduitsComponent implements OnInit {
   tableSizes = [8];
   productName:any;
   price:any;
-
-
+  CategoryList;
+  category:any;
 
   constructor(
     private produitService: ProduitService,
@@ -28,12 +28,12 @@ export class ProduitsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchPosts();
+    this.fetchProducts();
+    this.fetchCategory();
 
   }
-  fetchPosts(): void {
-    console.log(this.productName);
-    this.produitService.getAllProduits(this.page,this.price,this.productName).subscribe(
+  fetchProducts(): void {
+    this.produitService.getAllProduits(this.page,this.price,this.productName,this.category).subscribe(
       data => {
 
         this.produits = data['hydra:member'];
@@ -44,22 +44,38 @@ export class ProduitsComponent implements OnInit {
     );
 
   }
+  fetchCategory(): void {
+
+    this.produitService.getAllCategory().subscribe(
+      data => {
+
+        this.CategoryList = data['hydra:member'];
+
+        //console.log(this.produits);
+        //this.count= data['hydra:totalItems'];
+      }
+    );
+
+  }
 
   onTableDataChange(event:any){
     this.page = event;
-    this.fetchPosts();
+    this.fetchProducts();
   }  
 
   onTableSizeChange(event:any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.fetchPosts();
+    this.fetchProducts();
   }  
   submit(form) {
 
     this.price=form.value.price;
     this.productName=form.value.productName;
-    this.fetchPosts();
+    this.category=form.value.category;
+    
+    
+    this.fetchProducts();
     
     //console.log(form.value.price);
     //throw new Error(`D'OH!`);

@@ -13,11 +13,11 @@
   </div>
   <div class="mb-3 col-md-3">
     <label for="categorie" class="form-label">Catégorie</label>
-    <select class="form-select" id="categorie" name="category" aria-label="">
+    <select class="form-select" id="categorie" name="category" aria-label="" ngModel>
       <option selected></option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      <option  *ngFor="let c of CategoryList" value={{c.name}} >{{c.name}}</option>
+
+     
     </select>
       </div>
   <div class="mb-3 col-md-3">
