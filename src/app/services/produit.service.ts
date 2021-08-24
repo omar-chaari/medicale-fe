@@ -27,11 +27,12 @@ export class ProduitService {
   }
 
   getAllCategory() {
-    //+"&price%5Bgte%5D="+price
-    //getAllCategory
     var url=this.Url+"/categories";
     return this.httpClient.get(url);
   }
-
+  getProduit(id){
+    var url=this.Url+"/products/"+id+"/category";
+    return this.httpClient.get(url);
+  }
 
 }

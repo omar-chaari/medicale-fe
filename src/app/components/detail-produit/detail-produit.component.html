@@ -1,0 +1,31 @@
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{produit.imageUrl}}" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">{{category}}</div>
+                <h1 class="display-5 fw-bolder">{{produit.productName}}</h1>
+                <div class="fs-5 mb-5">
+                    <span>${{produit.price}}</span>
+                </div>
+                <p class="lead">{{produit.description}}</p>
+                <br>
+                <br> <h6>Avis:</h6>
+ 
+                    <hr style="border:3px solid #c1c1c1">
+
+                <div *ngFor="let r of reviews">
+                    <div class="d-flex  small text-warning mb-2">
+
+                        <div   *ngFor="let item of createRange(r.value); " class="bi-star-fill"></div>
+                                </div>
+                            <p>{{r.content}}</p>
+                            <hr style="border:3px solid #c1c1c1">
+                        </div>   
+                    
+                
+            </div>
+        </div>
+    </div>
+</section>
