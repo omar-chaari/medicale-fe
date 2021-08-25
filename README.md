@@ -9,6 +9,7 @@ https://github.com/omar-chaari/ats-test-fontend.git
 ```
 npm install
 ```
+- Modifiez le fichier ```src/environments/environment.ts``` pour modifier l'URL de l'API
 - Lancer le serveur Web
 ```
 ng serve --open
