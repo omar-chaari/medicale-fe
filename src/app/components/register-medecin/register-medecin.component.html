@@ -1,0 +1,364 @@
+
+
+
+<div class="container">
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+        <div class="col-lg-7">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Inscription pour professionnel de santé</h1>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="message_error">
+              {{message_error}}
+            </div>
+
+            <div class="alert alert-success" role="alert" *ngIf="message_success">
+              {{message_success}}
+            </div>
+
+            <form class="user" [formGroup]='signupForm'>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <input type="text" class="form-control " id="exampleFirstName" placeholder="Prénom"
+                    formControlName="first_name">
+                  <div *ngIf="signupForm.controls['first_name'].invalid && 
+                    (signupForm.controls['first_name'].dirty || signupForm.controls['first_name'].touched)">
+                    <div *ngIf="signupForm.controls['first_name'].errors.minlength" class="text-danger">
+                      La longueur du prénom doit être d'au moins 3 caracteres
+
+                    </div>
+                    <div *ngIf="signupForm.controls['first_name'].errors.required" class="text-danger">
+                      Le prénom est requis
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control " id="exampleLastName" formControlName="last_name"
+                    placeholder="Nom">
+                  <div *ngIf="signupForm.controls['last_name'].invalid && 
+                    (signupForm.controls['last_name'].dirty || signupForm.controls['last_name'].touched)">
+                    <div *ngIf="signupForm.controls['last_name'].errors.minlength" class="text-danger">
+                      La longueur du nom doit être d'au moins 3 caracteres
+                    </div>
+                    <div *ngIf="signupForm.controls['last_name'].errors.required" class="text-danger">
+                      Le nom est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                  <select class="form-control " id="exampleFirstName" formControlName="speciality">
+                    <option value="" selected="">Spécialité</option>
+                    <option value="13">Cardiologue</option>
+                    <option value="24">Chirurgien Esthétique</option>
+                    <option value="20">Chirurgien Orthopédiste Traumatologue</option>
+                    <!--
+                    <option value="29">Dentiste</option>
+                    <option value="30">Dermatologue</option>
+                    <option value="33">Endocrinologue Diabétologue</option>
+                    <option value="35">Gastro-entérologue</option>
+                    <option value="36">Généraliste</option>
+                    <option value="39">Gynécologue Obstétricien</option>
+                    <option value="49">Interniste</option>
+                    <option value="62">Néphrologue</option>
+                    <option value="64">Neurologue</option>
+                    <option value="65">Nutritionniste</option>
+                    <option value="66">Ophtalmologiste</option>
+                    <option value="70">Oto-Rhino-Laryngologiste (ORL)</option>
+                    <option value="72">Pédiatre</option>
+                    <option value="78">Pneumologue</option>
+                    <option value="93">Psychiatre</option>
+                    <option value="94">Psychothérapeute</option>
+                    <option value="80">Radiologue</option>
+                    <option value="87">Rhumatologue</option>
+                    <option value="95">Sexologue</option>
+                    <option value="92">Urologue</option>
+
+                    <optgroup value="0" label="Autres spécialités">
+                      <option value="111">Acupuncture</option>
+                      <option value="120">Addictologue</option>
+                      <option value="121">Algologue</option>
+                      <option value="89">Allergologue</option>
+                      <option value="1">Anatomo-Cyto-Pathologiste</option>
+                      <option value="122">Andrologue</option>
+                      <option value="2">Anesthésiste-Réanimateur</option>
+                      <option value="3">Angiologue</option>
+                      <option value="160">Audiologiste</option>
+                      <option value="106">Audioprothésiste</option>
+                      <option value="172">Auriculothérapeute</option>
+                      <option value="6">Biochimiste</option>
+                      <option value="4">Biochimiste Clinique</option>
+                      <option value="5">Biologiste Medicale</option>
+                      <option value="10">Biophysique</option>
+                      <option value="12">Cancérologue</option>
+                      <option value="153">Centre d'imagerie médicale</option>
+                      <option value="161">Chiropracteur</option>
+                      <option value="158">Chirurgie plastique et réparatrice</option>
+                      <option value="26">Chirurgien</option>
+                      <option value="14">Chirurgien Cancérologue</option>
+                      <option value="143">Chirurgien capillaire</option>
+                      <option value="15">Chirurgien Cardio-Vasculaire</option>
+                      <option value="16">Chirurgien Cardio-Vasculaire Thoracique</option>
+                      <option value="133">Chirurgien de l'obésité</option>
+                      <option value="17">Chirurgien Généraliste</option>
+                      <option value="151">Chirurgien Maxillo Facial et Esthétique</option>
+                      <option value="91">Chirurgien Maxillo Facial Stomatologue</option>
+                      <option value="174">Chirurgien Orthopédiste Pédiatrique</option>
+                      <option value="21">Chirurgien Pédiatrique</option>
+                      <option value="22">Chirurgien Plasticien</option>
+                      <option value="27">Chirurgien Thoracique</option>
+                      <option value="25">Chirurgien Urologue</option>
+                      <option value="144">Chirurgien vasculaire</option>
+                      <option value="132">Chirurgien viscéral et digestif</option>
+                      <option value="31">Diabétologue</option>
+                      <option value="101">Diététicien</option>
+                      <option value="43">Embryologiste</option>
+                      <option value="32">Endocrinologue</option>
+                      <option value="150">Endodontiste</option>
+                      <option value="137">Epidemiologiste</option>
+                      <option value="142">Ergothérapeute</option>
+                      <option value="117">Généticien</option>
+                      <option value="102">Gériatre</option>
+                      <option value="41">Hématologue</option>
+                      <option value="42">Hématologue Clinique</option>
+                      <option value="7">Hématopathologiste</option>
+                      <option value="110">Hépatologue</option>
+                      <option value="116">Hypnothérapeute</option>
+                      <option value="44">Imagerie Médicale</option>
+                      <option value="45">Immunologiste</option>
+                      <option value="8">Immunopathologiste</option>
+                      <option value="152">Implantologue</option>
+                      <option value="149">Infirmier</option>
+                      <option value="50">Interniste Maladies Infectieuses</option>
+                      <option value="51">Interniste Réanimation Médicale</option>
+                      <option value="46">Kinésithérapeute</option>
+                      <option value="154">Laboratoire d'analyses de biologie médicale</option>
+                      <option value="155">Laboratoire d'anatomie et cytologie pathologiques</option>
+                      <option value="156">Laboratoire de cytogénétique</option>
+                      <option value="173">Maladies Cardiovasculaire</option>
+                      <option value="47">Maladies Infectieuses</option>
+                      <option value="59">Médecin Biologiste</option>
+                      <option value="162">Médecin de famille</option>
+                      <option value="168">Médecin du sommeil</option>
+                      <option value="118">Médecin du sport</option>
+                      <option value="48">Médecin du Travail</option>
+                      <option value="96">Médecin Esthétique</option>
+                      <option value="157">Médecin Hémodialyseur</option>
+                      <option value="123">Médecin homéopathe</option>
+                      <option value="52">Médecin Légiste</option>
+                      <option value="53">Médecin Nucléaire</option>
+                      <option value="55">Médecin Physique Réadaptateur</option>
+                      <option value="124">Médecin urgentiste</option>
+                      <option value="125">Médecine douce et alternative</option>
+                      <option value="126">Médecine morphologique et anti-âge</option>
+                      <option value="57">Médecine Préventive</option>
+                      <option value="146">Médecine tropicale</option>
+                      <option value="9">Microbiologiste</option>
+                      <option value="61">Néonatologiste</option>
+                      <option value="18">Neurochirurgien</option>
+                      <option value="171">Neuropédiatre</option>
+                      <option value="169">Neurophysiologiste</option>
+                      <option value="127">Neuropsychiatre</option>
+                      <option value="167">Neuropsychologue</option>
+                      <option value="159">Nutrithérapeute</option>
+                      <option value="164">Oncologue</option>
+                      <option value="145">Oncologue-Chimiothérapeute</option>
+                      <option value="85">Oncologue-Radiothérapeute</option>
+                      <option value="128">Opticien</option>
+                      <option value="67">Orthodontiste</option>
+                      <option value="100">Orthophoniste</option>
+                      <option value="104">Orthoptiste</option>
+                      <option value="115">Ostéopathe</option>
+                      <option value="71">Parasitologiste</option>
+                      <option value="119">Parodontiste implantologiste</option>
+                      <option value="74">Pédodontiste</option>
+                      <option value="73">Pédopsychiatre</option>
+                      <option value="166">Perineologue</option>
+                    
+                      <option value="108">Phlébologue</option>
+                      <option value="76">Physiologiste</option>
+                      <option value="99">Physiothérapeute</option>
+                      <option value="134">Phytothérapeute</option>
+                      <option value="107">Podologue</option>
+                      <option value="138">Posturologue</option>
+                      <option value="109">Proctologue</option>
+                      <option value="165">Prothésiste Capillaire</option>
+                      <option value="103">Prothésiste dentaire</option>
+                      <option value="113">Psychanalyste</option>
+                      <option value="79">Psychologue</option>
+                      <option value="170">Psychologue clinicien</option>
+                      <option value="112">Psychomotricien</option>
+                      <option value="84">Radiothérapeute</option>
+                      <option value="86">Réanimateur Médical</option>
+                      <option value="135">Réflexologue</option>
+                      <option value="130">Sage femme</option>
+                      <option value="131">Santé publique et médecine sociale</option>
+                      <option value="147">Sénologue</option>
+                      <option value="90">Stomatologue</option>
+                      <option value="148">Urodynamique</option>
+                      <option value="163">Vétérinaire</option>-->
+
+                  </select>
+                  <div *ngIf="signupForm.controls['speciality'].invalid && 
+                    (signupForm.controls['speciality'].dirty || signupForm.controls['speciality'].touched)">
+
+                    <div *ngIf="signupForm.controls['speciality'].errors.required" class="text-danger">
+                      La spécialité est requis
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-control " id="exampleLastName" formControlName="governorate">
+                    <option value="" selected="">Gouvernorat</option>
+                    <option value="1">Ariana</option>
+                    <option value="2">Beja</option>
+                    <option value="3">Ben arous</option>
+                    <option value="4">Bizerte</option>
+                    <option value="5">Gabes</option>
+                    <option value="6">Gafsa</option>
+                    <option value="7">Jendouba</option>
+                    <option value="8">Kairouan</option>
+                    <option value="9">Kasserine</option>
+                    <option value="10">Kebili</option>
+                    <option value="11">Le Kef</option>
+                    <option value="12">Mahdia</option>
+                    <option value="13">Mannouba</option>
+                    <option value="14">Medenine</option>
+                    <option value="15">Monastir</option>
+                    <option value="16">Nabeul</option>
+                    <option value="17">Sfax</option>
+                    <option value="18">Sidi bouzid</option>
+                    <option value="19">Siliana</option>
+                    <option value="20">Sousse</option>
+                    <option value="21">Tataouine</option>
+                    <option value="22">Tozeur</option>
+                    <option value="23">Tunis</option>
+                    <option value="24">Zaghouan</option>
+
+                  </select>
+                  <div *ngIf="signupForm.controls['governorate'].invalid && 
+                    (signupForm.controls['governorate'].dirty || signupForm.controls['governorate'].touched)">
+
+                    <div *ngIf="signupForm.controls['governorate'].errors.required" class="text-danger">
+                      Le gouvernorat est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                  <input type="email" class="form-control " id="exampleInputEmail" formControlName="email"
+                    placeholder="Adresse mail">
+
+
+
+                  <div *ngIf="signupForm.controls['email'].invalid && 
+                                    (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+                    <div *ngIf="signupForm.controls['email'].errors.email" class="text-danger">
+                      Format email invalide
+                    </div>
+                    <div *ngIf="signupForm.controls['email'].errors.required" class="text-danger">
+                      L'email est requis </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                  <input type="text" class="form-control " id="exampleInputEmail" formControlName="phone"
+                    placeholder="Téléphone Mobile">
+
+
+                  <div *ngIf="signupForm.controls['phone'].invalid && 
+                                      (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)">
+                    <div *ngIf="signupForm.controls['phone'].errors.minlength" class="text-danger">
+                      La longueur du prénom doit être d'au moins 8 chiffres
+                    </div>
+                    <div *ngIf="signupForm.controls['phone'].errors.required" class="text-danger">
+                      Le téléphone mobile est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <input type="password" class="form-control " id="exampleInputPassword" placeholder="Mot de passe"
+                    formControlName="password">
+                  <div *ngIf="signupForm.controls['password'].invalid && 
+                    (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+
+                    <div *ngIf="signupForm.controls['password'].errors.required" class="text-danger">
+                      Le mot de passe est requis
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="password" class="form-control " id="exampleRepeatPassword"
+                    placeholder="Répéter le mot de passe" formControlName="password_confirmation">
+
+                  <div
+                    *ngIf="signupForm.controls['password_confirmation'].invalid && 
+                    (signupForm.controls['password_confirmation'].dirty || signupForm.controls['password_confirmation'].touched)">
+
+                    <div *ngIf="signupForm.controls['password_confirmation'].errors.required" class="text-danger">
+                      Le confirmation de mot de passe est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                  <input type="text" class="form-control " id="exampleInputAdress" formControlName="address"
+                    placeholder="Adresse">
+
+
+
+                  <div *ngIf="signupForm.controls['address'].invalid && 
+                                    (signupForm.controls['address'].dirty || signupForm.controls['address'].touched)">
+                    <div *ngIf="signupForm.controls['address'].errors.minlength" class="text-danger">
+                      La longueur de l'adresse doit être d'au moins 3 caracteres
+                    </div>
+                    <div *ngIf="signupForm.controls['address'].errors.required" class="text-danger">
+                      L'adresse est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--<a href="login.html" class="btn btn-primary btn-user btn-block">
+                                Register Account
+                            </a>-->
+              <button type="submit" class="btn btn-primary" (click)='register(signupForm.value)'
+                [disabled]='signupForm.invalid'>Soummetre ma demande</button>
+
+              <!---
+                            <hr>
+                            <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>
+                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                            </a>-->
+            </form>
+            <hr>
+            <div class="text-center">
+              <a class="small" href="forgot-password.html">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+              <a class="small" href="login.html">Already have an account? Login!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

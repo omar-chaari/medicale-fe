@@ -1,0 +1,79 @@
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">medecins</h1>
+        </div>
+    </div>
+</header>
+
+<div class="container px-4 px-lg-5 mt-5">
+
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+        <div class="row">
+            <div class="mb-3 col-lg-3">
+                <label for="productName" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="MedecinName" name="MedecinName" ngModel>
+            </div>
+            <div class="mb-3 col-lg-3">
+                <label for="categorie" class="form-label">Spécialité</label>
+                <select class="form-select" id="speciality" name="speciality" aria-label="" ngModel>
+                    <option selected></option>
+                    <option *ngFor="let s of SpecialityList" value="{{s.speciality}}">{{s.speciality}}</option>
+
+
+                </select>
+            </div>
+            
+
+            <div class="mb-3 col-lg-3">
+                <label for="categorie" class="form-label">Gouvernorat</label>
+                <select class="form-select" id="gouvernorat" name="gouvernorat" aria-label="" ngModel>
+                    <option selected></option>
+                    <option *ngFor="let g of GouvernoratList" value={{g.governorate}}>{{g.governorate}}</option>
+
+
+                </select>
+            </div>
+            
+
+            
+            <div class="mb-3 col-md-3">
+
+                <label for="submit" class="form-label d-md-block  " style="height: 30px;"></label>
+
+                <button type="submit" class="btn btn-primary" id="submit">Rechercher</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+
+ <!--       <h6 *ngIf="medecins.length==0">Aucun enregistrement trouvé</h6>
+show-medecin
+    ---->
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor='let m of medecins |  paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index' 
+            [class.active]="i == currentIndex">
+                <app-show-medecin [medecin]="m"></app-show-medecin>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<div class="d-flex justify-content-center" *ngIf="medecins.length>0">
+    <pagination-controls responsive="true" previousLabel="Prev" nextLabel="Next"
+        (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+</div>

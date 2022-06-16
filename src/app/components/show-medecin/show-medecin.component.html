@@ -1,0 +1,22 @@
+<div class="card h-100">
+    <!-- Product image-->
+    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Dr {{medecin.first_name}} {{medecin.last_name}}</div>
+    <img class="card-img-top" src="" alt="..." />
+    <!-- Product details-->
+    <div class="card-body p-4">
+        <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder">${{medecin.speciality}}</h5>
+    
+            <!-- Product price-->
+            <p>  </p>
+            <p> ${{medecin.governorate}} </p>
+        </div>
+    </div>
+    <!-- Product actions -->
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+    <!--- 
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)='view(medecin["@id"])'>Voir détails</a></div>
+    --->
+    </div>
+</div>

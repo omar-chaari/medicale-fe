@@ -10,9 +10,16 @@ import { ProduitComponent } from './components/produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxPaginationModule } from 'ngx-pagination'; //Imports NgxPaginationModule 
-import { FormsModule } from '@angular/forms';
 import { DetailProduitComponent } from './components/detail-produit/detail-produit.component';
 import { HeaderComponent } from './components/header/header.component';
+
+import { SearchMedecinComponent } from './components/search-medecin/search-medecin.component';
+import { ShowMedecinComponent } from './components/show-medecin/show-medecin.component';
+import { RegisterMedecinComponent } from './components/register-medecin/register-medecin.component';
+import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -20,14 +27,18 @@ import { HeaderComponent } from './components/header/header.component';
     ProduitsComponent,
     ProduitComponent,
     DetailProduitComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchMedecinComponent,
+    ShowMedecinComponent,
+    RegisterMedecinComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
