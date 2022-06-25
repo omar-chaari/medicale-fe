@@ -1,16 +1,18 @@
 <div class="card h-100">
     <!-- Product image-->
-    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Dr {{medecin.first_name}} {{medecin.last_name}}</div>
-    <img class="card-img-top" src="" alt="..." />
+ <!--   <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Dr {{medecin.first_name}} {{medecin.last_name}}</div>
+   -->
+    <img class="card-img-top" src="assets/images/default-user.jpg" alt="..." />
     <!-- Product details-->
-    <div class="card-body p-4">
-        <div class="text-center">
+    <div class="card-body " style="padding: 10px;">
+        <div class="">
             <!-- Product name-->
-            <h5 class="fw-bolder">${{medecin.speciality}}</h5>
+            <p class="fw-bolder" style="color:#0096D6;">Dr {{medecin.first_name}} {{medecin.last_name}}</p>
+            <h6 class="fw-bolder">{{medecin.speciality}}</h6>
     
             <!-- Product price-->
             <p>  </p>
-            <p> ${{medecin.governorate}} </p>
+            <p> {{medecin.governorate}} </p>
         </div>
     </div>
     <!-- Product actions -->
