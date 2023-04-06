@@ -24,13 +24,13 @@ export class EditProComponent implements OnInit {
     private medecinService: MedecinService
 
   ) {
-    console.log(this.datatableService); // Add this line
+
 
   }
 
   ngOnInit(): void {
 
-    console.log('datatableService', this.datatableService); // Add this line
+
 
     this.fetchSpeciality();
     this.fetchGouvernorat();
@@ -56,7 +56,7 @@ export class EditProComponent implements OnInit {
 
         this.oldVerified = data["verification"];
 
-        console.log("old verified", this.oldVerified);
+ 
       },
       err => {
         //   console.log(err);

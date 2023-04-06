@@ -16,16 +16,16 @@
     <div class="mb-3">
       <label for="speciality" class="form-label">Spécialité</label>
       <select class="form-select form-control" id="speciality" [(ngModel)]="medecin.speciality" name="speciality">
-        <option *ngFor="let s of SpecialityList" [ngValue]="s.id"
-          [selected]="medecin.speciality === s.id">
+        <option *ngFor="let s of SpecialityList" [value]="s.id"
+         >
           {{s.speciality}}</option>
       </select>
     </div>
     <div class="mb-3">
       <label for="governorate" class="form-label">Gouvernorat</label>
       <select class="form-select form-control" id="governorate" [(ngModel)]="medecin.governorate" name="governorate">
-        <option *ngFor="let g of GouvernoratList" [ngValue]="g.id"
-          [selected]="medecin.governorate === g.id">
+        <option *ngFor="let g of GouvernoratList" [value]="g.id"
+         >
           {{g.governorate}}</option>
       </select>
     </div>
