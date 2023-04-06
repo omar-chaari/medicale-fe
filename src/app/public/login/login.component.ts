@@ -10,13 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  message_error: string;
+  message_error: string = '';
   constructor(private authService: AuthService, private router: Router
   ) { }
   onSubmit() {
     console.log('Username:', this.username);
     console.log('Password:', this.password);
-  
+
     this.authService.loginAdmin(this.username, this.password).subscribe(
       (response) => {
         this.authService.setAuthenticated(true);
@@ -29,7 +29,7 @@ export class LoginComponent {
         } else {
           //console.error('Error during login:', error);
           // Handle other errors here.
-  
+
           if (error.status === 0 || error.status === 500) {
             this.message_error = 'Une erreur a été rencontré. veuillez réessayer plus tard';
           } else if (error.status === 422) {
@@ -39,5 +39,5 @@ export class LoginComponent {
       }
     );
   }
-  
+
 }

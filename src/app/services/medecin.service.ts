@@ -22,7 +22,7 @@ export class MedecinService {
   }
 
 
-  getAllmedecins(tableID, where = '', limit = -1, page = 1, fields = "", order_by = "", search = "") {
+  getAllmedecins(tableID:string, where = '', limit = -1, page = 1, fields = "", order_by = "", search = "") {
 
     
     var url = this.Url + "/search?";
@@ -55,8 +55,8 @@ export class MedecinService {
     return this.httpClient.get(url);
   }
 
-  SearchMedecinsAdmin(gouvernorat = '', speciality = '', name = '', verification ='',email ,limit=10, offset=0, sortColumn,
-  sortOrder) {
+  SearchMedecinsAdmin(gouvernorat = '', speciality = '', name = '', verification ='',email:string ,limit=10, offset=0, sortColumn:string,
+  sortOrder:string) {
 
     var url = this.Url + "/search-medecin?";
     url += "gouvernorat=" + gouvernorat;

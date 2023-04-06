@@ -53,7 +53,7 @@ export class RegisterProfessionalComponent implements OnInit {
 
   }
 
-  register(form_value) {
+  register(form_value: any ) {
     console.log(form_value);
     this.medecinService.register(form_value).subscribe(
       (data: any  )=> {

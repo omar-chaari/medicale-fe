@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class OrderByPipe implements PipeTransform {
   transform(array: any[], field: string, sortOrder: string): any[] {
     if (!Array.isArray(array)) {
-      return;
+      return[];
     }
 
     const direction = sortOrder === 'asc' ? 1 : -1;

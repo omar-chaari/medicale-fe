@@ -12,7 +12,7 @@ export class DatatableService {
   Url = environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
 
-  showRecord(id, table) {
+  showRecord(id:any, table:any) {
 
     var url = this.Url + "/show-record?";
     url += "id=" + id;
@@ -21,7 +21,7 @@ export class DatatableService {
     return this.httpClient.get(url);
   }
 
-  update(record, table, id, cmd): Observable<any> {
+  update(record:any, table:any, id:any, cmd:string): Observable<any> {
 
     const url = this.Url + '/update-datatable';
 
@@ -39,7 +39,7 @@ export class DatatableService {
 
     return this.httpClient.post(url, body);
   }
-  create(record, table): Observable<any> {
+  create(record:any, table:string): Observable<any> {
     const url = this.Url + '/insert-datatable';
 
 
@@ -53,7 +53,7 @@ export class DatatableService {
 
     return this.httpClient.post(url, body);
   }
-  delete(id_element, table): Observable<any> {
+  delete(id_element:any, table:string): Observable<any> {
     const url = this.Url + '/delete-datatable';
 
 

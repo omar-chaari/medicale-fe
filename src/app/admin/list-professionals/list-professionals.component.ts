@@ -13,22 +13,22 @@ import { DatePipe } from '@angular/common';
 })
 export class ListProfessionalsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  gov: string;
-  spec: string;
-  email: string;
+  gov: string ="" ;
+  spec: string="";
+  email: string="";
 
-  name: string;
-  medecins: any;
+  name: string="";
+  medecins: any=[];
   verification: any;
   page = 1;
   count = 0;
   tableSizes = [10];
   tableSize = this.tableSizes[0];
   MedecinName: any;
-  SpecialityList = [];
-  GouvernoratList;
+  SpecialityList: Speciality[] = [];
+  GouvernoratList : Gouvernorat[]=[] ;
 
   sortColumn: string = 'verification'; // Default sorting column
   sortOrder: string = 'asc'; // Default sorting order: 'asc' or 'desc'
@@ -62,7 +62,7 @@ export class ListProfessionalsComponent implements OnInit {
   }
 
   fetchMedecins(limit: number, offset: number): void {
-    var where;
+    var where:string="";
     var tableID;
     var gouvernorat = this.gov;
     var medecinName = this.MedecinName;
@@ -110,11 +110,17 @@ export class ListProfessionalsComponent implements OnInit {
     );
   }
 
-  onTableDataChange(event: any) {
+  /*onTableDataChange(event: any) {
     this.page = event;
     const offset = (this.page["pageIndex"]) * this.tableSize;
     this.fetchMedecins(this.tableSize, offset);
 
+  }*/
+
+  onTableDataChange(event: any) {
+    this.page = event.pageIndex + 1;
+    const offset = event.pageIndex * this.tableSize;
+    this.fetchMedecins(this.tableSize, offset);
   }
 
   onTableSizeChange(event: any): void {
@@ -124,7 +130,7 @@ export class ListProfessionalsComponent implements OnInit {
 
     this.fetchMedecins(this.tableSize, offset);
   }
-  submit(form) {
+  submit(form:any) {
 
     this.gov = form.value.gouvernorat;
     this.MedecinName = form.value.MedecinName;
@@ -158,3 +164,11 @@ export class ListProfessionalsComponent implements OnInit {
 }
 
 
+interface Speciality {
+  speciality: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}
+interface Gouvernorat {
+  governorate: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}

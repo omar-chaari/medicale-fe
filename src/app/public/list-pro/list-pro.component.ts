@@ -12,20 +12,21 @@ import { ViewChild } from '@angular/core';
 })
 export class ListProComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  gov: string;
-  spec: string;
-  name: string;
-  medecins: any;
+  gov: string="";
+  spec: string="";
+  name: string="";
+  medecins: any=[];
   page = 1;
   count = 0;
   tableSizes = [10];
   tableSize = this.tableSizes[0];
 
   MedecinName: any;
-  SpecialityList;
-  GouvernoratList;
+  SpecialityList: Speciality[] = [];
+  GouvernoratList : Gouvernorat[]=[] ;
+
 
 
   dataSource = new MatTableDataSource<any>(this.medecins);
@@ -53,7 +54,7 @@ export class ListProComponent implements OnInit {
   }
 
   fetchMedecins(limit: number, offset: number): void {
-    var where;
+    var where="";
     var tableID;
     var gouvernorat = this.gov;
     var medecinName = this.MedecinName;
@@ -97,13 +98,13 @@ export class ListProComponent implements OnInit {
     );
   }
 
-  onTableDataChange(event: any) {
-    this.page = event;
-    const offset = (this.page["pageIndex"]) * this.tableSize;
-    this.fetchMedecins(this.tableSize, offset);
-  
-  }
 
+  onTableDataChange(event: any) {
+    this.page = event.pageIndex + 1;
+    const offset = event.pageIndex * this.tableSize;
+    this.fetchMedecins(this.tableSize, offset);
+  }
+  
   onTableSizeChange(event: any): void {
 
     this.tableSize = event.target.value;
@@ -111,7 +112,7 @@ export class ListProComponent implements OnInit {
 
     this.fetchMedecins(this.tableSize,offset);
   }
-  submit(form) {
+  submit(form:any) {
 
     this.gov = form.value.gouvernorat ;
     this.MedecinName = form.value.MedecinName ;
@@ -128,4 +129,11 @@ export class ListProComponent implements OnInit {
 
 }
 
-
+interface Speciality {
+  speciality: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}
+interface Gouvernorat {
+  governorate: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}

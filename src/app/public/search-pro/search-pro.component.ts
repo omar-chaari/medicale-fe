@@ -16,8 +16,8 @@ export class SearchProComponent implements OnInit {
   tableSizes = [8];
   MedecinName: any;
   speciality: any;
-  SpecialityList;
-  GouvernoratList;
+  SpecialityList: Speciality[] = [];
+  GouvernoratList : Gouvernorat[]=[] ;
   gouvernorat: any;
 
 
@@ -85,7 +85,7 @@ export class SearchProComponent implements OnInit {
   }
 
 
-  submit(form) {
+  submit(form:any) {
 
     this.gouvernorat = form.value.gouvernorat ? form.value.gouvernorat : "*";
     this.MedecinName = form.value.MedecinName ? form.value.MedecinName : "*";
@@ -97,4 +97,12 @@ export class SearchProComponent implements OnInit {
   }
 
 
+}
+interface Speciality {
+  speciality: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}
+interface Gouvernorat {
+  governorate: string;
+  // Ajoutez d'autres propriétés si nécessaire
 }
