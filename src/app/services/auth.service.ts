@@ -15,8 +15,8 @@ export class AuthService {
 
   loginAdmin(email: string, password: string): Observable<any> {
     const url = 'http://127.0.0.1:8000/api/login-admin';
-  
-  
+
+
     const body = { email: email, password: password };
 
     return this.httpClient.post(url, body);
@@ -24,15 +24,14 @@ export class AuthService {
 
 
   logout(): void {
-    this.isAuthenticated = false;
-    this.router.navigate(['/login']);
+    localStorage.removeItem('isLoggedIn');
+    this.router.navigate(['/public/login']);
   }
 
+
+  // Check if the user is logged in
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
-  setAuthenticated(authenticated: boolean): void {
-    this.isAuthenticated = authenticated;
-  }
-  
+
 }

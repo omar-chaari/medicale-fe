@@ -37,7 +37,20 @@
             <!-- Main Content -->
             <div id="content">
 
-        
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <div class="container">
+                        <!-- Logout Button -->
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link logout-link" (click)="onLogout()"  >
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-600"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+    
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

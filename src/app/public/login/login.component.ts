@@ -19,8 +19,10 @@ export class LoginComponent {
 
     this.authService.loginAdmin(this.username, this.password).subscribe(
       (response) => {
-        this.authService.setAuthenticated(true);
+        //this.authService.setAuthenticated(true);
         // After a successful login/registration, store the API key as an HttpOnly cookie
+        localStorage.setItem('isLoggedIn', 'true');
+
         let apiKey= response["token"];
         localStorage.setItem('api_key', apiKey);
 
