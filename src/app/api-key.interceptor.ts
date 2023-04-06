@@ -5,11 +5,15 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ApiKeyInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const apiKey = 'YOUR_API_KEY'; // Replace with the actual API key or retrieve it from a secure storage
-    const modifiedReq = req.clone({
-      headers: req.headers.set('Api-Key', apiKey)
+    const secureReq = req.clone({
+      setHeaders: { Authorization: `Bearer ${tokenGetter()}` },
+
     });
 
-    return next.handle(modifiedReq);
+    return next.handle(secureReq);
   }
+}
+
+export function tokenGetter() {
+  return localStorage.getItem('api_key');
 }

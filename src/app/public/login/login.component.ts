@@ -20,6 +20,10 @@ export class LoginComponent {
     this.authService.loginAdmin(this.username, this.password).subscribe(
       (response) => {
         this.authService.setAuthenticated(true);
+        // After a successful login/registration, store the API key as an HttpOnly cookie
+        let apiKey= response["token"];
+        localStorage.setItem('api_key', apiKey);
+
         this.router.navigate(['/admin/list-pro']);
       },
       (error) => {

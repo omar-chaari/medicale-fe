@@ -6,13 +6,18 @@ import { AppComponent } from './app.component';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import {MatSelectModule } from  '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiKeyInterceptor } from './api-key.interceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -23,15 +28,20 @@ import {MatSelectModule } from  '@angular/material/select';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,    
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiKeyInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
