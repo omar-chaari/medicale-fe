@@ -1,0 +1,98 @@
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+
+            <!---
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-3">
+                        <div style="text-align: right;">
+
+                            <a type="submit"
+                            routerLink="/public/register-professional"
+                            class="btn btn-info btn-sm" id="submit">Vous êtes professionnel de santé ?</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="yellowsep"></div>
+        -->
+        <app-header [showSubscriptionButton]="true"></app-header>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="p-5">
+
+                        <h1 class="maintxt">Prenez rapidement un rendez-vous avec votre médecin !</h1>
+                        <p class="subtitle"> Sélectionnez votre médecin, choisissez la date et l'heure de votre rdv et
+                            recevez
+                            votre mail de confirmation. C’est aussi simple que ça !</p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="" style="padding-top:3rem !important">
+                        <img class="card-img-top" src="assets/img/medical-home.jpg" alt="..." />
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+
+                        <form #f="ngForm" (ngSubmit)="submit(f)">
+                            <div class="row">
+                                <div class="mb-3 col-lg-3">
+                                    <label for="productName" class="form-label">Nom du professionnel de santé</label>
+                                    <input type="text" class="form-control" id="MedecinName" name="MedecinName" ngModel>
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <label for="categorie" class="form-label">Spécialité</label>
+                                    <select class="form-select form-control" id="speciality" name="speciality"
+                                        aria-label="" ngModel>
+                                        <option selected></option>
+                                        <option *ngFor="let s of SpecialityList" value="{{s.speciality}}">
+                                            {{s.speciality}}</option>
+
+
+                                    </select>
+                                </div>
+
+
+                                <div class="mb-3 col-lg-3">
+                                    <label for="categorie" class="form-label">Gouvernorat</label>
+                                    <select class="form-select form-control" id="gouvernorat" name="gouvernorat"
+                                        aria-label="" ngModel>
+                                        <option selected></option>
+                                        <option *ngFor="let g of GouvernoratList" value={{g.governorate}}>
+                                            {{g.governorate}}</option>
+
+
+                                    </select>
+                                </div>
+
+
+
+                                <div class="mb-3 col-md-3">
+
+
+                                    <label for="submit" class="form-label d-md-block  " style="height: 24px;"></label>
+
+                                    <button type="submit" class="btn btn-primary" id="submit">Rechercher</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

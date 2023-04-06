@@ -1,0 +1,46 @@
+<!--
+<div class="card h-100">
+    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Dr {{medecin.first_name}} {{medecin.last_name}}</div>
+    <img class="card-img-top" src="assets/img/default-user.jpg" 
+    
+    alt="..." />
+    <div class="card-body p-4">
+        <div class="text-center">
+            <h5 class="fw-bolder">{{medecin.speciality}}</h5>
+    
+            <p>  </p>
+            <p> {{medecin.governorate}} </p>
+        </div>
+    </div>
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+ 
+    </div>
+</div>
+--->
+
+
+<div class="card shadow mb-12" style="margin-bottom:15px;">
+    <div class="card-header py-12" style="padding-bottom: 0rem">
+        <div class="row">
+            <div class="col-xs-3" style="width: 77px;
+            height: 77px;">
+                <img class="card-img-top" src="assets/img/default-user.jpg" />
+      
+            </div>
+            
+                <div class="col-xs-9 p-1">
+                    <h6 class="m-0 font-weight-bold text-primary">Dr
+                        {{medecin.first_name}} {{medecin.last_name}}</h6>
+                        <p class="fw-bolder" style="margin-bottom: 0.6rem;">{{medecin.speciality}}</p>
+    
+                        <p class="fw-bolder">Adresse: {{medecin.adress}}</p>
+            
+                </div>
+            </div>
+          </div>
+    <div class="card-body">
+
+        <p>Téléphone: {{medecin.phone}} </p>
+        <p>Email: {{medecin.email}} </p>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.yellowsep {
+    background: #FFD400!important;
+    height: 4px!important;
+}
+
+
+.logo {
+    background-color: #3F51B5;
+    color: #fff;
+    text-align: center;
+    
+    padding: 6px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration-line: none;
+  }
+  

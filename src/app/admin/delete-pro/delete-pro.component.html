@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Supprimer un professionnel de santé</h2>
+  <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+  <table class="table table-bordered" *ngIf="element">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Vérification</th>
+        <!-- Ajouter plus d'en-têtes de table au besoin -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dr {{element.first_name}} {{element.last_name}}</td>
+        <td>{{element.phone}}</td>
+        <td>{{element.email}}</td>
+        <td>{{ element.verification == 0 ? 'Non' : (element.verification == 1 ? 'Oui' :
+          '') }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="deleteElement()" class="btn btn-danger">Oui, supprimer</button> 
+  <button (click)="cancel()" class="btn btn-secondary" style="    margin-left: 15px;
+  ">Annuler</button>
+</div>

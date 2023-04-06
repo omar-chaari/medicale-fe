@@ -1,0 +1,50 @@
+<div class="container" *ngIf="medecin">
+  <h1>Modifier Médecin</h1>
+  <form >
+    <div class="mb-3">
+      <label for="first_name" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="first_name" [(ngModel)]="medecin.first_name" name="first_name">
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="last_name" [(ngModel)]="medecin.last_name" name="last_name">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="medecin.email" name="email">
+    </div>
+    <div class="mb-3">
+      <label for="speciality" class="form-label">Spécialité</label>
+      <select class="form-select form-control" id="speciality" [(ngModel)]="medecin.speciality" name="speciality">
+        <option *ngFor="let s of SpecialityList" [ngValue]="s.id"
+          [selected]="medecin.speciality === s.id">
+          {{s.speciality}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="governorate" class="form-label">Gouvernorat</label>
+      <select class="form-select form-control" id="governorate" [(ngModel)]="medecin.governorate" name="governorate">
+        <option *ngFor="let g of GouvernoratList" [ngValue]="g.id"
+          [selected]="medecin.governorate === g.id">
+          {{g.governorate}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Adresse</label>
+      <textarea class="form-control" id="address" [(ngModel)]="medecin.address" name="address"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Téléphone</label>
+      <input type="text" class="form-control" id="phone" [(ngModel)]="medecin.phone" name="phone">
+    </div>
+    <div class="mb-3 ">
+      <label for="verification" class="form-label">Vérification</label>
+      <select class="form-select form-control" id="verification" [(ngModel)]="medecin.verification" name="governorate">
+        <option value="0"  [selected]="medecin.verification == 1">Vérifié</option>
+        <option value="1" [selected]="medecin.verification == 0" >Non vérifié</option>
+        <option value="2" [selected]="medecin.verification == 2" >Ignoré</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+  </form>
+</div>
