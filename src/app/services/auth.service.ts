@@ -10,11 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private isAuthenticated = false;
+  Url = environment.apiUrl;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   loginAdmin(email: string, password: string): Observable<any> {
-    const url = 'http://127.0.0.1:8000/api/login-admin';
+    const url = this.Url + '/login-admin';
 
 
     const body = { email: email, password: password };
