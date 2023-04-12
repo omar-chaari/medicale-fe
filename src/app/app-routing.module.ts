@@ -3,52 +3,38 @@ import { Routes, RouterModule } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
     path: '',
-    component: PublicLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: "/public",
-        pathMatch:"full"
-
-      },
-      {
-        path: 'public',
-        loadChildren: () => import ('./public/public.module').then(m => m.PublicModule)
-        
-      }
-    ]
+    redirectTo: '/public',
+    pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'public',
+    component: PublicLayoutComponent,
+    loadChildren: () =>
+      import('./public/public.module').then((m) => m.PublicModule),
+  },
+  {
+    path: 'admin',
     component: AdminLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: "/admin",
-        pathMatch:"full"
-
-      },
-      {
-        path: 'admin',
-        loadChildren: () => import ('./admin/admin.module').then(m => m.AdminModule)
-        
-      }
-    ]
-  }
-
-
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'patient',
+    component: PublicLayoutComponent,
+    loadChildren: () =>
+      import('./patient/patient.module').then((m) => m.PatientModule),
+  },
 ];
 
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes,)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

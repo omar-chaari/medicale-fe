@@ -17,6 +17,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiKeyInterceptor } from './api-key.interceptor';
 
+//import { CalendarModule, DateAdapter } from 'angular-calendar';
+//import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 
 @NgModule({
@@ -24,6 +27,7 @@ import { ApiKeyInterceptor } from './api-key.interceptor';
     AppComponent,
     PublicLayoutComponent,
     AdminLayoutComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,9 @@ import { ApiKeyInterceptor } from './api-key.interceptor';
     MatPaginatorModule,
     MatTableModule,
     MatSelectModule,
+    //BrowserAnimationsModule,
+    //CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+
 
   ],
   providers: [{
