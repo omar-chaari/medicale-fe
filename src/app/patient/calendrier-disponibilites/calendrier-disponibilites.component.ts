@@ -4,6 +4,11 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import frLocale from '@fullcalendar/core/locales/fr';
+
+registerLocaleData(localeFr);
 
 @Component({
   selector: 'app-calendrier-disponibilites',
@@ -20,7 +25,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     events: [
       { title: 'event 1', date: '2019-04-01' },
       { title: 'event 2', date: '2019-04-02' }
-    ]
+    ],
+    locale: frLocale
+
   };
   disponibilites = [
     // Remplacez ces données par celles de votre médecin
