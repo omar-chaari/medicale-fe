@@ -26,10 +26,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "@fullcalendar/core/main.css",
-              "@fullcalendar/daygrid/main.css",
-              "@fullcalendar/timegrid/main.css"
+              "src/styles.css"
             
             ],
             "scripts": []

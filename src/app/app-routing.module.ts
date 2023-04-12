@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { PatientLayoutComponent } from './layouts/patient-layout/patient-layout.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'patient',
-    component: PublicLayoutComponent,
+    component: PatientLayoutComponent,
     loadChildren: () =>
       import('./patient/patient.module').then((m) => m.PatientModule),
   },
