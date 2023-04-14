@@ -10871,6 +10871,12 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
+.bg-register-image-patient {
+  background: url("../img/823_generated.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
 
 .bg-password-image {
   background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");

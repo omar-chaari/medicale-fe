@@ -16,9 +16,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
+import { RegisterPatientComponent } from './register-patient/register-patient.component';
 @NgModule({
   declarations: [RegisterProfessionalComponent,  SearchProComponent, ShowProComponent,
-    ListProComponent, HeaderComponent, LoginComponent],
+    ListProComponent, HeaderComponent, LoginComponent, RegisterPatientComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

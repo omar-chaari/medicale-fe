@@ -1,0 +1,164 @@
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <app-header [showSubscriptionButton]="false"></app-header>
+  
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image-patient"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Inscription pour patient</h1>
+              </div>
+              <div class="alert alert-danger" role="alert" *ngIf="message_error">
+                {{message_error}}
+              </div>
+  
+              <div class="alert alert-success" role="alert" *ngIf="message_success">
+                {{message_success}}
+              </div>
+  
+              <form class="user" [formGroup]='signupForm'>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control " id="exampleFirstName" placeholder="Prénom"
+                      formControlName="first_name">
+                    <div *ngIf="signupForm.controls['first_name'].invalid && 
+                        (signupForm.controls['first_name'].dirty || signupForm.controls['first_name'].touched)">
+                      <div *ngIf="signupForm.controls['first_name'].errors?.['minlength']" class="text-danger">
+                        La longueur du prénom doit être d'au moins 3 caracteres
+  
+                      </div>
+                      <div *ngIf="signupForm.controls['first_name'].errors?.['required']" class="text-danger">
+                        Le prénom est requis
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control " id="exampleLastName" formControlName="last_name"
+                      placeholder="Nom">
+                    <div *ngIf="signupForm.controls['last_name'].invalid && 
+                        (signupForm.controls['last_name'].dirty || signupForm.controls['last_name'].touched)">
+                      <div *ngIf="signupForm.controls['last_name'].errors?.['minlength']" class="text-danger">
+                        La longueur du nom doit être d'au moins 3 caracteres
+                      </div>
+                      <div *ngIf="signupForm.controls['last_name'].errors?.['required']" class="text-danger">
+                        Le nom est requis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+            
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+  
+                    <input type="email" class="form-control " id="exampleInputEmail" formControlName="email"
+                      placeholder="Adresse mail">
+  
+  
+  
+                    <div *ngIf="signupForm.controls['email'].invalid && 
+                                        (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+                      <div *ngIf="signupForm.controls['email'].errors?.['email']" class="text-danger">
+                        Format email invalide
+                      </div>
+                      <div *ngIf="signupForm.controls['email'].errors?.['required']" class="text-danger">
+                        L'email est requis </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+  
+                    <input type="text" class="form-control " id="exampleInputEmail" formControlName="phone"
+                      placeholder="Téléphone Mobile">
+  
+  
+                    <div *ngIf="signupForm.controls['phone'].invalid && 
+                                          (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)">
+                      <div *ngIf="signupForm.controls['phone'].errors?.['minlength']" class="text-danger">
+                        La longueur du prénom doit être d'au moins 8 chiffres
+                      </div>
+                      <div *ngIf="signupForm.controls['phone'].errors?.['required']" class="text-danger">
+                        Le téléphone mobile est requis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control " id="exampleInputPassword" placeholder="Mot de passe"
+                      formControlName="password">
+                    <div *ngIf="signupForm.controls['password'].invalid && 
+                        (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+  
+                      <div *ngIf="signupForm.controls['password'].errors?.['required']" class="text-danger">
+                        Le mot de passe est requis
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control " id="exampleRepeatPassword"
+                      placeholder="Répéter le mot de passe" formControlName="password_confirmation">
+  
+                    <div
+                      *ngIf="signupForm.controls['password_confirmation'].invalid && 
+                        (signupForm.controls['password_confirmation'].dirty || signupForm.controls['password_confirmation'].touched)">
+  
+                      <div *ngIf="signupForm.controls['password_confirmation'].errors?.['required']" class="text-danger">
+                        Le confirmation de mot de passe est requis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+  
+                    <input type="text" class="form-control " id="exampleInputAdress" formControlName="address"
+                      placeholder="Adresse">
+  
+  
+  
+                    <div
+                      *ngIf="signupForm.controls['address'].invalid && 
+                                        (signupForm.controls['address'].dirty || signupForm.controls['address'].touched)">
+                      <div *ngIf="signupForm.controls['address'].errors?.['minlength']" class="text-danger">
+                        La longueur de l'adresse doit être d'au moins 3 caracteres
+                      </div>
+                      <div *ngIf="signupForm.controls['address'].errors?.['required']" class="text-danger">
+                        L'adresse est requis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--<a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a>-->
+                <button type="submit" class="btn btn-primary" (click)='register(signupForm.value)'
+                  [disabled]='signupForm.invalid'>Soummetre ma demande</button>
+  
+                <!---
+                                <hr>
+                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a>-->
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="forgot-password.html">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="login.html">Already have an account? Login!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

@@ -6,6 +6,8 @@ import { RegisterProfessionalComponent } from './register-professional/register-
 import { SearchProComponent } from './search-pro/search-pro.component';
 import { ListProComponent } from './list-pro/list-pro.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterPatientComponent } from './register-patient/register-patient.component';
+
 const routes: Routes = [
   {
     path: 'register-professional',
@@ -52,7 +54,11 @@ const routes: Routes = [
 
       }
     ]
-  }
+  },
+  {
+    path: 'register-patient',
+    component: RegisterPatientComponent,
+    }
 
 
 ];
