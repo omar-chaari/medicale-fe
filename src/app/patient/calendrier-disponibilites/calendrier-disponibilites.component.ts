@@ -19,22 +19,45 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
-
-    initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this), // MUST ensure `this` context is maintained
+    initialView: 'timeGridWeek',
+    dateClick: this.handleDateClick.bind(this),
     events: [
       { title: 'event 1', date: '2019-04-01' },
-      { title: 'event 2', date: '2019-04-02' }
-    ],
-    locale: frLocale
+      { title: 'event 2', date: '2019-04-02' },
+      {
+        start: '2023-04-14T08:00:00',
+        end: '2023-04-14T12:00:00',
+        color: 'Moccasin',
+        rendering: 'background',
+      },
+      {
+        start: '2023-04-14T15:00:00',
+        end: '2023-04-14T16:15:00',
+        color: 'Moccasin',
+        rendering: 'background',
+      },
+      {
+        start: '2023-04-17',
+        end: '2023-04-18',
+        color: 'Moccasin',
 
+        rendering: 'background',
+
+      },
+    ],
+    locale: frLocale,
+    slotMinTime: '08:00',
+    slotMaxTime: '18:00',
+    allDaySlot: false,
+    height: 'auto',
+    businessHours: {
+      startTime: '08:00',
+      endTime: '18:00',
+      daysOfWeek: [1, 2, 3, 4, 5], // Lundi à vendredi
+    },
   };
-  disponibilites = [
-    // Remplacez ces données par celles de votre médecin
-    { title: 'Disponible', start: '2023-04-12T10:00:00', end: '2023-04-12T12:00:00', backgroundColor: 'green', textColor: 'white' },
-    { title: 'Disponible', start: '2023-04-13T14:00:00', end: '2023-04-13T16:00:00', backgroundColor: 'green', textColor: 'white' },
-    { title: 'Disponible', start: '2023-04-14T09:00:00', end: '2023-04-14T11:00:00', backgroundColor: 'green', textColor: 'white' },
-  ];
+  
+ 
 
   constructor() { }
 
