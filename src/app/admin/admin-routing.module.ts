@@ -7,6 +7,10 @@ import { AddProfessionalComponent } from './add-professional/add-professional.co
 import { DeleteProComponent } from './delete-pro/delete-pro.component';
 import { AuthGuard } from './../guards/auth.guard';
 
+import { ListPatientsComponent } from "./list-patients/list-patients.component";
+import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
+import { DeletePatientComponent } from './delete-patient/delete-patient.component';
 
 
 
@@ -15,46 +19,48 @@ const routes: Routes = [
     path: '',
     component: ListProfessionalsComponent,
     canActivate: [AuthGuard] ,
-    children: [
-      {
-        path: 'list-pro',
-        component: ListProfessionalsComponent,
-        canActivate: [AuthGuard] 
-      }
-    ]
+    
+  },
+  {
+    path: 'list-pro',
+    component: ListProfessionalsComponent,
+    canActivate: [AuthGuard] ,
+    
+  },
+  
+  {
+    path: 'list-patients',
+    component: ListPatientsComponent,
+    canActivate: [AuthGuard] ,
+    
   },
   {
     path: 'edit-pro/:id',
     component: EditProComponent,
-    children: [
-      {
-        path: 'edit-pro/:id',
-        component: EditProComponent,
-
-      }
-    ]
+   
   },
   {
     path: 'delete-pro/:id',
     component: DeleteProComponent,
-    children: [
-      {
-        path: 'delete-pro/:id',
-        component: DeleteProComponent,
-
-      }
-    ]
-  },
+   },
   {
     path: 'add-professional',
     component: AddProfessionalComponent,
-    children: [
-      {
-        path: 'add-professional',
-        component: AddProfessionalComponent,
-
-      }
-    ]
+   
+  },
+  {
+    path: 'edit-patient/:id',
+    component: EditPatientComponent,
+   
+  },
+  {
+    path: 'delete-patient/:id',
+    component: DeletePatientComponent,
+   },
+  {
+    path: 'add-patient',
+    component: AddPatientComponent,
+   
   }
 ];
 

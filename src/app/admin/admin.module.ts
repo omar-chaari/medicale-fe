@@ -15,9 +15,13 @@ import { DeleteProComponent } from './delete-pro/delete-pro.component';
 import {MatSortModule} from '@angular/material/sort';
 import { OrderByPipe } from './order-by.pipe';
 import { DatePipe } from '@angular/common';
+import { AddPatientComponent } from './add-patient/add-patient.component';
+import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { DeletePatientComponent } from './delete-patient/delete-patient.component';
+import { ListPatientsComponent } from './list-patients/list-patients.component';
 
 @NgModule({
-  declarations: [ListProfessionalsComponent, EditProComponent,  AddProfessionalComponent, DeleteProComponent,  OrderByPipe],
+  declarations: [ListProfessionalsComponent, EditProComponent,  AddProfessionalComponent, DeleteProComponent,  OrderByPipe, AddPatientComponent, EditPatientComponent, DeletePatientComponent, ListPatientsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
