@@ -1,1 +1,192 @@
-<p>add-patient works!</p>
+<div class="p-5">
+    <div class="">
+      <h1 class="h4 text-gray-900 mb-4">Ajouter un professionnel de santé</h1>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="message_error">
+      {{message_error}}
+    </div>
+  
+    <div class="alert alert-success" role="alert" *ngIf="message_success">
+      {{message_success}}
+    </div>
+  
+    <form class="user" [formGroup]='signupForm'>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="text" class="form-control " id="exampleFirstName" placeholder="Prénom"
+            formControlName="first_name">
+          <div *ngIf="signupForm.controls['first_name'].invalid && 
+                          (signupForm.controls['first_name'].dirty || signupForm.controls['first_name'].touched)">
+            <div *ngIf="signupForm.controls['first_name'].errors?.['minlength']" class="text-danger">
+              La longueur du prénom doit être d'au moins 3 caracteres
+  
+            </div>
+            <div *ngIf="signupForm.controls['first_name'].errors?.['required']" class="text-danger">
+              Le prénom est requis
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <input type="text" class="form-control " id="exampleLastName" formControlName="last_name" placeholder="Nom">
+          <div *ngIf="signupForm.controls['last_name'].invalid && 
+                          (signupForm.controls['last_name'].dirty || signupForm.controls['last_name'].touched)">
+            <div *ngIf="signupForm.controls['last_name'].errors?.['minlength']" class="text-danger">
+              La longueur du nom doit être d'au moins 3 caracteres
+            </div>
+            <div *ngIf="signupForm.controls['last_name'].errors?.['required']" class="text-danger">
+              Le nom est requis
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+  
+  
+  
+          <select class="form-select form-control" id="speciality" formControlName="speciality" aria-label="" ngModel>
+            <option selected></option>
+            <option *ngFor="let s of SpecialityList" value="{{s.id}}">
+              {{s.speciality}}</option>
+  
+  
+          </select>
+  
+          <div *ngIf="signupForm.controls['speciality'].invalid && 
+                          (signupForm.controls['speciality'].dirty || signupForm.controls['speciality'].touched)">
+  
+            <div *ngIf="signupForm.controls['speciality'].errors?.['required']" class="text-danger">
+              La spécialité est requis
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+  
+  
+  
+          <select class="form-select form-control" id="gouvernorat" formControlName="governorate" aria-label="" ngModel>
+            <option selected></option>
+            <option *ngFor="let g of GouvernoratList" value={{g.id}}>
+              {{g.governorate}}</option>
+  
+  
+          </select>
+  
+          <div *ngIf="signupForm.controls['governorate'].invalid && 
+                          (signupForm.controls['governorate'].dirty || signupForm.controls['governorate'].touched)">
+  
+            <div *ngIf="signupForm.controls['governorate'].errors?.['required']" class="text-danger">
+              Le gouvernorat est requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+  
+          <input type="email" class="form-control " id="exampleInputEmail" formControlName="email"
+            placeholder="Adresse mail">
+  
+  
+  
+          <div *ngIf="signupForm.controls['email'].invalid && 
+                                          (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+            <div *ngIf="signupForm.controls['email'].errors?.['email']" class="text-danger">
+              Format email invalide
+            </div>
+            <div *ngIf="signupForm.controls['email'].errors?.['required']" class="text-danger">
+              L'email est requis </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+  
+          <input type="text" class="form-control " id="exampleInputEmail" formControlName="phone"
+            placeholder="Téléphone Mobile">
+  
+  
+          <div
+            *ngIf="signupForm.controls['phone'].invalid && 
+                                            (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)">
+            <div *ngIf="signupForm.controls['phone'].errors?.['minlength']" class="text-danger">
+              La longueur du prénom doit être d'au moins 8 chiffres
+            </div>
+            <div *ngIf="signupForm.controls['phone'].errors?.['required']" class="text-danger">
+              Le téléphone mobile est requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="password" class="form-control " id="exampleInputPassword" placeholder="Mot de passe"
+            formControlName="password">
+          <div *ngIf="signupForm.controls['password'].invalid && 
+                          (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+  
+            <div *ngIf="signupForm.controls['password'].errors?.['required']" class="text-danger">
+              Le mot de passe est requis
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <input type="password" class="form-control " id="exampleRepeatPassword" placeholder="Répéter le mot de passe"
+            formControlName="password_confirmation">
+  
+          <div
+            *ngIf="signupForm.controls['password_confirmation'].invalid && 
+                          (signupForm.controls['password_confirmation'].dirty || signupForm.controls['password_confirmation'].touched)">
+  
+            <div *ngIf="signupForm.controls['password_confirmation'].errors?.['required']" class="text-danger">
+              Le confirmation de mot de passe est requis
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+  
+          <input type="text" class="form-control " id="exampleInputAdress" formControlName="address"
+            placeholder="Adresse">
+  
+  
+  
+          <div
+            *ngIf="signupForm.controls['address'].invalid && 
+                                          (signupForm.controls['address'].dirty || signupForm.controls['address'].touched)">
+            <div *ngIf="signupForm.controls['address'].errors?.['minlength']" class="text-danger">
+              La longueur de l'adresse doit être d'au moins 3 caracteres
+            </div>
+            <div *ngIf="signupForm.controls['address'].errors?.['required']" class="text-danger">
+              L'adresse est requis
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+  
+  
+  
+          <select class="form-select form-control" id="verification" formControlName="verification" aria-label="" ngModel>
+            <option selected disabled>Verification</option>
+            <option value="0">Non</option>
+            <option value="1">Oui</option>
+  
+          </select>
+          <div
+            *ngIf="signupForm.controls['address'].invalid && 
+                                        (signupForm.controls['address'].dirty || signupForm.controls['address'].touched)">
+  
+            <div *ngIf="signupForm.controls['verification'].errors?.['required']" class="text-danger">
+              Le champs verification est requis
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="register(signupForm.value)"
+        [disabled]="signupForm.invalid || isSubmitting">
+        {{ isSubmitting ? 'En cours...' : 'Enregistrer' }}
+      </button>
+  
+    </form>

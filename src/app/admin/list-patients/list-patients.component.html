@@ -8,7 +8,7 @@
 
             <div style="float:right">
 
-                <a type="submit" routerLink="/admin/add-professional" class="btn btn-info btn-sm" id="submit"
+                <a type="submit" routerLink="/admin/add-patient" class="btn btn-info btn-sm" id="submit"
                   >Ajouter un patient</a>
 
 
@@ -83,10 +83,10 @@
                         <td>{{patient.email}}</td>
                         <td>{{ patient.verification == 0 ? 'Non' : (patient.verification == 1 ? 'Oui' : (patient.verification == 2 ? 'Ignoré' : '')) }}</td>
                         <td>
-                          <a routerLink="/admin/edit-pro/{{patient.id}}">
+                          <a routerLink="/admin/edit-patient/{{patient.id}}">
                             <i class="material-icons">edit</i>
                           </a>
-                          <a routerLink="/admin/delete-pro/{{patient.id}}">
+                          <a routerLink="/admin/delete-patient/{{patient.id}}">
                             <i class="material-icons">delete</i>
                           </a>
                         </td>

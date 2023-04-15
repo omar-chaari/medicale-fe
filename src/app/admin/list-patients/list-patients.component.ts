@@ -15,12 +15,12 @@ export class ListPatientsComponent {
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  gov: string ="" ;
-  spec: string="";
-  email: string="";
+  gov: string = "";
+  spec: string = "";
+  email: string = "";
 
-  name: string="";
-  patients: any=[];
+  name: string = "";
+  patients: any = [];
   verification: any;
   page = 1;
   count = 0;
@@ -28,11 +28,10 @@ export class ListPatientsComponent {
   tableSize = this.tableSizes[0];
   PatientName: any;
   SpecialityList: Speciality[] = [];
-  GouvernoratList : Gouvernorat[]=[] ;
+  GouvernoratList: Gouvernorat[] = [];
 
-  //sortColumn: string = 'verification'; // Default sorting column
+  sortColumn: string = 'verification'; // Default sorting column
   sortOrder: string = 'asc'; // Default sorting order: 'asc' or 'desc'
-  sortColumn: string = 'created_at';
 
   dataSource = new MatTableDataSource<any>(this.patients);
 
@@ -45,14 +44,9 @@ export class ListPatientsComponent {
   ) { }
 
   ngOnInit() {
-    //this.fetchSpeciality();
-    //this.fetchGouvernorat();
 
     this.route.params.subscribe(params => {
-      //this.gov = params['gov'];
-      //this.spec = params['spec'];
       this.name = params['name'];
-      //this.email = "";
 
       const limit = this.tableSize;
       const offset = (this.page - 1) * this.tableSize;
@@ -62,29 +56,40 @@ export class ListPatientsComponent {
   }
 
   fetchPatients(limit: number, offset: number): void {
-    var where:string="";
-    var tableID;
-    var patientName = this.PatientName;
 
+
+    var where: string = " 1=1 ";
+    var tableID;
+
+
+    var patientName = this.PatientName;
+    var verification = this.verification;
+    var email = this.email;
+
+
+    if (verification != "" && verification != undefined) {
+      where += "and verification='" + verification + "' ";
+    }
+    if (email != "" && email != undefined) {
+      where += "and email LIKE'%" + email + "%' ";
+    }
+    if (patientName != "" && patientName != undefined) {
+      where += "and (first_name LIKE'%" + patientName + "%' or last_name LIKE'%" + patientName + "%' )";
+    }
 
 
 
     tableID = "users";
-    /*
 
-      list(filelds = '', table = '', where = '', limit = 10, offset = 0, sortColumn: string,
-    sortOrder: string) {
+    let fields = "id,first_name,last_name,email,phone,address,created_at,verification";
 
-    */
-   let fields="first_name,last_name,email,phone,address,created_at";
-
-    this.datatableService.list(fields, "patients", "", limit, offset, this.sortColumn, this.sortOrder).subscribe(
-      (data: any  )=> {
+    this.datatableService.list(fields, "patients", where, limit, offset, this.sortColumn, this.sortOrder).subscribe(
+      (data: any) => {
         this.patients = data['data'];
 
         this.count = data['totalItems'];
 
-         //console.log("count", this.count);
+
       },
       err => {
         console.log(err);
@@ -92,16 +97,10 @@ export class ListPatientsComponent {
     );
   }
 
- 
 
 
 
-  /*onTableDataChange(event: any) {
-    this.page = event;
-    const offset = (this.page["pageIndex"]) * this.tableSize;
-    this.fetchPatients(this.tableSize, offset);
 
-  }*/
 
   onTableDataChange(event: any) {
     this.page = event.pageIndex + 1;
@@ -116,12 +115,10 @@ export class ListPatientsComponent {
 
     this.fetchPatients(this.tableSize, offset);
   }
-  submit(form:any) {
+  submit(form: any) {
 
     console.log("list-patients-search")
-    this.gov = form.value.gouvernorat;
     this.PatientName = form.value.PatientName;
-    this.spec = form.value.speciality;
 
     this.verification = form.value.verification;
 

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+
+
 
 
 @Injectable({
@@ -27,20 +29,34 @@ export class DatatableService {
   list(filelds = '', table = '', where = '', limit = 10, offset = 0, sortColumn: string,
     sortOrder: string) {
 
+    /*
+
+const url = 'http://127.0.0.1:8000/api/list-datatable';
+let params = new HttpParams()
+  .set('fields', 'first_name,last_name,email,phone,address,created_at,verification')
+  .set('tableID', 'patients')
+  .set('where', '1=1');
+
+return this.http.get(url, { params });
+
+    */
     let useFieldsInQuery = 1;
     var url = this.Url + "/list-datatable?";
-    url += "fields=" + filelds;
-    url += "&tableID=" + table;
-    url += "&where=" + where;
-    url += "&results_per_page=" + limit;
-    url += "&order_by=" + sortColumn;
-    url += "&sortOrder=" + sortOrder;
-    url += "&page=" + offset;
-    url += "&useFieldsInQuery=" + useFieldsInQuery;
 
-    console.log(url);
+    let params = new HttpParams()
+      .set('fields', filelds)
+      .set('tableID', table)
+      .set('where', where)
+      .set('results_per_page', limit)
+      .set('order_by', sortColumn)
+      .set('sortOrder', sortOrder)
+      .set('page', offset)
+      .set('useFieldsInQuery', useFieldsInQuery)
+      ;
 
-    return this.httpClient.get(url);
+
+    return this.httpClient.get(url, { params });
+
   }
 
   update(record: any, table: any, id: any, cmd: string): Observable<any> {
