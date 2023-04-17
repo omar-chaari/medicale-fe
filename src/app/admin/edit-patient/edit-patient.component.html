@@ -1,1 +1,35 @@
-<p>edit-patient works!</p>
+<div class="container" *ngIf="patient">
+    <h1>Modifier un patient</h1>
+    <form >
+      <div class="mb-3">
+        <label for="first_name" class="form-label">Prénom</label>
+        <input type="text" class="form-control" id="first_name" [(ngModel)]="patient.first_name" name="first_name">
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="last_name" [(ngModel)]="patient.last_name" name="last_name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="patient.email" name="email">
+      </div>
+     
+      <div class="mb-3">
+        <label for="address" class="form-label">Adresse</label>
+        <textarea class="form-control" id="address" [(ngModel)]="patient.address" name="address"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Téléphone</label>
+        <input type="text" class="form-control" id="phone" [(ngModel)]="patient.phone" name="phone">
+      </div>
+      <div class="mb-3 ">
+        <label for="verification" class="form-label">Vérification</label>
+        <select class="form-select form-control" id="verification" [(ngModel)]="patient.verification" name="verification">
+          <option value="1"  [selected]="patient.verification == 1">Vérifié</option>
+          <option value="0" [selected]="patient.verification == 0" >Non vérifié</option>
+          <option value="2" [selected]="patient.verification == 2" >Ignoré</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+    </form>
+  </div>

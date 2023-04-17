@@ -11,13 +11,13 @@ export class PatientService {
   Url = environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
 
-  register(medecin: any) {
+  register(patient: any) {
 
 
-    console.log(medecin);
+    console.log(patient);
 
 
-    return this.httpClient.post(this.Url + "/register-patient", medecin);
+    return this.httpClient.post(this.Url + "/register-patient", patient);
   }
 
 
