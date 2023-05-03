@@ -7,7 +7,7 @@ import { ListRdvComponent } from './list-rdv/list-rdv.component';
 
 const routes: Routes = [
   {
-    path: 'calendrier-disponibilites',
+    path: 'calendrier-disponibilites/:id',
     component: CalendrierDisponibilitesComponent,
    
   },
