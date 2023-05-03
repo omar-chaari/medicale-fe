@@ -2,3 +2,9 @@
     background: #FFD400!important;
     height: 4px!important;
 }
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
