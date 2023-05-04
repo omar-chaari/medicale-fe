@@ -8,13 +8,15 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { LoginPatientComponent } from './login-patient/login-patient.component';
 import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { FormsModule } from '@angular/forms';
+import { RendezVousFormComponent } from './rendez-vous-form/rendez-vous-form.component';
 
 @NgModule({
   declarations: [
     RendezVousComponent,
     CalendrierDisponibilitesComponent,
     LoginPatientComponent,
-    ListRdvComponent
+    ListRdvComponent,
+    RendezVousFormComponent
   ],
   imports: [
     CommonModule,

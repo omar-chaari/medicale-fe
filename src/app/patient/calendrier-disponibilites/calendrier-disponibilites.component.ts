@@ -16,7 +16,12 @@ registerLocaleData(localeFr);
   styleUrls: ['./calendrier-disponibilites.component.css']
 })
 export class CalendrierDisponibilitesComponent implements OnInit {
-  
+
+  showForm = false;
+  selectedDate: string ="";
+  selectedTime: string="";
+
+
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
     initialView: 'timeGridWeek',
@@ -56,18 +61,54 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       daysOfWeek: [1, 2, 3, 4, 5], // Lundi à vendredi
     },
   };
-  
- 
+
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  
+
   handleDateClick(event: any): void {
     console.log('Date sélectionnée:', event.dateStr);
     // Vous pouvez ajouter ici la logique pour ouvrir un formulaire de prise de rendez-vous avec la date sélectionnée.
+    this.selectedDate = event.dateStr;
+    const { date, time } = this.extractDateAndTime(this.selectedDate);
+    //console.log('date:', date); // date: 2023-05-04
+    //console.log('time:', time); // time: 09:30
+    
+    this.selectedDate=date;
+    this.selectedTime=time;
+    
+    this.showForm = true;
+  }
+  onFormCancel(): void {
+    this.showForm = false;
   }
 
+  onSubmit(): void {
+    console.log('Formulaire soumis');
+    // Ajoutez ici la logique pour enregistrer le rendez-vous avec les données du formulaire.
+    // Par exemple, vous pouvez envoyer les données à un serveur ou les enregistrer dans un service Angular.
+    this.resetForm();
+  }
+
+
+  private resetForm(): void {
+    this.selectedDate = '';
+  }
+   extractDateAndTime(dateTimeString:string) {
+    const date = new Date(dateTimeString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+    return {
+      date: `${year}-${month}-${day}`,
+      time: `${hours}:${minutes}`
+    };
+  }
 }

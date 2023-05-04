@@ -1,13 +1,21 @@
-<!--
+<div class="form-container"  *ngIf="showForm">
+  <form (ngSubmit)="onSubmit()">
+    <h2>Prendre un rendez-vous</h2>
+    <div>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" [(ngModel)]="selectedDate" required>
 
-<full-calendar
-  defaultView="dayGridMonth"
-  [plugins]="calendarPlugins"
-  [events]="disponibilites"
-  (dateClick)="handleDateClick($event)"
-></full-calendar>
+    </div>
+    <div>
+      <label for="time">Heure:</label>
+      <input type="time" id="time" name="time" [(ngModel)]="selectedTime" required>
+    </div>
 
-
--->
+    <div>
+      <button type="submit"  >Valider</button>
+      <button type="button" (click)="onFormCancel()">Annuler</button>
+    </div>
+  </form>
+</div>
 <full-calendar [options]="calendarOptions"></full-calendar>
 
