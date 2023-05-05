@@ -1,5 +1,5 @@
 <div class="form-container"  *ngIf="showForm">
-  <form (ngSubmit)="onSubmit()">
+  <form  #form="ngForm" (ngSubmit)="onSubmit(form)">
     <h2>Prendre un rendez-vous</h2>
     <div>
       <label for="date">Date:</label>

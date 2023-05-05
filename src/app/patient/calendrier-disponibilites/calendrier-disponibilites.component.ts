@@ -7,6 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import frLocale from '@fullcalendar/core/locales/fr';
+import { DatatableService } from 'src/app/services/datatable.service';
+import { NgForm } from '@angular/forms';
 
 registerLocaleData(localeFr);
 
@@ -18,9 +20,10 @@ registerLocaleData(localeFr);
 export class CalendrierDisponibilitesComponent implements OnInit {
 
   showForm = false;
-  selectedDate: string ="";
-  selectedTime: string="";
-
+  selectedDate: string = "";
+  selectedTime: string = "";
+  message_success: string ="";
+  message_error:string="";
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
@@ -64,7 +67,11 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(
+
+    private datatableService: DatatableService,
+
+  ) { }
 
   ngOnInit(): void {
   }
@@ -72,25 +79,55 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
   handleDateClick(event: any): void {
     console.log('Date sélectionnée:', event.dateStr);
-    // Vous pouvez ajouter ici la logique pour ouvrir un formulaire de prise de rendez-vous avec la date sélectionnée.
     this.selectedDate = event.dateStr;
     const { date, time } = this.extractDateAndTime(this.selectedDate);
-    //console.log('date:', date); // date: 2023-05-04
-    //console.log('time:', time); // time: 09:30
-    
-    this.selectedDate=date;
-    this.selectedTime=time;
-    
+
+    this.selectedDate = date;
+    this.selectedTime = time;
+
     this.showForm = true;
   }
   onFormCancel(): void {
     this.showForm = false;
   }
 
-  onSubmit(): void {
-    console.log('Formulaire soumis');
-    // Ajoutez ici la logique pour enregistrer le rendez-vous avec les données du formulaire.
-    // Par exemple, vous pouvez envoyer les données à un serveur ou les enregistrer dans un service Angular.
+  onSubmit(form: NgForm): void {
+    console.log('Formulaire soumis:', form.value);
+
+    const table = "appointements";
+
+    const patient = 1;
+    const professional = 9;
+    const date_debut = form.value.date + " " + form.value.time + ":00";
+    const date_fin = this.addMinutes(date_debut, 30);
+
+    const record = {
+      "patient": patient,
+      "professional": professional,
+      "date_debut": date_debut,
+      "date_fin": date_fin
+    };
+
+
+    this.datatableService.create(record, table).subscribe(
+      (data: any  )=> {
+        //  console.log('Contact Added Successfully');
+        this.message_success = 'Le rendez-vous a été ajouté avec succès';
+//        this.message_error = "";
+
+      }
+      , err => {
+        //console.log(err);
+        if (err.status == 0 || err.status == 500) { this.message_error = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
+        else if (err.status == 422) {
+          //console.log(err.error.errors);
+
+         this.message_error = err.error.errors;
+
+        }
+        //handle errors here
+      }
+    );
     this.resetForm();
   }
 
@@ -98,17 +135,34 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   private resetForm(): void {
     this.selectedDate = '';
   }
-   extractDateAndTime(dateTimeString:string) {
+  extractDateAndTime(dateTimeString: string) {
     const date = new Date(dateTimeString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
-  
+
     return {
       date: `${year}-${month}-${day}`,
       time: `${hours}:${minutes}`
     };
   }
+
+
+  addMinutes(dateTimeString: string, minutesToAdd: number) {
+    const date = new Date(dateTimeString);
+    date.setMinutes(date.getMinutes() + minutesToAdd);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+
 }
