@@ -103,9 +103,7 @@ return this.http.get(url, { params });
         id: id_element
       }]
     };
-    //console.log("url", url);
-    console.log("id", id_element);
-
+   
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -113,8 +111,7 @@ return this.http.get(url, { params });
       body: body
     };
 
-    //console.log(body);
-
+   
     return this.httpClient.delete(url, httpOptions);
   }
 }

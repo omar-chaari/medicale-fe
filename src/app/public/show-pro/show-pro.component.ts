@@ -19,9 +19,7 @@ export class ShowProComponent implements OnInit {
 
   }
   view(id:any) {
-    //console.log(id);
     let id_array = id.split("/");
-//console.log(id_array[2]);
     this.router.navigate([`detail/${id_array[3]}`]);
   }
 

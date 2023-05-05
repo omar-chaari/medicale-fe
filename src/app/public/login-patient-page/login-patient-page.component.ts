@@ -18,8 +18,6 @@ export class LoginPatientPageComponent {
 
   }
   onSubmit() {
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
 
     this.authPatientService.loginAdmin(this.username, this.password).subscribe(
       (response) => {
@@ -29,8 +27,9 @@ export class LoginPatientPageComponent {
 
         let apiKey = response["token"];
 
-        let user_id = response["user_id"];
-        
+        localStorage.setItem('api_key', apiKey);
+
+
         const dataUser = {
           apiKey: response["token"],
           user_id: response["user_id"],

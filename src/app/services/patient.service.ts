@@ -14,8 +14,7 @@ export class PatientService {
   register(patient: any) {
 
 
-    console.log(patient);
-
+   
 
     return this.httpClient.post(this.Url + "/register-patient", patient);
   }

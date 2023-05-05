@@ -15,7 +15,6 @@ export class MedecinService {
   register(medecin: any) {
 
 
-    console.log(medecin);
 
 
     return this.httpClient.post(this.Url + "/register", medecin);
@@ -49,8 +48,7 @@ export class MedecinService {
 
 
     
-    console.log(url);
-
+    
 
     return this.httpClient.get(url);
   }
@@ -69,7 +67,6 @@ export class MedecinService {
     url += "&sortOrder=" + sortOrder;
     url += "&offset=" + offset;
 
-    console.log(url);
 
     return this.httpClient.get(url);
   }

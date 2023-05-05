@@ -40,21 +40,13 @@ export class SearchProComponent implements OnInit {
     this.medecinService.getAllSpeciality().subscribe(
       (data: any  )=> {
 
-        console.log(data['data']);
         this.SpecialityList = data['data'];
 
 
       }
       , err => {
         console.log(err);
-        /*if (err.status == 0 || err.status == 500) { this.message_error = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
-        else if (err.status == 422) {
-          //console.log(err.error.errors);
-
-          this.message_error = err.error.errors;
-
-        }*/
-        //handle errors here
+        
       }
     );
 
@@ -64,21 +56,12 @@ export class SearchProComponent implements OnInit {
     this.medecinService.getAllGouvernorat().subscribe(
       (data: any  )=> {
 
-        //console.log(data['data']);
         this.GouvernoratList = data['data'];
 
 
       }
       , err => {
-        //console.log(err);
-        /*if (err.status == 0 || err.status == 500) { this.message_error = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
-        else if (err.status == 422) {
-          //console.log(err.error.errors);
-
-          this.message_error = err.error.errors;
-
-        }*/
-        //handle errors here
+       
       }
     );
 

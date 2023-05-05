@@ -90,7 +90,6 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
   handleDateClick(event: any): void {
-    console.log('Date sélectionnée:', event.dateStr);
     this.selectedDate = event.dateStr;
     const { date, time } = this.extractDateAndTime(this.selectedDate);
 
