@@ -30,6 +30,8 @@ export class LoginPatientComponent {
 
         let apiKey = response["token"];
 
+
+        localStorage.setItem('api_key', apiKey);
         // Save the string in a cookie
         this.setCookie('user_data_'+this.username, apiKey, 20);
 

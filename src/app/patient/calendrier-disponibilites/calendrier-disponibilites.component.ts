@@ -9,6 +9,7 @@ import localeFr from '@angular/common/locales/fr';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 registerLocaleData(localeFr);
 
@@ -22,8 +23,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   showForm = false;
   selectedDate: string = "";
   selectedTime: string = "";
-  message_success: string ="";
-  message_error:string="";
+  message_success: string = "";
+  message_error: string = "";
+  professional:number= 0;
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
@@ -70,8 +72,18 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   constructor(
 
     private datatableService: DatatableService,
+    private route: ActivatedRoute
 
-  ) { }
+
+
+  ) {
+
+    this.route.params.subscribe(params => {
+      this.professional = params['id'];
+    });
+
+
+   }
 
   ngOnInit(): void {
   }
@@ -96,7 +108,17 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     const table = "appointements";
 
-    const patient = 1;
+    const jsonString = this.getCookie("patient_data");
+
+    // Parse the JSON string back into an object
+    let patient = 0;
+    if (jsonString !== null) {
+
+      const data = JSON.parse(jsonString);
+ 
+      patient = data.user_id;
+    }
+
     const professional = 9;
     const date_debut = form.value.date + " " + form.value.time + ":00";
     const date_fin = this.addMinutes(date_debut, 30);
@@ -110,10 +132,10 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
     this.datatableService.create(record, table).subscribe(
-      (data: any  )=> {
+      (data: any) => {
         //  console.log('Contact Added Successfully');
         this.message_success = 'Le rendez-vous a été ajouté avec succès';
-//        this.message_error = "";
+        //        this.message_error = "";
 
       }
       , err => {
@@ -122,7 +144,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         else if (err.status == 422) {
           //console.log(err.error.errors);
 
-         this.message_error = err.error.errors;
+          this.message_error = err.error.errors;
 
         }
         //handle errors here
@@ -163,6 +185,16 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
+
+  getCookie(name: string): string | null {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop()?.split(";").shift() || null;
+    }
+    return null;
+  }
+
 
 
 }

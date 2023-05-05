@@ -29,8 +29,17 @@ export class LoginPatientPageComponent {
 
         let apiKey = response["token"];
 
+        let user_id = response["user_id"];
+        
+        const dataUser = {
+          apiKey: response["token"],
+          user_id: response["user_id"],
+        };
+        
+        const jsonUser = JSON.stringify(dataUser);
+        
         // Save the string in a cookie
-        this.setCookie('user_data_'+this.username, apiKey, 20);
+        this.setCookie('user_data', jsonUser, 20);
 
 
         this.router.navigate(['/patient/list-rdv']);
