@@ -107,7 +107,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     const table = "appointements";
 
-    const jsonString = this.getCookie("patient_data");
+    const jsonString = this.getCookie("user_data");
 
     // Parse the JSON string back into an object
     let patient = 0;
@@ -118,7 +118,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       patient = data.user_id;
     }
 
-    const professional = 9;
+    const professional = form.value.professional;
     const date_debut = form.value.date + " " + form.value.time + ":00";
     const date_fin = this.addMinutes(date_debut, 30);
 

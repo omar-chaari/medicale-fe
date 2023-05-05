@@ -89,6 +89,9 @@ return this.http.get(url, { params });
       }
     };
 
+    console.log(body);
+    console.log(url);
+    
     return this.httpClient.post(url, body);
   }
   delete(id_element: any, table: string): Observable<any> {
