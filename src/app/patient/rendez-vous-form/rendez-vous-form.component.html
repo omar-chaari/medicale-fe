@@ -3,7 +3,7 @@
       <h2>Prendre un rendez-vous</h2>
       <div>
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date" [(ngModel)]="selectedDate" (keydown)="preventDateChange($event)" (input)="restoreDate($event)">
+        <input type="date" id="date" name="date" [(ngModel)]="selectedDate" required>
 
       </div>
       <div>
