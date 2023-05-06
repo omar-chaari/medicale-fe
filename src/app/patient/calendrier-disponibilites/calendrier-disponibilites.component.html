@@ -1,22 +1,30 @@
-<div class="form-container"  *ngIf="showForm">
-  <form  #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <h2>Prendre un rendez-vous</h2>
-    <div>
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" [(ngModel)]="selectedDate" required>
-
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showForm}" [ngStyle]="{'display': showForm ? 'block' : 'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Prendre un rendez-vous</h5>
+        <button type="button" class="close" (click)="onFormCancel()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" class="form-control" [(ngModel)]="selectedDate" required>
+          </div>
+          <div>
+            <label for="time">Heure:</label>
+            <input type="time" id="time" name="time" class="form-control" [(ngModel)]="selectedTime" required>
+          </div>
+          <input type="hidden" id="professional" name="professional" [(ngModel)]="professional" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" form="form">Valider</button>
+        <button type="button" class="btn btn-secondary" (click)="onFormCancel()">Annuler</button>
+      </div>
     </div>
-    <div>
-      <label for="time">Heure:</label>
-      <input type="time" id="time" name="time" [(ngModel)]="selectedTime" required>
-    </div>
-
-      <input type="hidden" id="professional" name="professional" [(ngModel)]="professional" required>
-    <div>
-      <button type="submit"  >Valider</button>
-      <button type="button" (click)="onFormCancel()">Annuler</button>
-    </div>
-  </form>
+  </div>
 </div>
 <full-calendar [options]="calendarOptions"></full-calendar>
-

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -10,6 +10,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 registerLocaleData(localeFr);
 
@@ -19,60 +20,25 @@ registerLocaleData(localeFr);
   styleUrls: ['./calendrier-disponibilites.component.css']
 })
 export class CalendrierDisponibilitesComponent implements OnInit {
+  @ViewChild(FullCalendarComponent, { static: false }) calendarComponent!: FullCalendarComponent;
 
   showForm = false;
   selectedDate: string = "";
   selectedTime: string = "";
   message_success: string = "";
   message_error: string = "";
-  professional:number= 0;
-
-  calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
-    initialView: 'timeGridWeek',
-    dateClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2019-04-01' },
-      { title: 'event 2', date: '2019-04-02' },
-      {
-        start: '2023-04-14T08:00:00',
-        end: '2023-04-14T12:00:00',
-        color: 'Moccasin',
-        rendering: 'background',
-      },
-      {
-        start: '2023-04-14T15:00:00',
-        end: '2023-04-14T16:15:00',
-        color: 'Moccasin',
-        rendering: 'background',
-      },
-      {
-        start: '2023-04-17',
-        end: '2023-04-18',
-        color: 'Moccasin',
-
-        rendering: 'background',
-
-      },
-    ],
-    locale: frLocale,
-    slotMinTime: '08:00',
-    slotMaxTime: '18:00',
-    allDaySlot: false,
-    height: 'auto',
-    businessHours: {
-      startTime: '08:00',
-      endTime: '18:00',
-      daysOfWeek: [1, 2, 3, 4, 5], // Lundi à vendredi
-    },
-  };
+  professional: number = 0;
+  appointements: any = [];
+  calendarOptions: CalendarOptions = {};
+  events: any = [];
 
 
 
   constructor(
 
     private datatableService: DatatableService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
 
 
 
@@ -83,10 +49,35 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     });
 
 
-   }
+    this.calendarOptions = {
+      plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
+      initialView: 'timeGridWeek',
+      dateClick: this.handleDateClick.bind(this),
+      events: this.events,
+      locale: frLocale,
+      slotMinTime: '08:00',
+      slotMaxTime: '18:00',
+      allDaySlot: false,
+      height: 'auto',
+      businessHours: {
+        startTime: '08:00',
+        endTime: '18:00',
+        daysOfWeek: [1, 2, 3, 4, 5, 6], // Lundi à vendredi
+      },
+    };
+
+
+
+  }
 
   ngOnInit(): void {
+    this.checkCookieExpiration();
+
   }
+  ngAfterViewInit(): void {
+    this.fetchAppointements();
+  }
+
 
 
   handleDateClick(event: any): void {
@@ -114,7 +105,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     if (jsonString !== null) {
 
       const data = JSON.parse(jsonString);
- 
+
       patient = data.user_id;
     }
 
@@ -194,6 +185,95 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     return null;
   }
 
+  fetchAppointements(): void {
+
+
+    var where: string = " 1=1 ";
+    var table;
+
+
+
+
+    //this.professional
+
+    where += "and professional='" + this.professional + "' ";
+
+
+    table = "appointements";
+
+    let fields = "date_debut,date_fin";
+
+    this.datatableService.list(fields, table, where, -1, 0, "", "").subscribe(
+      (data: any) => {
+        this.appointements = data['data'];
+
+        console.log(this.appointements);
+        const event_array = this.formatAppointmentsToEvents(this.appointements);
+        this.calendarOptions.events = event_array;
+
+        //this.events=event_array;
+
+        // Update the events in the FullCalendarComponent
+        this.calendarComponent.getApi().removeAllEvents();
+        this.calendarComponent.getApi().addEventSource(event_array);
+
+
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  formatAppointmentsToEvents(appointments: any[]): any[] {
+    return appointments.map((appointment) => {
+      return {
+        start: appointment.date_debut.replace(' ', 'T'),
+        end: appointment.date_fin.replace(' ', 'T'),
+        color: 'Moccasin',
+        rendering: 'background',
+      };
+    });
+  }
+
+  checkCookieExpiration(): void {
+    // Get the cookie value
+    const cookieValue = this.getCookie('user_data');
+
+    if (cookieValue) {
+      // Parse the JSON string back into an object
+      const data = JSON.parse(cookieValue);
+
+      // Get the expiration time from the cookie data
+      const expirationTime = new Date(data.expiration);
+
+      // Check if the cookie has expired
+      if (expirationTime < new Date()) {
+        // Clear the expired cookie
+        this.clearCookie('user_data');
+
+        // Navigate the user to the login page
+        this.router.navigate(['/public/login-patient']);
+      }
+      else {
+        // Add 20 minutes to the expiration time
+        expirationTime.setMinutes(expirationTime.getMinutes() + 20);
+
+        // Update the expiration time in the cookie data
+        data.expiration = expirationTime.toISOString();
+
+        // Save the updated cookie data back to the cookie
+        document.cookie = `user_data=${JSON.stringify(data)}; expires=${expirationTime.toUTCString()}; path=/;`;
+      }
+
+    } else {
+      // If there's no cookie, navigate the user to the login page
+      this.router.navigate(['/public/login-patient']);
+    }
+  }
+  clearCookie(name: string): void {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  }
 
 
 }
