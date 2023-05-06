@@ -23,10 +23,11 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   @ViewChild(FullCalendarComponent, { static: false }) calendarComponent!: FullCalendarComponent;
 
   showForm = false;
+  showErrorModal=false;
   selectedDate: string = "";
   selectedTime: string = "";
   message_success: string = "";
-  message_error: string = "";
+  errorMessage: string = "";
   professional: number = 0;
   appointements: any = [];
   calendarOptions: CalendarOptions = {};
@@ -81,13 +82,29 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
   handleDateClick(event: any): void {
-    this.selectedDate = event.dateStr;
-    const { date, time } = this.extractDateAndTime(this.selectedDate);
-
-    this.selectedDate = date;
-    this.selectedTime = time;
-
-    this.showForm = true;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Remove the time part of the current date
+    const selectedDate = new Date(event.dateStr);
+    selectedDate.setHours(0, 0, 0, 0); // Remove the time part of the selected date
+  
+    
+    if (selectedDate >= currentDate) {
+      this.errorMessage = "";
+      this.selectedDate = event.dateStr;
+      const { date, time } = this.extractDateAndTime(this.selectedDate);
+  
+      this.selectedDate = date;
+      this.selectedTime = time;
+  
+      this.showForm = true;
+    } else {
+      this.errorMessage = `Veuillez sélectionner une date valide à partir de ${currentDate.toLocaleDateString()}`;
+      
+      this.showErrorModal=true;
+      return;
+    }
+   
+    
   }
   onFormCancel(): void {
     this.showForm = false;
@@ -125,16 +142,16 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       (data: any) => {
         //  console.log('Contact Added Successfully');
         this.message_success = 'Le rendez-vous a été ajouté avec succès';
-        //        this.message_error = "";
+        //        this.errorMessage = "";
 
       }
       , err => {
         //console.log(err);
-        if (err.status == 0 || err.status == 500) { this.message_error = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
+        if (err.status == 0 || err.status == 500) { this.errorMessage = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
         else if (err.status == 422) {
           //console.log(err.error.errors);
 
-          this.message_error = err.error.errors;
+          this.errorMessage = err.error.errors;
 
         }
         //handle errors here
@@ -194,9 +211,20 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
 
-    //this.professional
+  
+ 
+    // Get the current date and time
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const hours = String(currentDate.getHours()).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+    const date_jourd_huit = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    where += "and professional='" + this.professional + "' ";
+// Add the condition to the where variable
+  where += ` AND professional='${this.professional}' AND date_debut >= '${date_jourd_huit}'`;
 
 
     table = "appointements";
@@ -275,5 +303,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
+  closeErrorModal(): void {
+    this.showErrorModal = false;
+  }
+  
 
 }
