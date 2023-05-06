@@ -101,7 +101,6 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       this.errorMessage = `Veuillez sélectionner une date valide à partir de ${currentDate.toLocaleDateString()}`;
       
       this.showErrorModal=true;
-      return;
     }
    
     
@@ -143,6 +142,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         //  console.log('Contact Added Successfully');
         this.message_success = 'Le rendez-vous a été ajouté avec succès';
         //        this.errorMessage = "";
+        console.log('Navigating to:', ['/patient/calendrier-disponibilites', professional]);
+
+        this.router.navigate(['/patient/calendrier-disponibilites', professional]);
 
       }
       , err => {
@@ -158,6 +160,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       }
     );
     this.resetForm();
+
   }
 
 
@@ -267,38 +270,44 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   checkCookieExpiration(): void {
     // Get the cookie value
     const cookieValue = this.getCookie('user_data');
-
+  
     if (cookieValue) {
-      // Parse the JSON string back into an object
-      const data = JSON.parse(cookieValue);
-
-      // Get the expiration time from the cookie data
-      const expirationTime = new Date(data.expiration);
-
-      // Check if the cookie has expired
-      if (expirationTime < new Date()) {
-        // Clear the expired cookie
+      try {
+        // Parse the JSON string back into an object
+        const data = JSON.parse(cookieValue);
+  
+        // Get the expiration time from the cookie data
+        const expirationTime = new Date(data.expiration);
+  
+        // Check if the cookie has expired
+        if (expirationTime < new Date()) {
+          // Clear the expired cookie
+          this.clearCookie('user_data');
+  
+          // Navigate the user to the login page
+          this.router.navigate(['/public/login-patient']);
+        } else {
+          // Add 20 minutes to the expiration time
+          const expirationDate = new Date();
+          expirationDate.setMinutes(expirationDate.getMinutes() + 20);
+            
+          document.cookie = `user_data=${JSON.stringify(data)}; expires=${expirationDate.toUTCString()}; path=/;`;
+            
+        }
+      } catch (error) {
+        console.error('Error parsing the expiration time:', error);
+        // Clear the invalid cookie
         this.clearCookie('user_data');
-
         // Navigate the user to the login page
         this.router.navigate(['/public/login-patient']);
       }
-      else {
-        // Add 20 minutes to the expiration time
-        expirationTime.setMinutes(expirationTime.getMinutes() + 20);
-
-        // Update the expiration time in the cookie data
-        data.expiration = expirationTime.toISOString();
-
-        // Save the updated cookie data back to the cookie
-        document.cookie = `user_data=${JSON.stringify(data)}; expires=${expirationTime.toUTCString()}; path=/;`;
-      }
-
     } else {
       // If there's no cookie, navigate the user to the login page
       this.router.navigate(['/public/login-patient']);
+
     }
   }
+  
   clearCookie(name: string): void {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
