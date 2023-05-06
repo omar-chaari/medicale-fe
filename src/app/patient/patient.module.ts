@@ -7,6 +7,7 @@ import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/c
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     FullCalendarModule,
     FormsModule,
 
+    ModalModule.forRoot()
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA] 

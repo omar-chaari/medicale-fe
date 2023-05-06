@@ -11,6 +11,8 @@ import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { ElementRef } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 registerLocaleData(localeFr);
 
@@ -21,9 +23,10 @@ registerLocaleData(localeFr);
 })
 export class CalendrierDisponibilitesComponent implements OnInit {
   @ViewChild(FullCalendarComponent, { static: false }) calendarComponent!: FullCalendarComponent;
+  @ViewChild('modalElement', { static: false }) modalElement!: BsModalRef;
 
   showForm = false;
-  showErrorModal=false;
+  showErrorModal = false;
   selectedDate: string = "";
   selectedTime: string = "";
   message_success: string = "";
@@ -86,24 +89,24 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     currentDate.setHours(0, 0, 0, 0); // Remove the time part of the current date
     const selectedDate = new Date(event.dateStr);
     selectedDate.setHours(0, 0, 0, 0); // Remove the time part of the selected date
-  
-    
+
+
     if (selectedDate >= currentDate) {
       this.errorMessage = "";
       this.selectedDate = event.dateStr;
       const { date, time } = this.extractDateAndTime(this.selectedDate);
-  
+
       this.selectedDate = date;
       this.selectedTime = time;
-  
+
       this.showForm = true;
     } else {
       this.errorMessage = `Veuillez sélectionner une date valide à partir de ${currentDate.toLocaleDateString()}`;
-      
-      this.showErrorModal=true;
+
+      this.showErrorModal = true;
     }
-   
-    
+
+
   }
   onFormCancel(): void {
     this.showForm = false;
@@ -139,13 +142,14 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     this.datatableService.create(record, table).subscribe(
       (data: any) => {
-        //  console.log('Contact Added Successfully');
         this.message_success = 'Le rendez-vous a été ajouté avec succès';
-        //        this.errorMessage = "";
         console.log('Navigating to:', ['/patient/calendrier-disponibilites', professional]);
 
-        this.router.navigate(['/patient/calendrier-disponibilites', professional]);
 
+
+        this.showForm = false;
+
+       this.router.navigate(['/patient/calendrier-disponibilites', professional]);
       }
       , err => {
         //console.log(err);
@@ -214,8 +218,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
 
-  
- 
+
+
     // Get the current date and time
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -226,8 +230,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     const seconds = String(currentDate.getSeconds()).padStart(2, '0');
     const date_jourd_huit = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-// Add the condition to the where variable
-  where += ` AND professional='${this.professional}' AND date_debut >= '${date_jourd_huit}'`;
+    // Add the condition to the where variable
+    where += ` AND professional='${this.professional}' AND date_debut >= '${date_jourd_huit}'`;
 
 
     table = "appointements";
@@ -270,29 +274,29 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   checkCookieExpiration(): void {
     // Get the cookie value
     const cookieValue = this.getCookie('user_data');
-  
+
     if (cookieValue) {
       try {
         // Parse the JSON string back into an object
         const data = JSON.parse(cookieValue);
-  
+
         // Get the expiration time from the cookie data
         const expirationTime = new Date(data.expiration);
-  
+
         // Check if the cookie has expired
         if (expirationTime < new Date()) {
           // Clear the expired cookie
           this.clearCookie('user_data');
-  
+
           // Navigate the user to the login page
           this.router.navigate(['/public/login-patient']);
         } else {
           // Add 20 minutes to the expiration time
           const expirationDate = new Date();
           expirationDate.setMinutes(expirationDate.getMinutes() + 20);
-            
+
           document.cookie = `user_data=${JSON.stringify(data)}; expires=${expirationDate.toUTCString()}; path=/;`;
-            
+
         }
       } catch (error) {
         console.error('Error parsing the expiration time:', error);
@@ -307,7 +311,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     }
   }
-  
+
   clearCookie(name: string): void {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
@@ -315,6 +319,6 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   closeErrorModal(): void {
     this.showErrorModal = false;
   }
-  
+
 
 }
