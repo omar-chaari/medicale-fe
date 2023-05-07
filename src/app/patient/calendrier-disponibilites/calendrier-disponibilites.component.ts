@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -11,8 +11,6 @@ import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ElementRef } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 
 registerLocaleData(localeFr);
 
@@ -23,7 +21,6 @@ registerLocaleData(localeFr);
 })
 export class CalendrierDisponibilitesComponent implements OnInit {
   @ViewChild(FullCalendarComponent, { static: false }) calendarComponent!: FullCalendarComponent;
-  @ViewChild('modalElement', { static: false }) modalElement!: BsModalRef;
 
   showForm = false;
   showErrorModal = false;
@@ -113,7 +110,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    console.log('Formulaire soumis:', form.value);
+
 
     const table = "appointements";
 
@@ -148,6 +145,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
         this.showForm = false;
+      // Trigger fetchAppointements after creating a new appointment
+      this.fetchAppointements();
 
        this.router.navigate(['/patient/calendrier-disponibilites', professional]);
       }

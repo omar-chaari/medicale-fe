@@ -1,6 +1,6 @@
 <!-- Modal -->
 
-<!-----
+
 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" 
 aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal}" [ngStyle]="{'display': showErrorModal ? 'block' : 'none'}">
 
@@ -18,9 +18,9 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
     </div>
   </div>
 </div>
---->
 
-<!---
+
+
 <div bsModal #modalElement="bs-modal" class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showForm}" [ngStyle]="{'display': showForm ? 'block' : 'none'}"  >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -31,8 +31,8 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
         </button>
       </div>
       <div class="modal-body">
-      -->
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)" [ngStyle]="{'display': showForm ? 'block' : 'none'}">
+      
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
           <div>
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" class="form-control" [(ngModel)]="selectedDate" required>
@@ -50,13 +50,13 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
         </form>
  
 
-        <!---
+       
       </div>
       
      
     </div>
   </div>
-</div> --->
+</div> 
 <div class="fullcalendar-wrapper">
   <full-calendar [options]="calendarOptions"></full-calendar>
 </div>
