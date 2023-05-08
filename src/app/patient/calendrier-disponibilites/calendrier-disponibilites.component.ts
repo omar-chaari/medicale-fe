@@ -32,6 +32,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   appointements: any = [];
   calendarOptions: CalendarOptions = {};
   events: any = [];
+  isSubmitting = false;
 
 
 
@@ -111,6 +112,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
 
+    this.isSubmitting = true;
+
 
     const table = "appointements";
 
@@ -147,10 +150,13 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         this.showForm = false;
       // Trigger fetchAppointements after creating a new appointment
       this.fetchAppointements();
+      this.isSubmitting = false;
 
        this.router.navigate(['/patient/calendrier-disponibilites', professional]);
       }
       , err => {
+        this.isSubmitting = false;
+
         //console.log(err);
         if (err.status == 0 || err.status == 500) { this.errorMessage = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
         else if (err.status == 422) {
@@ -159,11 +165,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
           this.errorMessage = err.error.errors;
 
         }
-        //handle errors here
       }
     );
-    this.resetForm();
-
+   
   }
 
 

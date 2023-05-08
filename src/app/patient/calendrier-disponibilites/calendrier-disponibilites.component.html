@@ -21,7 +21,7 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
 
 
 
-<div bsModal #modalElement="bs-modal" class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showForm}" [ngStyle]="{'display': showForm ? 'block' : 'none'}"  >
+<div  class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showForm}" [ngStyle]="{'display': showForm ? 'block' : 'none'}"  >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,8 +44,11 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
           <input type="hidden" id="professional" name="professional" [(ngModel)]="professional" required>
       
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" >Valider</button>
-            <button type="button" class="btn btn-secondary" (click)="onFormCancel()">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+              <i *ngIf="isSubmitting" class="fas fa-spinner fa-spin"></i>
+              Valider
+            </button>
+                        <button type="button" class="btn btn-secondary" (click)="onFormCancel()">Annuler</button>
           </div>
         </form>
  
