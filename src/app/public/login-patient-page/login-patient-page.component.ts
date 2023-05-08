@@ -33,6 +33,8 @@ export class LoginPatientPageComponent {
         const dataUser = {
           apiKey: response["token"],
           user_id: response["user_id"],
+          first_name: response["first_name"],
+          last_name: response["last_name"],
         };
         
         const jsonUser = JSON.stringify(dataUser);
