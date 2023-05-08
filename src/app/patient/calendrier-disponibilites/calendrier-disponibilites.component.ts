@@ -30,6 +30,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   errorMessage: string = "";
   professional: number = 0;
   appointements: any = [];
+  medecin: any = [];
+
   calendarOptions: CalendarOptions = {};
   events: any = [];
   isSubmitting = false;
@@ -48,6 +50,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.professional = params['id'];
+      this.getMedecin(this.professional);
+
     });
 
 
@@ -73,7 +77,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checkCookieExpiration();
+    //this.checkCookieExpiration();
 
   }
   ngAfterViewInit(): void {
@@ -323,5 +327,22 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     this.showErrorModal = false;
   }
 
+  getMedecin(id: any): void {
+
+
+
+    const table = "users";
+
+    this.datatableService.showRecord(id, table).subscribe(
+      (data: any  )=> {
+        this.medecin = data;
+
+        //     console.log(this.medecin);
+      },
+      err => {
+        //   console.log(err);
+      }
+    );
+  }
 
 }
