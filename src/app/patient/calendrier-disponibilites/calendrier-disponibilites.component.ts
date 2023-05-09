@@ -35,7 +35,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   calendarOptions: CalendarOptions = {};
   events: any = [];
   isSubmitting = false;
-
+  motif: string = "";
 
 
   constructor(
@@ -140,11 +140,15 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       "patient": patient,
       "professional": professional,
       "date_debut": date_debut,
-      "date_fin": date_fin
+      "date_fin": date_fin,
+      "motif_consultation": form.value.motif
+
     };
 
+    
 
-    this.datatableService.create(record, table).subscribe(
+    const cmd = "email_rdv_patient";
+    this.datatableService.create(record, table, cmd).subscribe(
       (data: any) => {
         this.message_success = 'Le rendez-vous a été ajouté avec succès';
         console.log('Navigating to:', ['/patient/calendrier-disponibilites', professional]);
@@ -152,14 +156,16 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
 
         this.showForm = false;
-      // Trigger fetchAppointements after creating a new appointment
-      this.fetchAppointements();
-      this.isSubmitting = false;
+        // Trigger fetchAppointements after creating a new appointment
+        this.fetchAppointements();
+        this.isSubmitting = false;
+        this.motif = "";
 
-       this.router.navigate(['/patient/calendrier-disponibilites', professional]);
+        this.router.navigate(['/patient/calendrier-disponibilites', professional]);
       }
       , err => {
         this.isSubmitting = false;
+        this.motif = "";
 
         //console.log(err);
         if (err.status == 0 || err.status == 500) { this.errorMessage = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
@@ -171,7 +177,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         }
       }
     );
-   
+
   }
 
 
@@ -334,7 +340,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     const table = "users";
 
     this.datatableService.showRecord(id, table).subscribe(
-      (data: any  )=> {
+      (data: any) => {
         this.medecin = data;
 
         //     console.log(this.medecin);

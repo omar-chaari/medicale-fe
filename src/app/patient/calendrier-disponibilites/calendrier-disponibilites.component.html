@@ -56,9 +56,15 @@ aria-hidden="true" [ngClass]="{'show': showErrorModal, 'd-block': showErrorModal
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" class="form-control" [(ngModel)]="selectedDate" required>
           </div>
+          <br>
           <div>
             <label for="time">Heure:</label>
             <input type="time" id="time" name="time" class="form-control" [(ngModel)]="selectedTime" required>
+          </div>
+          <br>
+          <div>
+            <label for="motif">Motif de la consultation:</label>
+            <input type="text" id="motif" name="motif" class="form-control" [(ngModel)]="motif" >
           </div>
           <input type="hidden" id="professional" name="professional" [(ngModel)]="professional" required>
       

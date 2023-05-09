@@ -77,7 +77,7 @@ return this.http.get(url, { params });
 
     return this.httpClient.post(url, body);
   }
-  create(record: any, table: string): Observable<any> {
+  create(record: any, table: string, cmd: string ="" ): Observable<any> {
     const url = this.Url + '/insert-datatable';
 
 
@@ -86,7 +86,9 @@ return this.http.get(url, { params });
       data: {
 
         form_data: record
-      }
+      },
+      cmd: cmd,
+
     };
 
     console.log(body);
