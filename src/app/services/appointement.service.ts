@@ -22,7 +22,7 @@ export class AppointementService {
 
 
     
-    console.log(url);
+   // console.log(url);
 
     return this.httpClient.get(url);
   }

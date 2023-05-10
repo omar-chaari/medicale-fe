@@ -10,11 +10,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { DatePipe } from '@angular/common';
+import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 
 @NgModule({
   declarations: [
     CalendrierDisponibilitesComponent,
     ListRdvComponent,
+    AnnulerRdvComponent,
     
   ],
   imports: [

@@ -20,6 +20,7 @@ export class DatatableService {
     url += "id=" + id;
     url += "&table=" + table;
 
+    console.log(url);
     return this.httpClient.get(url);
   }
 
