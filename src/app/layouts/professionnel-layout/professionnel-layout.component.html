@@ -18,6 +18,15 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            
+            
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/professionnel/calendrier-disponibilites" list-pro>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Disponibilité</span></a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" routerLink="/professionnel/list-patients" list-pro>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -48,7 +57,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user_name}}</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dr {{user_name}}</span>
                             
                                 </a>
                                 <!-- Dropdown - User Information -->

@@ -11,12 +11,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { DatePipe } from '@angular/common';
 import { OrderByPipe } from './order-by.pipe';
+import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/calendrier-disponibilites.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 @NgModule({
   declarations: [
     ListPatientsComponent,
-    OrderByPipe
+    OrderByPipe,
+    CalendrierDisponibilitesComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { OrderByPipe } from './order-by.pipe';
     HttpClientModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    FullCalendarModule
   ],
   providers: [DatePipe],
 
