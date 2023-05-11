@@ -62,7 +62,7 @@ export class ListPatientsComponent {
 
 
     var patientName = this.PatientName;
-    var verification = this.verification;
+    var verification = "1";
     var email = this.email;
 
 

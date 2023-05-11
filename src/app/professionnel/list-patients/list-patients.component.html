@@ -8,7 +8,7 @@
 
             <div style="float:right">
 
-                <a type="submit" routerLink="/admin/add-patient" class="btn btn-info btn-sm" id="submit"
+                <a type="submit" routerLink="/professionnel/add-patient" class="btn btn-info btn-sm" id="submit"
                   >Ajouter un patient</a>
 
 
@@ -34,19 +34,7 @@
         
                 <!-------Verification -->
         
-                <div class="mb-3 col-lg-4">
-                    <label for="verification" class="form-label">Verification</label>
-                    <select class="form-select form-control" id="verification" name="verification" aria-label="" ngModel>
-                        <option selected></option>
-                        <option value="1">Verifié</option>
-                        <option value="0">Non verifié</option>
-        
-                        <option value="2">Ignoré</option>
-        
-                        
-        
-                    </select>
-                </div>
+              
         
                 <div class="mb-3 col-lg-4">
                     <label for="email" class="form-label">Email</label>
@@ -72,8 +60,6 @@
                         <th scope="col" (click)="sortTable('first_name')">Nom </th>
                         <th scope="col" (click)="sortTable('users.created_at')">Date inscription</th>
                         <th scope="col" (click)="sortTable('email')">Email</th>
-                        <th scope="col" (click)="sortTable('verification')">Vérification</th>
-                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -81,15 +67,6 @@
                         <td>{{patient.first_name}} {{patient.last_name}}</td>
                         <td>{{ (patient.created_at ? patient.created_at : '2023-03-15 10:00') | date:'yyyy-MM-dd HH:mm' }}</td>
                         <td>{{patient.email}}</td>
-                        <td>{{ patient.verification == 0 ? 'Non' : (patient.verification == 1 ? 'Oui' : (patient.verification == 2 ? 'Ignoré' : '')) }}</td>
-                        <td>
-                          <a routerLink="/admin/edit-patient/{{patient.id}}">
-                            <i class="material-icons">edit</i>
-                          </a>
-                          <a routerLink="/admin/delete-patient/{{patient.id}}">
-                            <i class="material-icons">delete</i>
-                          </a>
-                        </td>
                       </tr>
                     </tbody>
                   </table>
