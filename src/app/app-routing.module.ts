@@ -3,10 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { PatientLayoutComponent } from './layouts/patient-layout/patient-layout.component';
-
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ProfessionnelLayoutComponent } from './layouts/professionnel-layout/professionnel-layout.component';
 
 const routes: Routes = [
   {
@@ -32,6 +29,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./patient/patient.module').then((m) => m.PatientModule),
   },
+  {
+    path: 'professionnel',
+    component: ProfessionnelLayoutComponent,
+    loadChildren: () =>
+      import('./professionnel/professionnel.module').then((m) => m.ProfessionnelModule),
+  }
 ];
 
 @NgModule({

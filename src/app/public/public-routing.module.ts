@@ -8,17 +8,12 @@ import { ListProComponent } from './list-pro/list-pro.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { LoginPatientPageComponent } from './login-patient-page/login-patient-page.component';
+import { LoginProfessionnelComponent } from './login-professionnel/login-professionnel.component';
 const routes: Routes = [
   {
     path: 'register-professional',
     component: RegisterProfessionalComponent,
-    children: [
-      {
-        path: 'register-professional',
-        component: RegisterProfessionalComponent,
-
-      }
-    ]
+   
   },
   {
     path: '',
@@ -43,7 +38,12 @@ const routes: Routes = [
     path: 'login-patient',
     component: LoginPatientPageComponent,
   }
+  ,
+  {
+    path: 'login-professionnel',
+    component: LoginProfessionnelComponent,
 
+  },
 ];
 
 

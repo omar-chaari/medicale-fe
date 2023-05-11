@@ -18,9 +18,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { LoginPatientPageComponent } from './login-patient-page/login-patient-page.component';
+import { LoginProfessionnelComponent } from './login-professionnel/login-professionnel.component';
 @NgModule({
   declarations: [RegisterProfessionalComponent,  SearchProComponent, ShowProComponent,
-    ListProComponent, HeaderComponent, LoginComponent, RegisterPatientComponent, LoginPatientPageComponent],
+    ListProComponent, HeaderComponent, LoginComponent, RegisterPatientComponent, LoginPatientPageComponent, LoginProfessionnelComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

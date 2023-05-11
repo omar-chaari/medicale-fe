@@ -23,14 +23,16 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { PatientLayoutComponent } from './layouts/patient-layout/patient-layout.component';
 
 
-import { PatientModule } from './patient/patient.module'; // Assurez-vous d'importer PatientModule
+import { PatientModule } from './patient/patient.module';
+import { ProfessionnelLayoutComponent } from './layouts/professionnel-layout/professionnel-layout.component'; // Assurez-vous d'importer PatientModule
 
 @NgModule({
   declarations: [
     AppComponent,
     PublicLayoutComponent,
     AdminLayoutComponent,
-    PatientLayoutComponent    
+    PatientLayoutComponent,
+    ProfessionnelLayoutComponent    
   ],
   imports: [
     BrowserModule,
