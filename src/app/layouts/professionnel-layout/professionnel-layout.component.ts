@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthPatientService } from 'src/app/services/auth-patient.service';
-
+import { AuthProfessionnelService } from 'src/app/services/auth-professionnel.service';
 @Component({
   selector: 'app-professionnel-layout',
   templateUrl: './professionnel-layout.component.html',
@@ -8,7 +7,7 @@ import { AuthPatientService } from 'src/app/services/auth-patient.service';
 })
 export class ProfessionnelLayoutComponent {
 
-  constructor(private authPatientService: AuthPatientService) {}
+  constructor(private authProfessionnelService: AuthProfessionnelService) {}
   user_name: string = '';
 
   ngOnInit(): void {
@@ -24,7 +23,7 @@ export class ProfessionnelLayoutComponent {
 
   }
   onLogout(): void {
-    this.authPatientService.logout();
+    this.authProfessionnelService.logout();
     // Redirect the user to the login page or another relevant page.
   }
 
