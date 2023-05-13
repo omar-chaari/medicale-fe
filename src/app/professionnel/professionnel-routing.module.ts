@@ -7,6 +7,8 @@ import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/c
 import { AuthProfessionnelGuard } from '../guards/auth-professionnel.guard';
 import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
+
+import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 //import
 const routes: Routes = [
  
@@ -35,6 +37,11 @@ const routes: Routes = [
     canActivate: [AuthProfessionnelGuard] ,
     
   },
+  {
+    path: 'annuler-rdv/:id',
+    component: AnnulerRdvComponent,
+    canActivate: [AuthProfessionnelGuard] ,
+   },
   
 ];
 
