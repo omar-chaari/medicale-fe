@@ -28,4 +28,19 @@ export class AppointementService {
   }
 
 
+  
+  SearchAppointementsPro(pro=0,date_debut="",date_fin="",limit=10, offset=0) {
+
+    var url = this.Url + "/search-appointement-pro?";
+    url += "pro=" + pro;
+    url += "&date_debut=" + date_debut;
+    url += "&date_fin=" + date_fin;
+    url += "&limit=" + limit;
+    url += "&offset=" + offset;
+    
+    console.log(url);
+
+    return this.httpClient.get(url);
+  }
+
 }

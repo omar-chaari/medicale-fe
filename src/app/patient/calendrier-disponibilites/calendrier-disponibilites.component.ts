@@ -145,7 +145,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     };
 
-    
+
 
     const cmd = "email_rdv_patient";
     this.datatableService.create(record, table, cmd).subscribe(
@@ -229,22 +229,9 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     var table;
 
 
-
-
-
-
-    // Get the current date and time
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-    const date_jourd_huit = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
+    const date_7_days_ago= this.getDaysAgo(7);
     // Add the condition to the where variable
-    where += ` AND professional='${this.professional}' AND date_debut >= '${date_jourd_huit}'`;
+    where += ` AND professional='${this.professional}' AND date_debut >= '${date_7_days_ago}'`;
 
 
     table = "appointements";
@@ -351,4 +338,19 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     );
   }
 
+
+  getDaysAgo(days_number: number) {
+    let date = new Date(); // Current date and time
+    date.setDate(date.getDate() - days_number); // Subtract 7 days
+    date.setHours(0, 0, 0, 0); // Set the time to 00:00:00.000
+
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JavaScript
+    let day = date.getDate().toString().padStart(2, '0');
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
 }

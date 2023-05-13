@@ -5,6 +5,8 @@ import { ListPatientsComponent } from "./list-patients/list-patients.component";
 import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/calendrier-disponibilites.component';
 
 import { AuthProfessionnelGuard } from '../guards/auth-professionnel.guard';
+import { ListRdvComponent } from './list-rdv/list-rdv.component';
+import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 //import
 const routes: Routes = [
  
@@ -18,6 +20,18 @@ const routes: Routes = [
   {
     path: 'calendrier-disponibilites',
     component: CalendrierDisponibilitesComponent,
+    canActivate: [AuthProfessionnelGuard] ,
+    
+  },
+  {
+    path: 'list-rdv',
+    component: ListRdvComponent,
+    canActivate: [AuthProfessionnelGuard] ,
+    
+  },
+  {
+    path: 'rdv-patient/:id',
+    component: RdvPatientComponent,
     canActivate: [AuthProfessionnelGuard] ,
     
   },

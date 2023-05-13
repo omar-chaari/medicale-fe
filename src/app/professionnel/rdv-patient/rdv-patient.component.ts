@@ -12,14 +12,12 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-registerLocaleData(localeFr);
-
 @Component({
-  selector: 'app-calendrier-disponibilites',
-  templateUrl: './calendrier-disponibilites.component.html',
-  styleUrls: ['./calendrier-disponibilites.component.css']
+  selector: 'app-rdv-patient',
+  templateUrl: './rdv-patient.component.html',
+  styleUrls: ['./rdv-patient.component.css']
 })
-export class CalendrierDisponibilitesComponent implements OnInit {
+export class RdvPatientComponent {
   @ViewChild(FullCalendarComponent, { static: false }) calendarComponent!: FullCalendarComponent;
 
   showForm = false;
@@ -37,6 +35,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
   isSubmitting = false;
   motif: string = "";
 
+  id_patient: number=0;
 
   constructor(
 
@@ -48,20 +47,24 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
   ) {
 
-      const jsonString = this.getCookie("pro_data");
 
-      if (jsonString !== null) {
+    this.route.params.subscribe(params => {
+      this.id_patient = params['id'];
+   
+    });
 
-        const data = JSON.parse(jsonString);
-  
-        this.professional = data.user_id;
-      }
-  
-  
+    const jsonString = this.getCookie("pro_data");
 
-      this.getMedecin(this.professional);
+    if (jsonString !== null) {
 
-    
+      const data = JSON.parse(jsonString);
+
+      this.professional = data.user_id;
+    }
+
+    this.getMedecin(this.professional);
+
+
 
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
@@ -122,6 +125,72 @@ export class CalendrierDisponibilitesComponent implements OnInit {
     this.showForm = false;
   }
 
+  onSubmit(form: NgForm): void {
+
+    this.isSubmitting = true;
+
+
+    const table = "appointements";
+
+    const jsonString = this.getCookie("pro_data");
+
+    // Parse the JSON string back into an object
+    let professional = 0;
+    if (jsonString !== null) {
+
+      const data = JSON.parse(jsonString);
+
+      professional = data.user_id;
+    }
+
+    const patient = form.value.id_patient;
+    const date_debut = form.value.date + " " + form.value.time + ":00";
+    const date_fin = this.addMinutes(date_debut, 30);
+
+    const record = {
+      "patient": patient,
+      "professional": professional,
+      "date_debut": date_debut,
+      "date_fin": date_fin,
+      "motif_consultation": form.value.motif
+
+    };
+
+
+
+    const cmd = "";
+    this.datatableService.create(record, table, cmd).subscribe(
+      (data: any) => {
+        this.message_success = 'Le rendez-vous a été ajouté avec succès';
+        console.log('Navigating to:', ['/professionnel/calendrier-disponibilites']);
+
+
+
+        this.showForm = false;
+        // Trigger fetchAppointements after creating a new appointment
+        this.fetchAppointements();
+        this.isSubmitting = false;
+        this.motif = "";
+
+        this.router.navigate(['/professionnel/calendrier-disponibilites']);
+      }
+      , err => {
+        this.isSubmitting = false;
+        this.motif = "";
+
+        //console.log(err);
+        if (err.status == 0 || err.status == 500) { this.errorMessage = "Une erreur a été rencontré. veuillez réessayer plus tard "; }
+        else if (err.status == 422) {
+          //console.log(err.error.errors);
+
+          this.errorMessage = err.error.errors;
+
+        }
+      }
+    );
+
+  }
+
 
   private resetForm(): void {
     this.selectedDate = '';
@@ -166,15 +235,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
   fetchAppointements(): void {
 
-
     var where: string = " 1=1 ";
     var table;
-
-
-
-
-
-
     // Get the current date and time
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -201,7 +263,6 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         const event_array = this.formatAppointmentsToEvents(this.appointements);
         this.calendarOptions.events = event_array;
 
-        //this.events=event_array;
 
         // Update the events in the FullCalendarComponent
         this.calendarComponent.getApi().removeAllEvents();
@@ -221,7 +282,7 @@ export class CalendrierDisponibilitesComponent implements OnInit {
         start: appointment.date_debut.replace(' ', 'T'),
         end: appointment.date_fin.replace(' ', 'T'),
         color: 'Moccasin',
-        rendering: 'background'
+        rendering: 'background',
       };
     });
   }

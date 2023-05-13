@@ -60,6 +60,8 @@
                         <th scope="col" (click)="sortTable('first_name')">Nom </th>
                         <th scope="col" (click)="sortTable('users.created_at')">Date inscription</th>
                         <th scope="col" (click)="sortTable('email')">Email</th>
+                        <th scope="col" >Action</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -67,6 +69,12 @@
                         <td>{{patient.first_name}} {{patient.last_name}}</td>
                         <td>{{ (patient.created_at ? patient.created_at : '2023-03-15 10:00') | date:'yyyy-MM-dd HH:mm' }}</td>
                         <td>{{patient.email}}</td>
+                        <td>
+                          <a routerLink="/professionnel/rdv-patient/{{patient.id}}">
+                            Prendre rendez-vous
+                          </a>
+                        </td>
+
                       </tr>
                     </tbody>
                   </table>

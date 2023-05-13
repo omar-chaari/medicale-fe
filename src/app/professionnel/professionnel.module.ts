@@ -13,13 +13,17 @@ import { DatePipe } from '@angular/common';
 import { OrderByPipe } from './order-by.pipe';
 import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/calendrier-disponibilites.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ListRdvComponent } from './list-rdv/list-rdv.component';
+import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 
 
 @NgModule({
   declarations: [
     ListPatientsComponent,
     OrderByPipe,
-    CalendrierDisponibilitesComponent
+    CalendrierDisponibilitesComponent,
+    ListRdvComponent,
+    RdvPatientComponent
   ],
   imports: [
     CommonModule,
