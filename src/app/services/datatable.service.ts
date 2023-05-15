@@ -76,6 +76,13 @@ return this.http.get(url, { params });
       cmd: cmd,
     };
 
+  
+    console.log("*********");
+    console.log(body);
+    console.log(url);
+    console.log("*********");
+    
+
     return this.httpClient.post(url, body);
   }
   create(record: any, table: string, cmd: string ="" ): Observable<any> {

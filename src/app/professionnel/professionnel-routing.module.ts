@@ -10,6 +10,7 @@ import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 //import
+import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 const routes: Routes = [
  
   
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'annuler-rdv/:id',
     component: AnnulerRdvComponent,
+    canActivate: [AuthProfessionnelGuard] ,
+   },
+   {
+    path: 'edit-rdv/:id',
+    component: EditRdvComponent,
     canActivate: [AuthProfessionnelGuard] ,
    },
   

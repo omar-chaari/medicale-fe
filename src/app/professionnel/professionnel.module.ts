@@ -16,6 +16,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
+import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
     CalendrierDisponibilitesComponent,
     ListRdvComponent,
     RdvPatientComponent,
-    AnnulerRdvComponent
+    AnnulerRdvComponent,
+    EditRdvComponent
   ],
   imports: [
     CommonModule,

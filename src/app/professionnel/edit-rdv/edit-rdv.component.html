@@ -1,0 +1,37 @@
+<div class="container" *ngIf="appointement">
+    <h1>Modifier rendez-vous</h1>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <form>
+
+                <div>
+                    <label for="date_debut">Date et heure:</label>
+                    <input id="date_debut" type="datetime-local" class="form-control"
+                        [(ngModel)]="appointement.date_debut" name="date_debut">
+                </div>
+                <br>
+                <div>
+                    <label for="state">Etat:</label>
+
+
+                    <select class="form-select form-control" id="state" [(ngModel)]="appointement.state" name="state">
+                        <option value="1" [selected]="appointement.state == 1">Confirmé</option>
+                        <option value="0" [selected]="appointement.state == 0">Nouveau</option>
+                    </select>
+
+
+                </div>
+                
+                <div  *ngIf="appointement.motif_consultation">
+                    <br>
+                    <label for="motif_consultation">Consultation Motif: </label>{{appointement.motif_consultation}}
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
