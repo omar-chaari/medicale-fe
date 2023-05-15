@@ -15,8 +15,8 @@ export class ListRdvComponent {
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
 
-  name: string="";
-  appointements: any=[];
+  name: string = "";
+  appointements: any = [];
   verification: any;
   page = 1;
   count = 0;
@@ -30,6 +30,18 @@ export class ListRdvComponent {
 
   dataSource = new MatTableDataSource<any>(this.appointements);
 
+/*
+
+    this.PatientName = form.value.PatientName;
+    this.date_debut = form.value.date_debut;
+    this.date_fin = form.value.date_fin;
+
+*/
+PatientName: string = "";
+date_debut: string = "";
+date_fin: string = "";
+
+
 
   constructor(private route: ActivatedRoute,
     private appointementService: AppointementService,
@@ -41,14 +53,28 @@ export class ListRdvComponent {
   ngOnInit() {
 
 
-      const limit = this.tableSize;
-      const offset = (this.page - 1) * this.tableSize;
-      this.fetchAppointements(limit, offset);
+    const limit = this.tableSize;
+    const offset = (this.page - 1) * this.tableSize;
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const hours = String(currentDate.getHours()).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+ //   const date_jourd_huit = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    const date_jourd_huit = `${year}-${month}-${day}`;
+
+    this.date_debut=date_jourd_huit;
+
+    this.fetchAppointements(limit, offset);
 
   }
 
   fetchAppointements(limit: number, offset: number): void {
-    var where:string="";
+    var where: string = "";
     var tableID;
 
     const jsonString = this.getCookie("pro_data");
@@ -61,37 +87,26 @@ export class ListRdvComponent {
 
       pro = data.user_id;
     }
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-    const date_jourd_huit = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-
-    const date_fin="";
-    //  SearchAppointementsPro(pro=0,date_debut="",date_fin="",limit=10, offset=0) {
-
-    this.appointementService.SearchAppointementsPro(pro, date_jourd_huit,date_fin, limit, offset).subscribe(
-      (data: any  )=> {
+ 
+    this.appointementService.SearchAppointementsPro(pro, this.date_debut, this.date_fin, limit, offset).subscribe(
+      (data: any) => {
         this.appointements = data['data'];
 
 
-        console.log( this.appointements);
+        console.log(this.appointements);
 
         this.count = data['totalItems'];
 
         console.log("count", this.count);
       },
-      (err:any) => {
+      (err: any) => {
         console.log(err);
       }
     );
   }
 
- 
+
 
 
 
@@ -108,7 +123,7 @@ export class ListRdvComponent {
 
     this.fetchAppointements(this.tableSize, offset);
   }
- 
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -134,6 +149,18 @@ export class ListRdvComponent {
       return parts.pop()?.split(";").shift() || null;
     }
     return null;
+  }
+
+  submit(form: any) {
+
+    console.log("list-patients-search")
+    this.PatientName = form.value.PatientName;
+    this.date_debut = form.value.date_debut;
+    this.date_fin = form.value.date_fin;
+
+
+    this.fetchAppointements(10, 0);
+
   }
 
 }

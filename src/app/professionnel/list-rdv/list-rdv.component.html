@@ -1,37 +1,38 @@
-
-<h1 class="h3 mb-2 text-gray-800">Mes rendez-vous</h1>
-
-
-<div class="row">
-    <div class="col-lg-12" style="padding-bottom: 15px;">
-        <div class="p-3**">
-
-
-
-            <div style="float:right">
-
-                <a type="submit" routerLink="/public/list-pro/*/*/*" class="btn btn-info btn-sm" id="submit">Prendre
-                    rendez-vous</a>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
+<h1 class="h3 mb-2 text-gray-800">Rendez-vous</h1>
 
 
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
 
+    <div class="card-header py-3">
+        <form #f="ngForm" (ngSubmit)="submit(f)">
+            <div class="row">
+                
+
+                <div class="mb-3 col-lg-4">
+                    <label for="date_debut" class="form-label">Date de début</label>
+                    <input type="date" class="form-control" id="date_debut" name="date_debut"  [(ngModel)]="date_debut">
+                </div>
+
+                <div class="mb-3 col-lg-4">
+                    <label for="date_fin" class="form-label">Date de fin</label>
+                    <input type="date" class="form-control" id="date_fin" name="date_fin" [(ngModel)]="date_fin">
+                </div>
+
+
+                <div class="mb-3 col-md-4">
+
+                    <label for="submit" class="form-label d-md-block  " style="height: 20px;"></label>
+
+                    <button type="submit" class="btn btn-primary" id="submit">Rechercher</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="card-body">
         <div class="table-responsive">
-         
+
             <div *ngIf="appointements">
 
                 <table class="table">
@@ -45,13 +46,14 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let appointement of appointements ">
-                            <td>{{appointement.date_debut  | date:'yyyy-MM-dd HH:mm' }}</td>
-                                <td>{{ appointement.state == 0 ? 'Nouveau' : (appointement.state == 1 ? 'Confirmé' : '') }}</td>
-                                <td>{{appointement.first_name_patient}}  {{appointement.last_name_patient}}</td>
+                            <td>{{appointement.date_debut | date:'yyyy-MM-dd HH:mm' }}</td>
+                            <td>{{ appointement.state == 0 ? 'Nouveau' : (appointement.state == 1 ? 'Confirmé' : '') }}
+                            </td>
+                            <td>{{appointement.first_name_patient}} {{appointement.last_name_patient}}</td>
 
 
                             <td>
-                               
+
                                 <a routerLink="/professionnel/edit-rdv/{{appointement.appointement_id}}">
                                     <i class="material-icons">edit</i>
                                 </a>
