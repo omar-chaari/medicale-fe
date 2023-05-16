@@ -11,6 +11,7 @@ import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rdv-patient',
@@ -41,7 +42,8 @@ export class RdvPatientComponent {
 
     private datatableService: DatatableService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
 
 
 
@@ -172,7 +174,14 @@ export class RdvPatientComponent {
         this.isSubmitting = false;
         this.motif = "";
 
-        this.router.navigate(['/professionnel/calendrier-disponibilites']);
+       // this.router.navigate(['/professionnel/calendrier-disponibilites']);
+       this.router.navigate(['/professionnel/calendrier-disponibilites']).then(() => {
+        this.snackBar.open('Le rendez-vous a été ajouté avec succès', 'Fermer', {
+          duration: 2000,
+        });
+      });
+      
+     
       }
       , err => {
         this.isSubmitting = false;

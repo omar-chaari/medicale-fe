@@ -17,6 +17,7 @@ import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
     MatPaginatorModule,
     MatTableModule,
     MatSelectModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatSnackBarModule
   ],
   providers: [DatePipe],
 
