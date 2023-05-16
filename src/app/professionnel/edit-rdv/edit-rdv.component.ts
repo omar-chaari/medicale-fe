@@ -10,7 +10,10 @@ import { DatatableService } from 'src/app/services/datatable.service';
 export class EditRdvComponent {
 
   appointement: any;
-  id: number=0;
+  id: number = 0;
+
+  oldState: number = 0;
+  oldDate: string = "";
 
 
   constructor(
@@ -25,9 +28,6 @@ export class EditRdvComponent {
 
   ngOnInit(): void {
 
-
-
-   
     this.route.params.subscribe(params => {
       this.id = params['id'];
 
@@ -44,8 +44,12 @@ export class EditRdvComponent {
     const table = "appointements";
 
     this.datatableService.showRecord(id, table).subscribe(
-      (data: any  )=> {
+      (data: any) => {
         this.appointement = data;
+
+        this.oldState = data["state"];
+        this.oldDate = data["date_debut"];
+
 
       },
       err => {
@@ -53,10 +57,10 @@ export class EditRdvComponent {
       }
     );
   }
- 
 
 
- 
+
+
   onSubmit() {
 
     // Call the appointement service to update the appointement with the new values
@@ -69,6 +73,15 @@ export class EditRdvComponent {
 
     this.datatableService.update(this.appointement, "appointements", this.id, cmd).subscribe(
       response => {
+
+        const newState = this.appointement.state;
+
+
+        const newDate = this.appointement.date_debut;
+
+        if (newState == 1 && this.oldState != 1) { cmd = "email_confirm_rdv"; }
+
+        if (newDate !=this.oldDate ) { cmd = "email_report_rdv"; }
 
         this.router.navigate(['/professionnel/list-rdv']);
       },
@@ -87,11 +100,11 @@ export class EditRdvComponent {
     const hours = ('0' + d.getHours()).slice(-2); // add leading zero
     const minutes = ('0' + d.getMinutes()).slice(-2); // add leading zero
     const seconds = '00'; // as per your requirement
-  
+
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
-  
-  
+
+
 
 
 }

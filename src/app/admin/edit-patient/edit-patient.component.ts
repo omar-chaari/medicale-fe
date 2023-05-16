@@ -29,13 +29,9 @@ export class EditPatientComponent {
 
   ngOnInit(): void {
 
-
-
    
     this.route.params.subscribe(params => {
       this.id = params['id'];
-
-      // console.log("id", id);
       this.getMedecin(this.id);
     });
 
@@ -68,13 +64,9 @@ export class EditPatientComponent {
   onSubmit() {
 
     // Call the patient service to update the patient with the new values
-
-
     var cmd = "";
-
     this.newVerified = this.patient.verification;
     if (this.newVerified == 1 && this.oldVerified != 1) { cmd = "email_verif_patient"; }
-
 
     this.datatableService.update(this.patient, "patients", this.id, cmd).subscribe(
       response => {
