@@ -76,13 +76,12 @@ return this.http.get(url, { params });
       cmd: cmd,
     };
 
-  
-    console.log("*********");
-    console.log(body);
-    console.log(url);
-    console.log("*********");
+    console.log("*****obj ****");
     
+    console.log(body);
 
+    console.log("*****obj ****");
+    
     return this.httpClient.post(url, body);
   }
   create(record: any, table: string, cmd: string ="" ): Observable<any> {
@@ -99,9 +98,11 @@ return this.http.get(url, { params });
 
     };
 
-    console.log(body);
-    console.log(url);
+    console.log("***CREATE***");
     
+    console.log(body);
+    console.log("***CREATE***");
+
     return this.httpClient.post(url, body);
   }
   delete(id_element: any, table: string): Observable<any> {

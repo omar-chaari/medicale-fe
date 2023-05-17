@@ -70,18 +70,27 @@ export class EditRdvComponent {
 
     this.appointement.date_debut = this.formatDate(this.appointement.date_debut);
 
+    const newState = this.appointement.state;
 
-    this.datatableService.update(this.appointement, "appointements", this.id, cmd).subscribe(
+
+    const newDate = this.appointement.date_debut;
+
+    if (newState == 1 && this.oldState != 1) { cmd = "email_confirm_rdv"; }
+
+    if (newDate !=this.oldDate ) { cmd = "email_report_rdv"; }
+
+
+    let record = {
+      "date_debut": this.appointement.date_debut,
+      "state": this.appointement.state,
+      "date_fin" : this.addMinutes(this.appointement.date_debut, 30)
+
+  }
+  
+
+    this.datatableService.update(record, "appointements", this.id, cmd).subscribe(
       response => {
 
-        const newState = this.appointement.state;
-
-
-        const newDate = this.appointement.date_debut;
-
-        if (newState == 1 && this.oldState != 1) { cmd = "email_confirm_rdv"; }
-
-        if (newDate !=this.oldDate ) { cmd = "email_report_rdv"; }
 
         this.router.navigate(['/professionnel/list-rdv']);
       },
@@ -105,6 +114,18 @@ export class EditRdvComponent {
   }
 
 
+  addMinutes(dateTimeString: string, minutesToAdd: number) {
+    const date = new Date(dateTimeString);
+    date.setMinutes(date.getMinutes() + minutesToAdd);
 
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
 
 }

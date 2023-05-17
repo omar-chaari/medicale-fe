@@ -160,7 +160,7 @@ export class RdvPatientComponent {
 
 
 
-    const cmd = "";
+    const cmd = "email_nouveau_rdv";
     this.datatableService.create(record, table, cmd).subscribe(
       (data: any) => {
         this.message_success = 'Le rendez-vous a été ajouté avec succès';

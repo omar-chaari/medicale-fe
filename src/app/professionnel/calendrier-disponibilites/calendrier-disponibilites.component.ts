@@ -11,7 +11,8 @@ import { DatatableService } from 'src/app/services/datatable.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { AppointementService } from 'src/app/services/appointement.service';
+ 
 registerLocaleData(localeFr);
 
 @Component({
@@ -42,7 +43,8 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     private datatableService: DatatableService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private appointementService: AppointementService,
 
 
 
@@ -73,9 +75,11 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       slotMaxTime: '18:00',
       allDaySlot: false,
       height: 'auto',
+      eventClick: this.handleEventClick.bind(this),
+
       businessHours: {
         startTime: '08:00',
-        endTime: '18:00',
+        endTime: '19:00',
         daysOfWeek: [1, 2, 3, 4, 5, 6], // Lundi à vendredi
       },
     };
@@ -193,7 +197,11 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
     let fields = "date_debut,date_fin";
 
-    this.datatableService.list(fields, table, where, -1, 0, "", "").subscribe(
+    const limit=-1;
+    const offset=0;
+    this.appointementService.appointementCalendrier(this.professional, date_jourd_huit, "", limit, offset).subscribe(
+
+   // this.datatableService.list(fields, table, where, -1, 0, "", "").subscribe(
       (data: any) => {
         this.appointements = data['data'];
 
@@ -217,11 +225,14 @@ export class CalendrierDisponibilitesComponent implements OnInit {
 
   formatAppointmentsToEvents(appointments: any[]): any[] {
     return appointments.map((appointment) => {
+
+      
       return {
         start: appointment.date_debut.replace(' ', 'T'),
         end: appointment.date_fin.replace(' ', 'T'),
         color: 'Moccasin',
-        rendering: 'background'
+        rendering: 'background',
+        title: appointment.first_name_patient+" "+appointment.last_name_patient
       };
     });
   }
@@ -292,5 +303,17 @@ export class CalendrierDisponibilitesComponent implements OnInit {
       }
     );
   }
+  handleEventClick(clickInfo: any): void {
+    // clickInfo.event contains the event object
+    let event = clickInfo.event;
+  
+    // You can access the event's properties here:
+    console.log(event.title);
+  
+    // Show a popup with the event details.
+    // You can use a modal from a UI library like Angular Material, or you can use the native alert function for simplicity:
+    alert(`Patient: ${event.title}`);
+  }
+  
 
 }
