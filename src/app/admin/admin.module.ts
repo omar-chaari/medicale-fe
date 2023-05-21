@@ -19,9 +19,10 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { DeletePatientComponent } from './delete-patient/delete-patient.component';
 import { ListPatientsComponent } from './list-patients/list-patients.component';
+import { ChangePasswordProfessionalComponent } from './change-password-professional/change-password-professional.component';
 
 @NgModule({
-  declarations: [ListProfessionalsComponent, EditProComponent,  AddProfessionalComponent, DeleteProComponent,  OrderByPipe, AddPatientComponent, EditPatientComponent, DeletePatientComponent, ListPatientsComponent],
+  declarations: [ListProfessionalsComponent, EditProComponent,  AddProfessionalComponent, DeleteProComponent,  OrderByPipe, AddPatientComponent, EditPatientComponent, DeletePatientComponent, ListPatientsComponent, ChangePasswordProfessionalComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

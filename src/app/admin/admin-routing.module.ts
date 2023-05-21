@@ -11,8 +11,7 @@ import { ListPatientsComponent } from "./list-patients/list-patients.component";
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { DeletePatientComponent } from './delete-patient/delete-patient.component';
-
-
+import { ChangePasswordProfessionalComponent } from './change-password-professional/change-password-professional.component';
 
 const routes: Routes = [
   {
@@ -61,7 +60,13 @@ const routes: Routes = [
     path: 'add-patient',
     component: AddPatientComponent,
    
+  },
+  {
+    path: 'change-password/:id',
+    component: ChangePasswordProfessionalComponent,
+  
   }
+  
 ];
 
 
