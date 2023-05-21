@@ -14,28 +14,23 @@ export class PatientService {
   register(patient: any) {
 
 
-   
+
 
     return this.httpClient.post(this.Url + "/register-patient", patient);
   }
 
 
 
-  getAllSpeciality() {
-    var url = this.Url + "/search?";
-    url += "tableID=" + "specialities";
+  change_password_admin(id: number, password: string) {
 
-    return this.httpClient.get(url);
+    const url = this.Url + '/change-password-patient-admin';
+    const body = {
+      new_password: password,
+      id: id,
 
-  }
+    };
 
-  //Gouvernorat
-  getAllGouvernorat() {
-    var url = this.Url + "/search?";
-    url += "tableID=" + "governorates";
-
-
-    return this.httpClient.get(url);
+    return this.httpClient.post(url, body);
 
   }
 }

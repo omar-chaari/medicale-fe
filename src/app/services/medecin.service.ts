@@ -87,4 +87,18 @@ export class MedecinService {
     return this.httpClient.get(url);
 
   }
+
+
+  change_password_admin(id: number, password: string) {
+
+    const url = this.Url + '/change-password-pro-admin';
+    const body = {
+      new_password: password,
+      id: id,
+
+    };
+
+    return this.httpClient.post(url, body);
+
+  }
 }
