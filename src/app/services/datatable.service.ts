@@ -30,17 +30,7 @@ export class DatatableService {
   list(filelds = '', table = '', where = '', limit = 10, offset = 0, sortColumn: string,
     sortOrder: string) {
 
-    /*
-
-const url = 'http://127.0.0.1:8000/api/list-datatable';
-let params = new HttpParams()
-  .set('fields', 'first_name,last_name,email,phone,address,created_at,verification')
-  .set('tableID', 'patients')
-  .set('where', '1=1');
-
-return this.http.get(url, { params });
-
-    */
+ 
     let useFieldsInQuery = 1;
     var url = this.Url + "/list-datatable?";
 
