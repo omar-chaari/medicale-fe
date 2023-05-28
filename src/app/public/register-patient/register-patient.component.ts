@@ -51,7 +51,7 @@ export class RegisterPatientComponent {
       (data: any  )=> {
         console.log(data);  
         //  console.log('Contact Added Successfully');
-        this.message_success = 'Votre demande a été envoyé avec succés, un administrateur va la traiter dans les plus bref delais';
+        this.message_success = 'Félicitations! Votre inscription a été effectuée avec succès. Nous avons envoyé un email contenant un lien pour activer votre compte.';
         this.message_error = "";
 
       }

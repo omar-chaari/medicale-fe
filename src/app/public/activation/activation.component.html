@@ -1,0 +1,4 @@
+<div *ngIf="message" [ngClass]="{'alert alert-success': message.startsWith('Votre compte a été activé avec succès.'), 'alert alert-danger': !message.startsWith('Votre compte a été activé avec succès.')}">
+    {{ message }}
+  </div>
+  

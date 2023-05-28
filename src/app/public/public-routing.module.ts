@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { LoginPatientPageComponent } from './login-patient-page/login-patient-page.component';
 import { LoginProfessionnelComponent } from './login-professionnel/login-professionnel.component';
+import { ActivationComponent } from './activation/activation.component';
 const routes: Routes = [
   {
     path: 'register-professional',
@@ -40,8 +41,8 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'login-professionnel',
-    component: LoginProfessionnelComponent,
+    path: 'activation/:token',
+    component: ActivationComponent,
 
   },
 ];
