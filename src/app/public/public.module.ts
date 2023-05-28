@@ -19,9 +19,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { LoginPatientPageComponent } from './login-patient-page/login-patient-page.component';
 import { LoginProfessionnelComponent } from './login-professionnel/login-professionnel.component';
+import { ActivationComponent } from './activation/activation.component';
 @NgModule({
   declarations: [RegisterProfessionalComponent,  SearchProComponent, ShowProComponent,
-    ListProComponent, HeaderComponent, LoginComponent, RegisterPatientComponent, LoginPatientPageComponent, LoginProfessionnelComponent],
+    ListProComponent, HeaderComponent, LoginComponent, RegisterPatientComponent, LoginPatientPageComponent, LoginProfessionnelComponent, ActivationComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
