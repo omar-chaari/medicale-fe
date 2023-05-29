@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'register-professional',
     component: RegisterProfessionalComponent,
-   
+
   },
   {
     path: '',
@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'register-patient',
     component: RegisterPatientComponent,
-  }, 
+  },
   {
     path: 'login-patient',
     component: LoginPatientPageComponent,
@@ -45,6 +45,12 @@ const routes: Routes = [
     component: ActivationComponent,
 
   },
+
+    {
+    path: 'login-professionnel',
+    component: LoginProfessionnelComponent,
+
+  }
 ];
 
 
