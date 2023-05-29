@@ -46,9 +46,10 @@ export class LoginPatientPageComponent {
         this.router.navigate(['/patient/list-rdv']);
       },
       (error) => {
+     
         if (error.status === 401) {
           // Handle 401 Unauthorized error without logging to the console.
-          this.message_error = 'Email ou mot de passe invalide. Veuillez réessayer';
+          this.message_error = error.error.message;
         } else {
           //console.error('Error during login:', error);
           // Handle other errors here.

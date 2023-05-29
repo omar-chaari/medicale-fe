@@ -1,4 +1,40 @@
-<div *ngIf="message" [ngClass]="{'alert alert-success': message.startsWith('Votre compte a été activé avec succès.'), 'alert alert-danger': !message.startsWith('Votre compte a été activé avec succès.')}">
-    {{ message }}
+
+
+<div class="container">
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <app-header [showSubscriptionButton]="false"></app-header>
+
+      <div class="row justify-content-center">
+
+        <div class="col-xl-5 col-lg-5 col-md-5">
+
+          <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+
+              <!-- Nested Row within Card Body -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="p-5">
+
+
+                    <div *ngIf="message"
+                      [ngClass]="{'alert alert-success': message.startsWith('Votre compte a été activé avec succès.'), 'alert alert-danger': !message.startsWith('Votre compte a été activé avec succès.')}">
+                      {{ message }}
+                    </div>
+
+                    <br />
+                    <a  *ngIf="message.startsWith('Votre compte a été activé avec succès.')" routerLink="/public/login-patient">Se connecter</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
   </div>
-  
+</div>
