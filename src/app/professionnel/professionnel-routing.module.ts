@@ -11,44 +11,53 @@ import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 //import
 import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
+
 const routes: Routes = [
- 
-  
+
+
   {
     path: 'list-patients',
     component: ListPatientsComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-    
+    canActivate: [AuthProfessionnelGuard],
+
   },
   {
     path: 'calendrier-disponibilites',
     component: CalendrierDisponibilitesComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-    
+    canActivate: [AuthProfessionnelGuard],
+
   },
   {
     path: 'list-rdv',
     component: ListRdvComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-    
+    canActivate: [AuthProfessionnelGuard],
+
   },
   {
     path: 'rdv-patient/:id',
     component: RdvPatientComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-    
+    canActivate: [AuthProfessionnelGuard],
+
   },
   {
     path: 'annuler-rdv/:id',
     component: AnnulerRdvComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-   },
-   {
+    canActivate: [AuthProfessionnelGuard],
+  },
+  {
     path: 'edit-rdv/:id',
     component: EditRdvComponent,
-    canActivate: [AuthProfessionnelGuard] ,
-   },
-  
+    canActivate: [AuthProfessionnelGuard],
+  },
+
+  {
+    path: 'add-patient',
+    component: AddPatientComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  }
+
 ];
 
 @NgModule({

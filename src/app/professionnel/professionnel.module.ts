@@ -18,6 +18,7 @@ import { RdvPatientComponent } from './rdv-patient/rdv-patient.component';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ListRdvComponent,
     RdvPatientComponent,
     AnnulerRdvComponent,
-    EditRdvComponent
+    EditRdvComponent,
+    AddPatientComponent
   ],
   imports: [
     CommonModule,
