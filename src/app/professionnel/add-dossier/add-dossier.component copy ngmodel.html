@@ -1,0 +1,101 @@
+<div class="container" *ngIf="patient">
+    <h1>Créer dossier medical</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="first_name" class="form-label required">Prénom</label>
+                <input type="text" class="form-control" id="first_name" [(ngModel)]="patient.first_name"
+                    name="first_name">
+
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="last_name" class="form-label required">Nom</label>
+                <input type="text" class="form-control" id="last_name" [(ngModel)]="patient.last_name" name="last_name">
+
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+                <label for="address" class="form-label required">Adresse</label>
+                <input type="text" class="form-control" id="address" [(ngModel)]="patient.address" name="address">
+              
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+            <div class="mb-3 col-md-4">
+                <label for="phone" class="form-label required">Téléphone</label>
+                <input type="text" class="form-control" id="phone" [(ngModel)]="patient.phone" name="phone">
+
+              
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="sexe" class="form-label required">Genre</label>
+
+                <select class="form-select form-control required" id="sexe" [(ngModel)]="patient.sexe" name="sexe" required>
+                    <option selected disabled>Genre</option>
+                    <option value="h" [selected]="patient.sexe == 'h'">Homme</option>
+                    <option value="f" [selected]="patient.sexe == 'f'">Femme</option>
+                </select>
+
+                <div *ngIf="patient.sexe.invalid && (patient.sexe.dirty || patient.sexe.touched)">
+                    <div *ngIf="patient.sexe.errors.required">
+                        Le genre est requis.
+
+                    </div>
+                  </div>
+
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="birthday" class="form-label required">Date de naissance</label>
+
+                <input id="birthday" type="date" class="form-control" [(ngModel)]="patient.birthday" name="birthday" required>
+
+            </div>
+
+            <div *ngIf="patient.birthday.invalid && (patient.birthday.dirty || patient.birthday.touched)">
+                <div *ngIf="patient.birthday.errors.required">
+                    La Date de naissance est requis.
+                </div>
+              </div>
+
+        </div>
+        <div class="row">
+
+
+            <div class="mb-3 col-md-12">
+
+                <label for="allergies" class="form-label">Allergies / Intolérances</label>
+                <textarea class="form-control" id="allergies" [(ngModel)]="patient.allergies"
+                    name="allergies"></textarea>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="mb-3 col-md-12">
+
+                <label for="maladies_chroniques" class="form-label">Maladies chronique</label>
+                <textarea class="form-control" id="maladies_chroniques" [(ngModel)]="patient.maladies_chroniques"
+                    name="maladies_chroniques"></textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="mb-3 col-md-12">
+
+                <label for="notes_supplementaires" class="form-label">Notes supplémentaires</label>
+                <textarea class="form-control" id="notes_supplementaires" [(ngModel)]="patient.notes_supplementaires"
+                    name="notes_supplementaires"></textarea>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" >Enregistrer</button>
+    </form>
+    <br>
+</div>

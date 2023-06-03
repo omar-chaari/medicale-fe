@@ -70,9 +70,19 @@
                         <td>{{ (patient.created_at ? patient.created_at : '2023-03-15 10:00') | date:'yyyy-MM-dd HH:mm' }}</td>
                         <td>{{patient.email}}</td>
                         <td>
-                          <a routerLink="/professionnel/rdv-patient/{{patient.id}}">
+                          <a  
+                          routerLink="/professionnel/rdv-patient/{{patient.id}}">
                             Prendre rendez-vous
                           </a>
+                        <br/>
+
+                        <a *ngIf="patient.sexe==null && patient.birthday==null" routerLink="/professionnel/add-dossier/{{patient.id}}">
+                          Créer dossier medical
+                        </a>
+                        <a *ngIf="patient.sexe!=null || patient.birthday!=null" routerLink="/professionnel/add-dossier/{{patient.id}}">
+                          Mettre à jour dossier medical
+                        </a>
+                        
                         </td>
 
                       </tr>

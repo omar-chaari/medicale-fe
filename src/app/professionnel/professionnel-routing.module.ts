@@ -12,6 +12,7 @@ import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 //import
 import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
+import { AddDossierComponent } from './add-dossier/add-dossier.component';
 
 const routes: Routes = [
 
@@ -54,6 +55,12 @@ const routes: Routes = [
   {
     path: 'add-patient',
     component: AddPatientComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
+  {
+    path: 'add-dossier/:id',
+    component: AddDossierComponent,
     canActivate: [AuthProfessionnelGuard],
 
   }

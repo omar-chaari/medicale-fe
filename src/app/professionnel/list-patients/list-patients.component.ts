@@ -80,12 +80,14 @@ export class ListPatientsComponent {
 
     tableID = "users";
 
-    let fields = "id,first_name,last_name,email,phone,address,created_at,verification";
+    let fields = "id,first_name,last_name,email,phone,address,created_at,verification,sexe,birthday";
 
     this.datatableService.list(fields, "patients", where, limit, offset, this.sortColumn, this.sortOrder).subscribe(
       (data: any) => {
         this.patients = data['data'];
 
+        console.log(this.patients);
+        
         this.count = data['totalItems'];
 
 
