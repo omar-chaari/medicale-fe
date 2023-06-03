@@ -11,12 +11,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { DatePipe } from '@angular/common';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
+import { AddDossierComponent } from './add-dossier/add-dossier.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     CalendrierDisponibilitesComponent,
     ListRdvComponent,
     AnnulerRdvComponent,
+    AddDossierComponent,
     
   ],
   imports: [
@@ -26,7 +29,8 @@ import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
     FormsModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
 

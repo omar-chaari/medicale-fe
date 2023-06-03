@@ -45,6 +45,19 @@ export class AddDossierComponent {
       this.getPatient(this.id_patient);
     });
 
+    const jsonString = this.getCookie("user_data");
+
+    // Parse the JSON string back into an object
+    if (jsonString !== null) {
+
+      const data = JSON.parse(jsonString);
+
+      this.id_patient = data.user_id;
+      this.getPatient(this.id_patient);
+
+    }
+
+
 
     this.addForm = this.fb.group({
       birthday: ['', Validators.required],
@@ -77,7 +90,10 @@ export class AddDossierComponent {
     this.datatableService.update(form_value, "patients", this.id_patient, cmd).subscribe(
       response => {
 
-        this.router.navigate(['/professionnel/list-patients']);
+ //       this.router.navigate(['/professionnel/list-patients']);
+      
+    
+
       },
       error => {
         console.log("Failed to update patient", error);
@@ -116,6 +132,13 @@ export class AddDossierComponent {
     );
   }
 
-
+  getCookie(name: string): string | null {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop()?.split(";").shift() || null;
+    }
+    return null;
+  }
 
 }

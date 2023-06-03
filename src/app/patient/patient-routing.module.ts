@@ -6,6 +6,8 @@ import { ListRdvComponent } from './list-rdv/list-rdv.component';
 import { AuthPatientGuard } from './../guards/auth-patient.guard';
 
 import  {AnnulerRdvComponent} from './annuler-rdv/annuler-rdv.component';
+import { AddDossierComponent } from './add-dossier/add-dossier.component';
+
 const routes: Routes = [
   {
     path: 'calendrier-disponibilites/:id',
@@ -23,6 +25,11 @@ const routes: Routes = [
   {
     path: 'annuler-rdv/:id',
     component: AnnulerRdvComponent,
+    canActivate: [AuthPatientGuard] ,
+   },
+   {
+    path: 'add-dossier',
+    component: AddDossierComponent,
     canActivate: [AuthPatientGuard] ,
    },
  ];
