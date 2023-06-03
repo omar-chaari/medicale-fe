@@ -7,6 +7,7 @@ import { AuthPatientGuard } from './../guards/auth-patient.guard';
 
 import  {AnnulerRdvComponent} from './annuler-rdv/annuler-rdv.component';
 import { AddDossierComponent } from './add-dossier/add-dossier.component';
+import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     component: AddDossierComponent,
     canActivate: [AuthPatientGuard] ,
    },
+   {
+    path: 'edit-dossier',
+    component: EditDossierComponent,
+    canActivate: [AuthPatientGuard] ,
+   },
+   
  ];
 
 @NgModule({

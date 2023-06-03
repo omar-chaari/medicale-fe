@@ -13,6 +13,8 @@ import { DatePipe } from '@angular/common';
 import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 import { AddDossierComponent } from './add-dossier/add-dossier.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
+import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListRdvComponent,
     AnnulerRdvComponent,
     AddDossierComponent,
+    EditDossierComponent,
+    ConsulterDossierComponent,
     
   ],
   imports: [

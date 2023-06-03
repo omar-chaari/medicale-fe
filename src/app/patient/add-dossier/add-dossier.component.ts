@@ -90,7 +90,7 @@ export class AddDossierComponent {
     this.datatableService.update(form_value, "patients", this.id_patient, cmd).subscribe(
       response => {
 
- //       this.router.navigate(['/professionnel/list-patients']);
+     this.router.navigate(['/professionnel/list-patients']);
       
     
 
