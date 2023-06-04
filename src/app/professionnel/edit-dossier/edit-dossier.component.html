@@ -1,0 +1,149 @@
+<div class="container" *ngIf="patient">
+
+    <div class="row">
+        <div class="col-lg-12" style="padding-bottom: 15px;">
+            <div class="p-3**">
+    
+              
+    
+                <div style="float:right">
+    
+                    <a type="submit" routerLink="/professionnel/add-consultation/{{id_patient}}/{{pro}}" class="btn btn-info btn-sm" id="submit"
+                      >Ajouter une consulation</a>
+    
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Modifier la fiche d'information</h1>
+
+    <form [formGroup]='addForm'>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="first_name" class="form-label required">Prénom</label>
+                <input type="text" class="form-control" id="first_name" formControlName="first_name" name="first_name">
+                <div *ngIf="addForm.controls['first_name'].invalid && 
+                    (addForm.controls['first_name'].dirty || addForm.controls['first_name'].touched)">
+                    <div *ngIf="addForm.controls['first_name'].errors?.['minlength']" class="text-danger">
+                        La longueur du prénom doit être d'au moins 3 caracteres
+
+                    </div>
+                    <div *ngIf="addForm.controls['first_name'].errors?.['required']" class="text-danger">
+                        Le prénom est requis
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="last_name" class="form-label required">Nom</label>
+                <input type="text" class="form-control" id="last_name" formControlName="last_name" name="last_name">
+
+                <div *ngIf="addForm.controls['last_name'].invalid && 
+                (addForm.controls['last_name'].dirty || addForm.controls['last_name'].touched)">
+                    <div *ngIf="addForm.controls['last_name'].errors?.['minlength']" class="text-danger">
+                        La longueur du nom doit être d'au moins 3 caracteres
+                    </div>
+                    <div *ngIf="addForm.controls['last_name'].errors?.['required']" class="text-danger">
+                        Le nom est requis
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+                <label for="address" class="form-label required">Adresse</label>
+                <input type="text" class="form-control" id="address" formControlName="address" name="address">
+                <div *ngIf="addForm.controls['address'].invalid && 
+                                  (addForm.controls['address'].dirty || addForm.controls['address'].touched)">
+                    <div *ngIf="addForm.controls['address'].errors?.['minlength']" class="text-danger">
+                        La longueur de l'adresse doit être d'au moins 3 caracteres
+                    </div>
+                    <div *ngIf="addForm.controls['address'].errors?.['required']" class="text-danger">
+                        L'adresse est requis
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+            <div class="mb-3 col-md-4">
+                <label for="phone" class="form-label required">Téléphone</label>
+                <input type="text" class="form-control" id="phone" formControlName="phone" name="phone">
+
+                <div *ngIf="addForm.controls['phone'].invalid && 
+                (addForm.controls['phone'].dirty || addForm.controls['phone'].touched)">
+                    <div *ngIf="addForm.controls['phone'].errors?.['minlength']" class="text-danger">
+                        La longueur du prénom doit être d'au moins 8 chiffres
+                    </div>
+                    <div *ngIf="addForm.controls['phone'].errors?.['required']" class="text-danger">
+                        Le téléphone mobile est requis
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="sexe" class="form-label required">Genre</label>
+
+                <select class="form-select form-control required" id="sexe" formControlName="sexe" name="sexe">
+                    <option selected disabled>Genre</option>
+                    <option value="h" [selected]="patient.sexe == 'h'">Homme</option>
+                    <option value="f" [selected]="patient.sexe == 'f'">Femme</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="birthday" class="form-label required">Date de naissance</label>
+
+                <input id="birthday" type="date" class="form-control" formControlName="birthday" name="birthday">
+
+            </div>
+
+
+        </div>
+        <div class="row">
+
+
+            <div class="mb-3 col-md-12">
+
+                <label for="allergies" class="form-label">Allergies / Intolérances</label>
+                <textarea class="form-control" id="allergies" formControlName="allergies" name="allergies"></textarea>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="mb-3 col-md-12">
+
+                <label for="maladies_chroniques" class="form-label">Maladies chronique</label>
+                <textarea class="form-control" id="maladies_chroniques" formControlName="maladies_chroniques"
+                    name="maladies_chroniques"></textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="mb-3 col-md-12">
+
+                <label for="notes_supplementaires" class="form-label">Notes supplémentaires</label>
+                <textarea class="form-control" id="notes_supplementaires" formControlName="notes_supplementaires"
+                    name="notes_supplementaires"></textarea>
+            </div>
+        </div>
+
+      <!---
+        <div *ngIf="addForm.invalid">
+            <div *ngFor="let control of addForm.controls | keyvalue">
+                <div *ngIf="control.value.errors">
+                    Validation errors for {{ control.key }}:
+                    <pre>{{ control.value.errors | json }}</pre>
+                </div>
+            </div>
+        </div>
+        --->
+        <button type="submit" class="btn btn-primary" (click)="onSubmit(addForm.value)"
+            [disabled]='addForm.invalid'>Enregistrer</button>
+    </form>
+    <br>
+</div>

@@ -20,6 +20,9 @@ import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { AddDossierComponent } from './add-dossier/add-dossier.component';
+import { ListDossiersComponent } from './list-dossiers/list-dossiers.component';
+import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
+import { AddConsultationComponent } from './add-consultation/add-consultation.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { AddDossierComponent } from './add-dossier/add-dossier.component';
     AnnulerRdvComponent,
     EditRdvComponent,
     AddPatientComponent,
-    AddDossierComponent
+    AddDossierComponent,
+    ListDossiersComponent,
+    EditDossierComponent,
+    AddConsultationComponent
   ],
   imports: [
     CommonModule,

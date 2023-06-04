@@ -1,0 +1,65 @@
+<div class="">
+    <h1 class="h4 text-gray-900 mb-4">Ajouter une consulation</h1>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="message_error">
+    {{message_error}}
+</div>
+
+<div class="alert alert-success" role="alert" *ngIf="message_success">
+    {{message_success}}
+</div>
+<form class="user" [formGroup]='addForm'>
+    <div class="form-group row">
+        <div class="col-sm-12 mb-3 mb-sm-0">
+           
+            <label for="date" class="form-label">Date</label>
+
+            <input type="date" class="form-control " id="date" placeholder="Date consultation" formControlName="date">
+            <div *ngIf="addForm.controls['date'].errors?.['required']" class="text-danger">
+                Date consultation est requis
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label for="motif" class="form-label">Motif</label>
+
+            <textarea class="form-control " id="motif" formControlName="motif" placeholder="Motif"></textarea>
+            <div *ngIf="addForm.controls['motif'].errors?.['required']" class="text-danger">
+                Motif consulation est requis
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-sm-12 mb-3 mb-sm-0">
+
+            <label for="notes" class="form-label">Notes consultation</label>
+
+            <textarea class="form-control " id="notes" formControlName="notes" placeholder="Notes consultation"></textarea>
+
+
+            <div *ngIf="addForm.controls['notes'].errors?.['required']" class="text-danger">
+                Notes consultation est requis </div>
+
+        </div>
+
+    </div>
+
+    <!--<a href="login.html" class="btn btn-primary btn-user btn-block">
+                            Register Account
+                        </a>-->
+
+    <input type="hidden" class="form-control " id="patient" placeholder="" formControlName="patient">
+
+    <input type="hidden" class="form-control " id="professional" placeholder="" formControlName="professional">
+
+
+    <button type="submit" class="btn btn-primary" (click)='register(addForm.value)'
+        [disabled]='addForm.invalid'>Enregistrer</button>
+
+   
+</form>

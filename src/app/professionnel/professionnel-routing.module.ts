@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListPatientsComponent } from "./list-patients/list-patients.component";
-
+import { ListDossiersComponent } from './list-dossiers/list-dossiers.component';
 import { CalendrierDisponibilitesComponent } from './calendrier-disponibilites/calendrier-disponibilites.component';
 
 import { AuthProfessionnelGuard } from '../guards/auth-professionnel.guard';
@@ -13,6 +13,8 @@ import { AnnulerRdvComponent } from './annuler-rdv/annuler-rdv.component';
 import { EditRdvComponent } from './edit-rdv/edit-rdv.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { AddDossierComponent } from './add-dossier/add-dossier.component';
+import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
+import { AddConsultationComponent } from './add-consultation/add-consultation.component';
 
 const routes: Routes = [
 
@@ -20,6 +22,12 @@ const routes: Routes = [
   {
     path: 'list-patients',
     component: ListPatientsComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
+  {
+    path: 'list-dossiers',
+    component: ListDossiersComponent,
     canActivate: [AuthProfessionnelGuard],
 
   },
@@ -61,6 +69,18 @@ const routes: Routes = [
   {
     path: 'add-dossier/:id',
     component: AddDossierComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
+  {
+    path: 'edit-dossier/:id',
+    component: EditDossierComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
+  {
+    path: 'add-consultation/:id_patient/:id_pro',
+    component: AddConsultationComponent,
     canActivate: [AuthProfessionnelGuard],
 
   }
