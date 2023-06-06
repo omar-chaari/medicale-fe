@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DatatableService } from 'src/app/services/datatable.service';
 
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-edit-dossier',
   templateUrl: './edit-dossier.component.html',
@@ -19,6 +23,7 @@ export class EditDossierComponent {
   id_patient: number = 0;
   patient: any;
   pro:number=0;
+  
   constructor(
     private fb: FormBuilder,
     private router: Router,
