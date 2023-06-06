@@ -57,7 +57,13 @@
 
     <input type="hidden" class="form-control " id="professional" placeholder="" formControlName="professional">
 
-
+<div class="form-group row">
+        <div class="col-sm-12 mb-3 mb-sm-0">
+            <label for="documentNames" class="form-label">Images de documents</label>
+            <input type="file" class="form-control" id="documentNames" formControlName="documentNames" multiple>
+        </div>
+    </div>
+    
     <button type="submit" class="btn btn-primary" (click)='register(addForm.value)'
         [disabled]='addForm.invalid'>Enregistrer</button>
 

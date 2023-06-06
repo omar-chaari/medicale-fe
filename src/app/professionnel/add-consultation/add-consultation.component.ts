@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PatientService } from 'src/app/services/patient.service';
 import { DatatableService } from 'src/app/services/datatable.service';
 import { ActivatedRoute } from '@angular/router';
+import { DocumentService } from 'src/app/services/document.service';
+import { ConsultationService } from 'src/app/services/consultation.service';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class AddConsultationComponent {
     private router: Router, private patientService: PatientService,
     private datatableService: DatatableService,
     private route: ActivatedRoute,
-
+    private documentService: DocumentService,
+    private consultationService: ConsultationService,
   ) {
 
     this.route.params.subscribe(params => {
@@ -43,7 +46,7 @@ export class AddConsultationComponent {
       date: ['', Validators.required],
       motif: ['', [Validators.required]],
       notes: ['', [Validators.required]],
-
+      documentNames : ['', []],
 
     })
 
@@ -63,17 +66,25 @@ export class AddConsultationComponent {
   }
 
   register(form_value: any) {
-    console.log(form_value);
+    //console.log(form_value);
     /*
 
     create(record: any, table: string, cmd: string ="" 
     */
     const table = "consultations";
     const cmd="";
-    this.datatableService.create(form_value, table, cmd).subscribe(
+    const documentNames = form_value.documentNames.split(',');
+
+    delete form_value.documentNames;
+  
+    this.consultationService.create(form_value).subscribe(
       (data: any) => {
-        console.log(data);
+        console.log("consultation",data);
         //  console.log('Contact Added Successfully');
+
+              // Appel du service DocumentService pour envoyer les fichiers
+      this.uploadDocuments(documentNames, data.id);
+
         this.message_success = 'La consulation a été ajouté au dossier médical avec succès';
         this.message_error = "";
 
@@ -103,5 +114,25 @@ export class AddConsultationComponent {
 }
 
 
+
+uploadDocuments(documentNames: string[], consultationId: number) {
+  const fileInputs = document.getElementById('documentNames') as HTMLInputElement;
+  const files = fileInputs.files;
+  
+  if (files && files.length > 0) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const documentName = documentNames[i];
+      this.documentService.uploadDocument(file, consultationId.toString(), documentName).subscribe(
+        (data: any) => {
+          // Traitement des réponses de l'API si nécessaire
+        },
+        err => {
+          // Gérer les erreurs ici
+        }
+      );
+    }
+  }
+}
 
 }
