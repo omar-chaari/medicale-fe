@@ -23,6 +23,7 @@ import { AddDossierComponent } from './add-dossier/add-dossier.component';
 import { ListDossiersComponent } from './list-dossiers/list-dossiers.component';
 import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { AddConsultationComponent } from './add-consultation/add-consultation.component';
+import { ListConsultationsComponent } from './list-consultations/list-consultations.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AddConsultationComponent } from './add-consultation/add-consultation.co
     AddDossierComponent,
     ListDossiersComponent,
     EditDossierComponent,
-    AddConsultationComponent
+    AddConsultationComponent,
+    ListConsultationsComponent
   ],
   imports: [
     CommonModule,

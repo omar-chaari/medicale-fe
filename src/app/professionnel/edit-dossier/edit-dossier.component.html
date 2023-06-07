@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <h1>Modifier la fiche d'information</h1>
+    <h2>Modifier la fiche d'information</h2>
 
     <form [formGroup]='addForm'>
         <div class="row">
@@ -142,8 +142,12 @@
             </div>
         </div>
         --->
-        <button type="submit" class="btn btn-primary" (click)="onSubmit(addForm.value)"
+        <button type="submit" class="btn btn-primary btn-sm" (click)="onSubmit(addForm.value)"
             [disabled]='addForm.invalid'>Enregistrer</button>
     </form>
+    <br>
+    <h2>Liste de consultations</h2>
+
+    <app-list-consultations></app-list-consultations>
     <br>
 </div>

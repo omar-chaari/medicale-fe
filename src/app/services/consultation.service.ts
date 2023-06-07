@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +10,7 @@ export class ConsultationService {
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
+
 
   create(record: any) {
     const formData = new FormData();
@@ -30,11 +30,31 @@ export class ConsultationService {
       notes: record.notes,
     };
 
-    console.log("***CREATE***");
 
 
-    console.log(body);
 
     return this.http.post(`${this.apiUrl}/consultation-store`, body);
   }
+
+  SearchConsultations(patient = 0, limit = 4, offset = 0) {
+
+    var url = this.apiUrl + "/search-consulatation?";
+    url += "patient=" + patient;
+    url += "&limit=" + limit;
+    url += "&offset=" + offset;
+
+
+    return this.http.get(url);
+  }
+
+
+  getImageUrl(filename: string): string {
+    // Assuming your API endpoint expects the filename as a path parameter
+    return `${this.apiUrl}/images/${filename}`;
+  }
+
+
 }
+
+
+
