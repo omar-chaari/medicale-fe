@@ -15,7 +15,7 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
 import { AddDossierComponent } from './add-dossier/add-dossier.component';
 import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { AddConsultationComponent } from './add-consultation/add-consultation.component';
-
+import { EditConsultationComponent } from './edit-consultation/edit-consultation.component';
 const routes: Routes = [
 
 
@@ -81,6 +81,12 @@ const routes: Routes = [
   {
     path: 'add-consultation/:id_patient/:id_pro',
     component: AddConsultationComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
+  {
+    path: 'edit-consultation/:id',
+    component: EditConsultationComponent,
     canActivate: [AuthProfessionnelGuard],
 
   }

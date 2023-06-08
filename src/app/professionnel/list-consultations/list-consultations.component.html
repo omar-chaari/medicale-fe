@@ -39,10 +39,10 @@
 
                 <td>
 
-                    <a routerLink="/professionnel/edit-rdv/{{consultation.consultation_id}}">
+                    <a routerLink="/professionnel/edit-consultation/{{consultation.consultation_id}}">
                         <i class="material-icons">edit</i>
                     </a>
-                    <a routerLink="/professionnel/annuler-rdv/{{consultation.consultation_id}}">
+                    <a routerLink="/professionnel/annuler-consultation/{{consultation.consultation_id}}">
                         <i class="material-icons">cancel</i>
                     </a>
 
@@ -73,8 +73,6 @@
 
                 <img [src]="getImageUrl(document_fichier)" alt="Document Image"
                 style="max-width: 100%;">
-
-
 
             </div>
 

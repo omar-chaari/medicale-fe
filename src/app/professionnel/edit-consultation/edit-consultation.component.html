@@ -1,0 +1,26 @@
+<div class="container" *ngIf="consultation">
+    <h1>Modifier consultation</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <form>
+
+                <div>
+                    <label for="motif">Motif:</label>
+                    <textarea id="motif"  class="form-control"
+                        [(ngModel)]="consultation.motif" name="motif"></textarea>
+                </div>
+                <br>
+                <div>
+                    <label for="state">Notes:</label>
+
+                    <textarea id="notes"  class="form-control"
+                        [(ngModel)]="consultation.notes" name="notes"></textarea>
+                </div>
+                <br>                
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>

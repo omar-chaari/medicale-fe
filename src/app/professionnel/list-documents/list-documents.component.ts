@@ -6,11 +6,11 @@ import { DatePipe } from '@angular/common';
 import { ConsultationService } from 'src/app/services/consultation.service';
 
 @Component({
-  selector: 'app-list-consultations',
-  templateUrl: './list-consultations.component.html',
-  styleUrls: ['./list-consultations.component.css']
+  selector: 'app-list-documents',
+  templateUrl: './list-documents.component.html',
+  styleUrls: ['./list-documents.component.css']
 })
-export class ListConsultationsComponent {
+export class ListDocumentsComponent {
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
