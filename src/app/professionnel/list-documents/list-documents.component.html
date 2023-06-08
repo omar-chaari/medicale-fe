@@ -1,1 +1,65 @@
-<p>list-documents works!</p>
+<br>
+<div *ngIf="documents">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" (click)="sortTable('first_name')">Images de documents </th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let document of documents | orderBy: sortColumn : sortOrder">
+                <td>
+
+                    <a (click)="openModel(document.fichier,document.description)">
+
+                        <img [src]="getImageUrl(document.fichier)" alt="Document Image"
+                            style="max-width: 250px;max-height: 50px;">
+                        <p>{{ document.description }}</p>
+                    </a>
+
+
+                </td>
+                <td>
+                    <a 
+                    (click)="deleteElement(document.id)"
+                    >
+                        <i class="material-icons">cancel</i>
+                        </a>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10]" [length]="count"
+        (page)="onTableDataChange($event)"></mat-paginator>
+
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showModal}"
+    [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{document_description}}</h5>
+                <button type="button" class="close" (click)="onFormCancel()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <img [src]="getImageUrl(document_fichier)" alt="Document Image"
+                style="max-width: 100%;">
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<br>

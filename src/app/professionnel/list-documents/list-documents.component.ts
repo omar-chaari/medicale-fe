@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, Input  } from '@angular/core';
+import { Component, OnInit, ViewChild,Input } from '@angular/core';
+import { DatatableService } from 'src/app/services/datatable.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { ConsultationService } from 'src/app/services/consultation.service';
+import { DocumentService } from 'src/app/services/document.service';
 
 @Component({
   selector: 'app-list-documents',
@@ -14,68 +16,72 @@ export class ListDocumentsComponent {
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
+  email: string = "";
 
   name: string = "";
-  consultations: any = [];
-  verification: any;
+  documents: any = [];
   page = 1;
   count = 0;
   tableSizes = [10];
   tableSize = this.tableSizes[0];
-  ConsultationName: any;
 
-  sortColumn: string = 'date'; // Default sorting column
-  sortOrder: string = 'asc'; // Default sorting order: 'asc' or 'desc'
+  sortColumn: string = 'created_at'; // Default sorting column
+  sortOrder: string = 'desc'; // Default sorting order: 'asc' or 'desc'
 
-
-  dataSource = new MatTableDataSource<any>(this.consultations);
-
-
-  PatientName: string = "";
-  date_debut: string = "";
-  date_fin: string = "";
+  dataSource = new MatTableDataSource<any>(this.documents);
+  @Input() consultation:number=0; // Receive the idPatient value from the parent component
   showModal = false;
   document_fichier:string="";
   document_description:string="";
-  @Input() id_patient:number=0; // Receive the idPatient value from the parent component
-
-
 
 
   constructor(private route: ActivatedRoute,
-    private consultationService: ConsultationService,
+    private datatableService: DatatableService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private consultationService: ConsultationService,
+    private documentService: DocumentService,
 
   ) { }
 
   ngOnInit() {
 
 
-    const limit = this.tableSize;
-    const offset = (this.page - 1) * this.tableSize;
+      const limit = this.tableSize;
+      const offset = (this.page - 1) * this.tableSize;
+      this.fetchDocuments(limit, offset);
 
-
-    this.fetchConsultations(limit, offset);
 
   }
 
-  fetchConsultations(limit: number, offset: number): void {
+  fetchDocuments(limit: number, offset: number): void {
+
+
+    var where: string ;
+    var tableID;
 
 
 
-    this.consultationService.SearchConsultations(this.id_patient, limit, offset).subscribe(
+    where = "consultation='" + this.consultation + "' ";
+
+
+
+
+    tableID = "users";
+
+    let fields = "id,fichier,description";
+
+    this.datatableService.list(fields, "documents", where, limit, offset, this.sortColumn, this.sortOrder).subscribe(
       (data: any) => {
-        this.consultations = Object.values(data['data']);
+        this.documents = data['data'];
 
-
-        console.log(this.consultations);
-
+        console.log(this.documents);
+        
         this.count = data['totalItems'];
 
-        console.log("count", this.count);
+
       },
-      (err: any) => {
+      err => {
         console.log(err);
       }
     );
@@ -85,10 +91,11 @@ export class ListDocumentsComponent {
 
 
 
+
   onTableDataChange(event: any) {
     this.page = event.pageIndex + 1;
     const offset = event.pageIndex * this.tableSize;
-    this.fetchConsultations(this.tableSize, offset);
+    this.fetchDocuments(this.tableSize, offset);
   }
 
   onTableSizeChange(event: any): void {
@@ -96,9 +103,14 @@ export class ListDocumentsComponent {
     this.tableSize = event.target.value;
     const offset = (this.page - 1) * this.tableSize;
 
-    this.fetchConsultations(this.tableSize, offset);
+    this.fetchDocuments(this.tableSize, offset);
   }
+  submit(form: any) {
 
+ 
+    this.fetchDocuments(10, 0);
+
+  }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -115,9 +127,8 @@ export class ListDocumentsComponent {
 
     const limit = this.tableSize;
     const offset = (this.page - 1) * this.tableSize;
-    this.fetchConsultations(limit, offset);
+    this.fetchDocuments(limit, offset);
   }
-
   getImageUrl(filename: string): any {
     var explodedArray = filename.split("/");
     filename = explodedArray[1];
@@ -140,5 +151,15 @@ export class ListDocumentsComponent {
     this.showModal = false;
   }
 
+  deleteElement(id_element:number): void {
+    this.documentService.documentDelete(id_element).subscribe(() => {
+ 
+      this.router.navigate([`/professionnel/edit-consultation/${this.consultation}`]);
+
+    });
+  }
+
+
 }
+
 

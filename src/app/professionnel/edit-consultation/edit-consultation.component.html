@@ -8,19 +8,18 @@
 
                 <div>
                     <label for="motif">Motif:</label>
-                    <textarea id="motif"  class="form-control"
-                        [(ngModel)]="consultation.motif" name="motif"></textarea>
+                    <textarea id="motif" class="form-control" [(ngModel)]="consultation.motif" name="motif"></textarea>
                 </div>
                 <br>
                 <div>
                     <label for="state">Notes:</label>
 
-                    <textarea id="notes"  class="form-control"
-                        [(ngModel)]="consultation.notes" name="notes"></textarea>
+                    <textarea id="notes" class="form-control" [(ngModel)]="consultation.notes" name="notes"></textarea>
                 </div>
-                <br>                
+                <br>
                 <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
             </form>
+            <app-list-documents [consultation]="consultation.id"></app-list-documents>
         </div>
     </div>
 </div>
