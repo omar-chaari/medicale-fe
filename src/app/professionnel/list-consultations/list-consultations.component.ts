@@ -34,6 +34,10 @@ export class ListConsultationsComponent {
   PatientName: string = "";
   date_debut: string = "";
   date_fin: string = "";
+  showModal = false;
+  document_fichier:string="";
+  document_description:string="";
+
 
 
 
@@ -121,29 +125,21 @@ export class ListConsultationsComponent {
       return this.consultationService.getImageUrl(filename);
 
 
+  }
 
-    /*this.consultationService.getImageData(filename).subscribe(
-      (data: Blob) => {
-        //return data;
+  openModel(document_fichier:string,document_description:string):void
 
-        let imageBlobUrl;
-        try {
-          imageBlobUrl = URL.createObjectURL(data);
-        } catch (err2) {
-          console.error(err2);
-        }
+  {
 
-        return imageBlobUrl;
-        // Handle the response data here
-      },
-      (err: any) => {
-        // Handle any errors here
-      }
-    );*/
+    this.document_fichier=document_fichier;
+    this.document_description=document_description;
+    this.showModal=true;
 
   }
 
-
+  onFormCancel(): void {
+    this.showModal = false;
+  }
 
 }
 
