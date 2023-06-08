@@ -153,7 +153,8 @@ export class ListDocumentsComponent {
 
   deleteElement(id_element:number): void {
     this.documentService.documentDelete(id_element).subscribe(() => {
- 
+      this.fetchDocuments(this.tableSize, (this.page - 1) * this.tableSize);
+
       this.router.navigate([`/professionnel/edit-consultation/${this.consultation}`]);
 
     });

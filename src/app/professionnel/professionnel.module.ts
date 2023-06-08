@@ -26,6 +26,8 @@ import { AddConsultationComponent } from './add-consultation/add-consultation.co
 import { ListConsultationsComponent } from './list-consultations/list-consultations.component';
 import { EditConsultationComponent } from './edit-consultation/edit-consultation.component';
 import { ListDocumentsComponent } from './list-documents/list-documents.component';
+import { AjoutDocumentComponent } from './ajout-document/ajout-document.component';
+import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ListDocumentsComponent } from './list-documents/list-documents.componen
     AddConsultationComponent,
     ListConsultationsComponent,
     EditConsultationComponent,
-    ListDocumentsComponent
+    ListDocumentsComponent,
+    AjoutDocumentComponent,
+    DeleteConsultationComponent
   ],
   imports: [
     CommonModule,
