@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DatatableService } from 'src/app/services/datatable.service';
 
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-dossier',

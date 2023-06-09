@@ -1,1 +1,27 @@
-<p>consulter-dossier works!</p>
+<div class="container" *ngIf="patient">
+
+ 
+
+    <h1>Dossier médicale</h1>
+
+    <div *ngIf="patient">
+        
+        <p><strong>Nom et prénom :</strong> {{ patient.first_name }} {{ patient.last_name }}</p>
+        <p><strong>Adresse :</strong> {{ patient.address }}</p>
+        <p><strong>Téléphone :</strong> {{ patient.phone }}</p>
+        <p><strong>Genre :</strong> {{ patient.sexe == 'h' ? 'Homme' : 'Femme' }}</p>
+        <p><strong>Date de naissance :</strong> {{ patient.birthday }}</p>
+        <p><strong>Régime :</strong> {{ patient.regime }}</p>
+        <p><strong>Identifiant unique :</strong> {{ patient.id_unique }}</p>
+
+        <p><strong>Allergies :</strong> {{ patient.allergies }}</p>
+        <p><strong>Maladies chroniques :</strong> {{ patient.maladies_chroniques }}</p>
+        <p><strong>Notes supplémentaires :</strong> {{ patient.notes_supplementaires }}</p>
+      </div>
+    
+    <br>
+    <h2>Liste de consultations</h2>
+
+    <app-list-consultations  [id_patient]="id_patient"></app-list-consultations>
+    <br>
+</div>

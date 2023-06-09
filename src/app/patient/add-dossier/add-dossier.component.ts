@@ -61,10 +61,6 @@ export class AddDossierComponent {
     }
 
 
-    if (this.patient.sexe != null || this.patient.birthday != null) {
-      this.router.navigate(['/patient/consulter-dossier']);
-
-    }
 
     this.addForm = this.fb.group({
       birthday: ['', Validators.required],
@@ -124,6 +120,11 @@ export class AddDossierComponent {
       (data: any) => {
         this.patient = data;
 
+
+        if (this.patient.sexe != null || this.patient.birthday != null) {
+          this.router.navigate(['/patient/consulter-dossier']);
+
+        }
 
         this.addForm.patchValue({
           first_name: this.patient.first_name,
