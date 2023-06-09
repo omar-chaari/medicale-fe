@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ListConsultationsComponent } from './list-consultations/list-consultations.component';
 @NgModule({
   declarations: [
     CalendrierDisponibilitesComponent,
@@ -24,6 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AddDossierComponent,
     EditDossierComponent,
     ConsulterDossierComponent,
+    ListConsultationsComponent,
     
   ],
   imports: [

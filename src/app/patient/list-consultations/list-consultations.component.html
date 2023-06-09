@@ -1,0 +1,71 @@
+<div *ngIf="consultations">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date </th>
+                <th scope="col">Professionnel de santé</th>
+                <th scope="col">Motif </th>
+                <th scope="col">Notes et documents </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let consultation of consultations ">
+                <td style="width: 10%;">{{consultation.date | date:'yyyy-MM-dd' }}</td>
+
+                <td style="width: 15%;">{{consultation.first_name}} {{consultation.last_name}}</td>
+                <td style="width: 35%;">{{consultation.motif}}</td>
+
+                <td style="width: 35%;">{{consultation.notes}}
+
+                    <div *ngIf="consultation.documents && consultation.documents.length > 0">
+
+
+                        <p><b>Documents:</b></p>
+                        <div *ngFor="let document of consultation.documents">
+
+                            <a (click)="openModel(document.fichier,document.description)">
+
+                                <img [src]="getImageUrl(document.fichier)" alt="Document Image"
+                                    style="max-width: 250px;max-height: 50px;">
+                                <p>{{ document.description }}</p>
+                            </a>
+
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10]" [length]="count"
+        (page)="onTableDataChange($event)"></mat-paginator>
+
+</div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showModal}"
+    [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{document_description}}</h5>
+                <button type="button" class="close" (click)="onFormCancel()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <img [src]="getImageUrl(document_fichier)" alt="Document Image"
+                style="max-width: 100%;">
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
