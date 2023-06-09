@@ -15,7 +15,7 @@ import { AddDossierComponent } from './add-dossier/add-dossier.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     CalendrierDisponibilitesComponent,
@@ -34,7 +34,8 @@ import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier
     MatPaginatorModule,
     MatTableModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [DatePipe],
 

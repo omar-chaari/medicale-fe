@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DatatableService } from 'src/app/services/datatable.service';
@@ -25,6 +26,8 @@ export class AddDossierComponent {
     private datatableService: DatatableService,
 
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+
 
   ) {
 
@@ -58,6 +61,10 @@ export class AddDossierComponent {
     }
 
 
+    if (this.patient.sexe != null || this.patient.birthday != null) {
+      this.router.navigate(['/patient/consulter-dossier']);
+
+    }
 
     this.addForm = this.fb.group({
       birthday: ['', Validators.required],
@@ -69,7 +76,10 @@ export class AddDossierComponent {
 
       allergies: ['', []],
       maladies_chroniques: ['', []],
-      notes_supplementaires: ['', []]
+      notes_supplementaires: ['', []],
+      regime: ['', []],
+      id_unique: ['', []]
+
     })
 
 
@@ -90,9 +100,12 @@ export class AddDossierComponent {
     this.datatableService.update(form_value, "patients", this.id_patient, cmd).subscribe(
       response => {
 
-     this.router.navigate(['/professionnel/list-patients']);
-      
-    
+        this.router.navigate(['/patient/consulter-dossier']);
+
+        this.snackBar.open('Dossier médical créé avec succès', 'Fermer', {
+          duration: 4000,
+        });
+
 
       },
       error => {
@@ -121,7 +134,10 @@ export class AddDossierComponent {
           birthday: this.patient.birthday,
           allergies: this.patient.allergies,
           maladies_chroniques: this.patient.maladies_chroniques,
-          notes_supplementaires: this.patient.notes_supplementaires
+          notes_supplementaires: this.patient.notes_supplementaires,
+          regime: this.patient.regime,
+          id_unique: this.patient.id_unique
+
         });
 
 

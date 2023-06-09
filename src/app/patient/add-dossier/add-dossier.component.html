@@ -83,6 +83,25 @@
 
 
         </div>
+
+        <div class="row">
+
+            <div class="mb-3 col-md-4">
+                <label for="regime" class="form-label ">Régime</label>
+                <select class="form-select form-control required" id="regime" formControlName="regime" name="regime">
+                    <option selected disabled>Régime</option>
+                    <option value="CNSS">CNSS</option>
+                    <option value="CNRPS">CNRPS</option>
+                    <option value="autres">Autres</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="id_unique" class="form-label ">Identifiant unique</label>
+                <input type="text" class="form-control" id="id_unique" formControlName="id_unique" name="id_unique">
+                <!-- Validation de l'identifiant unique -->
+            </div>
+        </div>
+
         <div class="row">
 
 
@@ -113,7 +132,7 @@
             </div>
         </div>
 
-      <!---
+        <!---
         <div *ngIf="addForm.invalid">
             <div *ngFor="let control of addForm.controls | keyvalue">
                 <div *ngIf="control.value.errors">
