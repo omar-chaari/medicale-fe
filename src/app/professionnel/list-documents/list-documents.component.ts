@@ -161,6 +161,17 @@ export class ListDocumentsComponent {
   }
 
 
+  updateDocuments(): void {
+    const limit = this.tableSize;
+    const offset = (this.page - 1) * this.tableSize;
+    this.fetchDocuments(limit, offset);
+  }
+  
+  getFileNameFromPath(filePath: string): string {
+    const parts = filePath.split('\\');
+    return parts[parts.length - 1];
+  }
+  
 }
 
 

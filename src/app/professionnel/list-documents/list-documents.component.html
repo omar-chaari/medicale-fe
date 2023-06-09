@@ -17,7 +17,7 @@
 
                         <img [src]="getImageUrl(document.fichier)" alt="Document Image"
                             style="max-width: 250px;max-height: 50px;">
-                        <p>{{ document.description }}</p>
+                        <p> {{ getFileNameFromPath(document.description) }} </p>
                     </a>
 
 

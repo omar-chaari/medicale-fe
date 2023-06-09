@@ -19,9 +19,9 @@
                 <br>
                 <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
             </form>
-            <app-list-documents [consultation]="consultation.id"></app-list-documents>
+            <app-list-documents [consultation]="consultation.id" #listDocuments></app-list-documents>
        
-            <app-ajout-document [consultation]="consultation.id"></app-ajout-document>
+            <app-ajout-document [consultation]="consultation.id" (documentAdded)="updateImages()"></app-ajout-document>
 
         </div>
     </div>

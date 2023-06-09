@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentService } from 'src/app/services/document.service';
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ajout-document',
@@ -9,6 +10,7 @@ import { DocumentService } from 'src/app/services/document.service';
   styleUrls: ['./ajout-document.component.css']
 })
 export class AjoutDocumentComponent {
+  @Output() documentAdded: EventEmitter<void> = new EventEmitter<void>();
 
   user: any = {};
   addForm: FormGroup;
@@ -77,8 +79,10 @@ export class AjoutDocumentComponent {
         this.documentService.uploadDocument(file, consultationId.toString(), documentName).subscribe(
           (data: any) => {
            
-            console.log(`/professionnel/edit-consultation/${this.consultation}`);
-            this.router.navigateByUrl(`/professionnel/edit-consultation/${this.consultation}`);
+            //console.log(`/professionnel/edit-consultation/${this.consultation}`);
+            this.documentAdded.emit(); // Émettre l'événement documentAdded
+
+            //this.router.navigateByUrl(`/professionnel/edit-consultation/${this.consultation}`);
 
           },
           err => {

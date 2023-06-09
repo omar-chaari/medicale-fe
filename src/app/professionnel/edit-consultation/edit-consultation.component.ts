@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatatableService } from 'src/app/services/datatable.service';
+import { ViewChild } from '@angular/core';
+import { ListDocumentsComponent } from '../list-documents/list-documents.component';
 
 @Component({
   selector: 'app-edit-consultation',
@@ -9,10 +11,12 @@ import { DatatableService } from 'src/app/services/datatable.service';
 })
 export class EditConsultationComponent {
 
+  @ViewChild('listDocuments', { static: false }) listDocuments!: ListDocumentsComponent;
+
   consultation: any;
   id: number = 0;
 
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -68,8 +72,8 @@ export class EditConsultationComponent {
     let record = {
       "motif": this.consultation.motif,
       "notes": this.consultation.notes,
-  }
-  
+    }
+
 
     this.datatableService.update(record, "consultations", this.id, cmd).subscribe(
       response => {
@@ -83,9 +87,12 @@ export class EditConsultationComponent {
   }
 
 
+  updateImages(): void {
+    this.listDocuments.updateDocuments();
+  }
 
 
 
- 
+
 
 }
