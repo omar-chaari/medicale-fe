@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,30 @@ export class ConsultationService {
     return `${this.apiUrl}/images/${filename}`;
   }
 
+
+  delete(consultationId: number): Observable<any> {
+
+    const endpoint = `${this.apiUrl}/consultation-delete`;
+
+    const body = {
+      id: consultationId,
+    
+    };
+   
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: body
+    };
+
+   
+    return this.http.delete(endpoint, httpOptions);
+
+
+   // return this.http.delete(`${this.apiUrl}/consultation-delete/${consultationId}`);
+  }
+  
 
 }
 

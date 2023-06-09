@@ -76,9 +76,9 @@ export class AjoutDocumentComponent {
         const documentName = documentNames[i];
         this.documentService.uploadDocument(file, consultationId.toString(), documentName).subscribe(
           (data: any) => {
-            // Traitement des réponses de l'API si nécessaire
-
-            this.router.navigate([`/professionnel/edit-consultation/${this.consultation}`]);
+           
+            console.log(`/professionnel/edit-consultation/${this.consultation}`);
+            this.router.navigateByUrl(`/professionnel/edit-consultation/${this.consultation}`);
 
           },
           err => {

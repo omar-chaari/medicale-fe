@@ -69,7 +69,7 @@ export class ListConsultationsComponent {
         this.consultations = Object.values(data['data']);
 
 
-        console.log(this.consultations);
+        //console.log(this.consultations);
 
         this.count = data['totalItems'];
 
