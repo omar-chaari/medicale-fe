@@ -28,6 +28,7 @@ import { EditConsultationComponent } from './edit-consultation/edit-consultation
 import { ListDocumentsComponent } from './list-documents/list-documents.component';
 import { AjoutDocumentComponent } from './ajout-document/ajout-document.component';
 import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
+import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { DeleteConsultationComponent } from './delete-consultation/delete-consul
     EditConsultationComponent,
     ListDocumentsComponent,
     AjoutDocumentComponent,
-    DeleteConsultationComponent
+    DeleteConsultationComponent,
+    ConsulterDossierComponent
   ],
   imports: [
     CommonModule,

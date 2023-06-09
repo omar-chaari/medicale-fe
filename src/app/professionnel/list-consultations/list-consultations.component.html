@@ -7,7 +7,7 @@
                 <th scope="col">Professionnel de santé</th>
                 <th scope="col">Motif </th>
                 <th scope="col">Notes et documents </th>
-                <th scope="col">Actions </th>
+                <th scope="col"  *ngIf="show_action">Actions </th>
 
             </tr>
         </thead>
@@ -37,7 +37,7 @@
                     </div>
                 </td>
 
-                <td>
+                <td  *ngIf="show_action">
 
                     <a routerLink="/professionnel/edit-consultation/{{consultation.consultation_id}}">
                         <i class="material-icons">edit</i>

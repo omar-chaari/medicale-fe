@@ -17,6 +17,7 @@ import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { AddConsultationComponent } from './add-consultation/add-consultation.component';
 import { EditConsultationComponent } from './edit-consultation/edit-consultation.component';
 import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
+import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 const routes: Routes = [
 
 
@@ -95,6 +96,13 @@ const routes: Routes = [
   {
     path: 'delete-consultation/:id',
     component: DeleteConsultationComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  }
+  ,
+  {
+    path: 'consulter-dossier/:id',
+    component: ConsulterDossierComponent,
     canActivate: [AuthProfessionnelGuard],
 
   }

@@ -1,4 +1,4 @@
-<h1 class="h3 mb-2 text-gray-800">Patients</h1>
+<h1 class="h3 mb-2 text-gray-800">Dossiers medicaux</h1>
 
 <div class="row">
     <div class="col-lg-12" style="padding-bottom: 15px;">
@@ -72,10 +72,14 @@
                         <td>
                           
                         <a *ngIf="patient.sexe==null && patient.birthday==null" routerLink="/professionnel/add-dossier/{{patient.id}}">
-                          Créer dossier medical
+                          Créer 
                         </a>
                         <a *ngIf="patient.sexe!=null || patient.birthday!=null" routerLink="/professionnel/edit-dossier/{{patient.id}}">
-                          Mettre à jour dossier medical
+                          Modifier
+                        </a>
+                        
+                        <a  routerLink="/professionnel/consulter-dossier/{{patient.id}}">
+                          Consulter
                         </a>
                         
                         </td>

@@ -13,6 +13,7 @@ import { ConsultationService } from 'src/app/services/consultation.service';
 export class ListConsultationsComponent {
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @Input() show_action: boolean = true; // Receive the show_action value from the parent component
 
 
   name: string = "";
