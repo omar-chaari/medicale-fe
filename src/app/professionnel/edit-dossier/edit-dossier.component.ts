@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DatatableService } from 'src/app/services/datatable.service';
@@ -27,6 +28,8 @@ export class EditDossierComponent {
     private datatableService: DatatableService,
 
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+
 
   ) {
 
@@ -70,7 +73,9 @@ export class EditDossierComponent {
 
       allergies: ['', []],
       maladies_chroniques: ['', []],
-      notes_supplementaires: ['', []]
+      notes_supplementaires: ['', []],
+      regime: ['', []],
+      id_unique: ['', []]
     })
 
 
@@ -91,7 +96,9 @@ export class EditDossierComponent {
     this.datatableService.update(form_value, "patients", this.id_patient, cmd).subscribe(
       response => {
 
-        this.router.navigate(['/professionnel/list-patients']);
+        this.snackBar.open('Dossier médical modifié avec succès', 'Fermer', {
+          duration: 4000,
+        });
       },
       error => {
         console.log("Failed to update patient", error);
@@ -119,7 +126,10 @@ export class EditDossierComponent {
           birthday: this.patient.birthday,
           allergies: this.patient.allergies,
           maladies_chroniques: this.patient.maladies_chroniques,
-          notes_supplementaires: this.patient.notes_supplementaires
+          notes_supplementaires: this.patient.notes_supplementaires,
+          regime: this.patient.regime,
+          id_unique: this.patient.id_unique
+
         });
 
 

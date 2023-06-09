@@ -69,7 +69,9 @@ export class EditDossierComponent {
 
       allergies: ['', []],
       maladies_chroniques: ['', []],
-      notes_supplementaires: ['', []]
+      notes_supplementaires: ['', []],
+      regime: ['', []],
+      id_unique: ['', []]
     })
 
 
@@ -124,7 +126,10 @@ export class EditDossierComponent {
           birthday: this.patient.birthday,
           allergies: this.patient.allergies,
           maladies_chroniques: this.patient.maladies_chroniques,
-          notes_supplementaires: this.patient.notes_supplementaires
+          notes_supplementaires: this.patient.notes_supplementaires,
+          regime: this.patient.regime,
+          id_unique: this.patient.id_unique,
+
         });
 
 

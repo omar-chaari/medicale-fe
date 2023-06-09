@@ -22,7 +22,11 @@
             <app-list-documents [consultation]="consultation.id" #listDocuments></app-list-documents>
        
             <app-ajout-document [consultation]="consultation.id" (documentAdded)="updateImages()"></app-ajout-document>
-
+<br>
+<a routerLink="/professionnel/edit-dossier/{{consultation.patient}}"
+>Retour vers dossier médical</a>
+<br>
+<br>
         </div>
     </div>
 </div>
