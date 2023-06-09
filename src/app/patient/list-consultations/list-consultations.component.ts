@@ -137,6 +137,9 @@ export class ListConsultationsComponent {
   onFormCancel(): void {
     this.showModal = false;
   }
-
+  getFileNameFromPath(filePath: string): string {
+    const parts = filePath.split('\\');
+    return parts[parts.length - 1];
+  }
 }
 
