@@ -7,8 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() showSubscriptionButton: boolean = true;
-
+  @Input() showSubscriptionButton: boolean = false;
+  @Input() showLoginButton: boolean = false;
+  
   constructor() { }
 
   ngOnInit(): void {
