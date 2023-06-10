@@ -44,7 +44,7 @@ export class ListConsultationsComponent {
 
   baseImageWidth = 500;
   baseImageHeight = 1000;
-
+  document_id = 0;
 
   constructor(private route: ActivatedRoute,
     private consultationService: ConsultationService,
@@ -140,10 +140,12 @@ export class ListConsultationsComponent {
 
   }
 
-  openModel(document_fichier: string, document_description: string): void {
+  openModel(document_fichier: string, document_description: string, document_id : number): void {
 
     this.document_fichier = document_fichier;
     this.document_description = document_description;
+    this.document_id = document_id;
+
     this.showModal = true;
 
   }

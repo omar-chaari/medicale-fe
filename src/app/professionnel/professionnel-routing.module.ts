@@ -18,6 +18,8 @@ import { AddConsultationComponent } from './add-consultation/add-consultation.co
 import { EditConsultationComponent } from './edit-consultation/edit-consultation.component';
 import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
+import { AfficherDocumentComponent } from './afficher-document/afficher-document.component';
+
 const routes: Routes = [
 
 
@@ -105,8 +107,14 @@ const routes: Routes = [
     component: ConsulterDossierComponent,
     canActivate: [AuthProfessionnelGuard],
 
-  }
+  },
   
+  {
+    path: 'afficher-document/:id/:id_dossier',
+    component: AfficherDocumentComponent,
+    canActivate: [AuthProfessionnelGuard],
+
+  },
 
 ];
 

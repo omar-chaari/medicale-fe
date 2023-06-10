@@ -1,0 +1,10 @@
+<a *ngIf="id_dossier" routerLink="/professionnel/edit-dossier/{{id_dossier}}">Retour
+</a>
+
+<a *ngIf="id_consultation" routerLink="/professionnel/edit-dossier/{{id_consultation}}">Retour
+</a>
+
+
+<br>
+<img [src]="getImageUrl(this.element.fichier)" alt="Document Image" 
+                style="max-width: 100%;">

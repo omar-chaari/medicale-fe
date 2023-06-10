@@ -30,6 +30,7 @@ import { AjoutDocumentComponent } from './ajout-document/ajout-document.componen
 import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { AfficherDocumentComponent } from './afficher-document/afficher-document.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     AjoutDocumentComponent,
     DeleteConsultationComponent,
     ConsulterDossierComponent,
+    AfficherDocumentComponent,
   ],
   imports: [
     CommonModule,

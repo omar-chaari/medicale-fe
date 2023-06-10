@@ -26,7 +26,7 @@
                         <p><b>Documents:</b></p>
                         <div *ngFor="let document of consultation.documents">
 
-                            <a (click)="openModel(document.fichier,document.description)">
+                            <a (click)="openModel(document.fichier,document.description,document.document_id)">
 
                                 <img [src]="getImageUrl(document.fichier)" alt="Document Image"
                                     style="max-width: 250px;max-height: 50px;">
@@ -71,12 +71,16 @@
                 </button>
             </div>
             <div class="modal-body">
+                <button routerLink="/professionnel/afficher-document/{{document_id}}/{{id_patient}}">
+                    Ouvrir</button>
 
+                    <!----                afficher-document/:fichier/:description
+                <button (click)="zoomIn()">Zoom In (+)</button>
                 <button (click)="zoomIn()">Zoom In (+)</button>
 
-
                 <button (click)="zoomOut()">Zoom Out (-)</button>
-
+                        ========
+                        ---->
                 <img [src]="getImageUrl(document_fichier)" alt="Document Image" style="max-width: 100%;">
 
             </div>
