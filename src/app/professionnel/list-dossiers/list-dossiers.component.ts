@@ -29,7 +29,7 @@ export class ListDossiersComponent {
   pro:number=0;
   sortColumn: string = 'verification'; // Default sorting column
   sortOrder: string = 'asc'; // Default sorting order: 'asc' or 'desc'
-
+  id_unique: string="";
   dataSource = new MatTableDataSource<any>(this.patients);
 
 
@@ -67,9 +67,14 @@ export class ListDossiersComponent {
     var verification = "1";
     var email = this.email;
 
+    var id_unique = this.id_unique;
 
     if (verification != "" && verification != undefined) {
       where += "and verification='" + verification + "' ";
+    }
+
+    if (id_unique != "" && id_unique != undefined) {
+      where += "and id_unique LIKE'%" + id_unique + "%' ";
     }
     if (email != "" && email != undefined) {
       where += "and email LIKE'%" + email + "%' ";
@@ -126,8 +131,9 @@ export class ListDossiersComponent {
     this.verification = form.value.verification;
 
     this.email = form.value.email;
+    this.id_unique = form.value.id_unique;
 
-    this.fetchPatients(10, 0);
+     this.fetchPatients(10, 0);
 
   }
   ngAfterViewInit() {
