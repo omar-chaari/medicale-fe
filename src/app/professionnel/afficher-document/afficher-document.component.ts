@@ -19,7 +19,6 @@ export class AfficherDocumentComponent {
   baseImageHeight = 1000;
   id = 0;
   id_dossier = 0 ;
-  id_consultation = 0 ;
   source ="";
   element:any = [];
 
@@ -36,7 +35,6 @@ export class AfficherDocumentComponent {
       this.document_description = params['document_description'];
       this.id = params['id'];
       this.id_dossier = params['id_dossier'];
-      this.id_consultation = params['id_consultation'];
       this.source = params['source'];
       //
       this.getDocument(this.id);
