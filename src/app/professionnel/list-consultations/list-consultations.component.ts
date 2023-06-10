@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input  } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -36,11 +36,14 @@ export class ListConsultationsComponent {
   date_debut: string = "";
   date_fin: string = "";
   showModal = false;
-  document_fichier:string="";
-  document_description:string="";
-  @Input() id_patient:number=0; // Receive the idPatient value from the parent component
+  document_fichier: string = "";
+  document_description: string = "";
+  @Input() id_patient: number = 0; // Receive the idPatient value from the parent component
 
+  zoomLevel = 1;
 
+  baseImageWidth = 500;
+  baseImageHeight = 1000;
 
 
   constructor(private route: ActivatedRoute,
@@ -49,6 +52,16 @@ export class ListConsultationsComponent {
     private datePipe: DatePipe
 
   ) { }
+  zoomIn() {
+    this.baseImageWidth += 10;
+    this.baseImageHeight += 10;
+  }
+
+  zoomOut() {
+    this.baseImageWidth -= 10;
+    this.baseImageHeight -= 10;
+  }
+
 
   ngOnInit() {
 
@@ -122,18 +135,16 @@ export class ListConsultationsComponent {
   getImageUrl(filename: string): any {
     var explodedArray = filename.split("/");
     filename = explodedArray[1];
-      return this.consultationService.getImageUrl(filename);
+    return this.consultationService.getImageUrl(filename);
 
 
   }
 
-  openModel(document_fichier:string,document_description:string):void
+  openModel(document_fichier: string, document_description: string): void {
 
-  {
-
-    this.document_fichier=document_fichier;
-    this.document_description=document_description;
-    this.showModal=true;
+    this.document_fichier = document_fichier;
+    this.document_description = document_description;
+    this.showModal = true;
 
   }
 

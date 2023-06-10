@@ -29,6 +29,7 @@ import { ListDocumentsComponent } from './list-documents/list-documents.componen
 import { AjoutDocumentComponent } from './ajout-document/ajout-document.component';
 import { DeleteConsultationComponent } from './delete-consultation/delete-consultation.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier
     ListDocumentsComponent,
     AjoutDocumentComponent,
     DeleteConsultationComponent,
-    ConsulterDossierComponent
+    ConsulterDossierComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +63,8 @@ import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier
     MatTableModule,
     MatSelectModule,
     FullCalendarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxImageZoomModule
   ],
   providers: [DatePipe],
 

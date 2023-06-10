@@ -7,7 +7,7 @@
                 <th scope="col">Professionnel de santé</th>
                 <th scope="col">Motif </th>
                 <th scope="col">Notes et documents </th>
-                <th scope="col"  *ngIf="show_action">Actions </th>
+                <th scope="col" *ngIf="show_action">Actions </th>
 
             </tr>
         </thead>
@@ -33,11 +33,12 @@
                                 <p>{{ getFileNameFromPath(document.description) }}</p>
                             </a>
 
+
                         </div>
                     </div>
                 </td>
 
-                <td  *ngIf="show_action">
+                <td *ngIf="show_action">
 
                     <a routerLink="/professionnel/edit-consultation/{{consultation.consultation_id}}">
                         <i class="material-icons">edit</i>
@@ -61,8 +62,8 @@
 
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal" [ngClass]="{'show': showModal}"
     [ngStyle]="{'display': showModal ? 'block' : 'none'}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog custom-modal-dialog" role="document">
+        <div class="modal-content" [style.width.px]="baseImageWidth" [style.height.px]="baseImageHeight">
             <div class="modal-header">
                 <h5 class="modal-title">{{ getFileNameFromPath(document_description) }}</h5>
                 <button type="button" class="close" (click)="onFormCancel()" aria-label="Close">
@@ -71,8 +72,12 @@
             </div>
             <div class="modal-body">
 
-                <img [src]="getImageUrl(document_fichier)" alt="Document Image"
-                style="max-width: 100%;">
+                <button (click)="zoomIn()">Zoom In (+)</button>
+
+
+                <button (click)="zoomOut()">Zoom Out (-)</button>
+
+                <img [src]="getImageUrl(document_fichier)" alt="Document Image" style="max-width: 100%;">
 
             </div>
 
