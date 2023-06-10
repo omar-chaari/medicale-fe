@@ -71,16 +71,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <button routerLink="/professionnel/afficher-document/{{document_id}}/{{id_patient}}">
+                <button routerLink="/professionnel/afficher-document/dossier/{{document_id}}/{{id_patient}}">
                     Ouvrir</button>
 
-                    <!----                afficher-document/:fichier/:description
-                <button (click)="zoomIn()">Zoom In (+)</button>
-                <button (click)="zoomIn()">Zoom In (+)</button>
-
-                <button (click)="zoomOut()">Zoom Out (-)</button>
-                        ========
-                        ---->
                 <img [src]="getImageUrl(document_fichier)" alt="Document Image" style="max-width: 100%;">
 
             </div>

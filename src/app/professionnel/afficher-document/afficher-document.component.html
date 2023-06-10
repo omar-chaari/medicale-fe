@@ -1,7 +1,7 @@
-<a *ngIf="id_dossier" routerLink="/professionnel/edit-dossier/{{id_dossier}}">Retour
+<a *ngIf="(source=='dossier')" routerLink="/professionnel/edit-dossier/{{id_dossier}}">Retour
 </a>
 
-<a *ngIf="id_consultation" routerLink="/professionnel/edit-dossier/{{id_consultation}}">Retour
+<a *ngIf="(source=='consultation')" routerLink="/professionnel/edit-consultation/{{id_dossier}}">Retour
 </a>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { DatatableService } from 'src/app/services/datatable.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
@@ -29,11 +29,11 @@ export class ListDocumentsComponent {
   sortOrder: string = 'desc'; // Default sorting order: 'asc' or 'desc'
 
   dataSource = new MatTableDataSource<any>(this.documents);
-  @Input() consultation:number=0; // Receive the idPatient value from the parent component
+  @Input() consultation: number = 0; // Receive the idPatient value from the parent component
   showModal = false;
-  document_fichier:string="";
-  document_description:string="";
-
+  document_fichier: string = "";
+  document_description: string = "";
+  document_id: number = 0;
 
   constructor(private route: ActivatedRoute,
     private datatableService: DatatableService,
@@ -47,9 +47,9 @@ export class ListDocumentsComponent {
   ngOnInit() {
 
 
-      const limit = this.tableSize;
-      const offset = (this.page - 1) * this.tableSize;
-      this.fetchDocuments(limit, offset);
+    const limit = this.tableSize;
+    const offset = (this.page - 1) * this.tableSize;
+    this.fetchDocuments(limit, offset);
 
 
   }
@@ -57,7 +57,7 @@ export class ListDocumentsComponent {
   fetchDocuments(limit: number, offset: number): void {
 
 
-    var where: string ;
+    var where: string;
     var tableID;
 
 
@@ -76,7 +76,7 @@ export class ListDocumentsComponent {
         this.documents = data['data'];
 
         console.log(this.documents);
-        
+
         this.count = data['totalItems'];
 
 
@@ -107,7 +107,7 @@ export class ListDocumentsComponent {
   }
   submit(form: any) {
 
- 
+
     this.fetchDocuments(10, 0);
 
   }
@@ -132,26 +132,28 @@ export class ListDocumentsComponent {
   getImageUrl(filename: string): any {
     var explodedArray = filename.split("/");
     filename = explodedArray[1];
-      return this.consultationService.getImageUrl(filename);
+    return this.consultationService.getImageUrl(filename);
 
 
   }
 
-  openModel(document_fichier:string,document_description:string):void
 
-  {
+  openModel(document_fichier: string, document_description: string, document_id: number): void {
 
-    this.document_fichier=document_fichier;
-    this.document_description=document_description;
-    this.showModal=true;
+    this.document_fichier = document_fichier;
+    this.document_description = document_description;
+    this.document_id = document_id;
+
+    this.showModal = true;
 
   }
+
 
   onFormCancel(): void {
     this.showModal = false;
   }
 
-  deleteElement(id_element:number): void {
+  deleteElement(id_element: number): void {
     this.documentService.documentDelete(id_element).subscribe(() => {
       this.fetchDocuments(this.tableSize, (this.page - 1) * this.tableSize);
 
@@ -166,12 +168,12 @@ export class ListDocumentsComponent {
     const offset = (this.page - 1) * this.tableSize;
     this.fetchDocuments(limit, offset);
   }
-  
+
   getFileNameFromPath(filePath: string): string {
     const parts = filePath.split('\\');
     return parts[parts.length - 1];
   }
-  
+
 }
 
 

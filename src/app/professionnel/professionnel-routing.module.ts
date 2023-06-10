@@ -110,7 +110,7 @@ const routes: Routes = [
   },
   
   {
-    path: 'afficher-document/:id/:id_dossier',
+    path: 'afficher-document/:source/:id/:id_dossier',
     component: AfficherDocumentComponent,
     canActivate: [AuthProfessionnelGuard],
 
