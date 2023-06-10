@@ -17,6 +17,7 @@ import { EditDossierComponent } from './edit-dossier/edit-dossier.component';
 import { ConsulterDossierComponent } from './consulter-dossier/consulter-dossier.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListConsultationsComponent } from './list-consultations/list-consultations.component';
+import { AfficherDocumentComponent } from './afficher-document/afficher-document.component';
 @NgModule({
   declarations: [
     CalendrierDisponibilitesComponent,
@@ -26,6 +27,7 @@ import { ListConsultationsComponent } from './list-consultations/list-consultati
     EditDossierComponent,
     ConsulterDossierComponent,
     ListConsultationsComponent,
+    AfficherDocumentComponent,
     
   ],
   imports: [

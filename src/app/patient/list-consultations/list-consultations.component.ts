@@ -37,6 +37,7 @@ export class ListConsultationsComponent {
   showModal = false;
   document_fichier: string = "";
   document_description: string = "";
+  document_id: number =0;
   @Input() id_patient: number = 0; // Receive the idPatient value from the parent component
 
 
@@ -126,13 +127,17 @@ export class ListConsultationsComponent {
 
   }
 
-  openModel(document_fichier: string, document_description: string): void {
+  
+  openModel(document_fichier: string, document_description: string, document_id : number): void {
 
     this.document_fichier = document_fichier;
     this.document_description = document_description;
+    this.document_id = document_id;
+
     this.showModal = true;
 
   }
+
 
   onFormCancel(): void {
     this.showModal = false;
