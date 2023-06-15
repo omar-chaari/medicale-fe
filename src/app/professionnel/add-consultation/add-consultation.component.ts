@@ -79,10 +79,9 @@ export class AddConsultationComponent {
   
     this.consultationService.create(form_value).subscribe(
       (data: any) => {
-        console.log("consultation",data);
+        //console.log("consultation",data);
         //  console.log('Contact Added Successfully');
-
-              // Appel du service DocumentService pour envoyer les fichiers
+    // Appel du service DocumentService pour envoyer les fichiers
       this.uploadDocuments(documentNames, data.id);
 
         this.message_success = 'La consulation a été ajouté au dossier médical avec succès';

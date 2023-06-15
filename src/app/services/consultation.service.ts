@@ -14,7 +14,7 @@ export class ConsultationService {
 
 
   create(record: any) {
-    const formData = new FormData();
+    /*const formData = new FormData();
     formData.append('professional', record.professional);
     formData.append('patient', record.patient);
     formData.append('date', record.date);
@@ -22,7 +22,7 @@ export class ConsultationService {
     formData.append('notes', record.notes);
 
     console.log(formData);
-
+*/
     const body = {
       professional: record.professional,
       patient: record.patient,
@@ -32,7 +32,12 @@ export class ConsultationService {
     };
 
 
+   /* console.log("*****INSERT*****");
 
+    console.log(body);
+
+    console.log("*****INSERT*****");
+*/
 
     return this.http.post(`${this.apiUrl}/consultation-store`, body);
   }
